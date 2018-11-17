@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/undoStep"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+
+    <Button
+        android:id="@+id/EXIT"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.917" />
+
+    <Button
+        android:id="@+id/EASY"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Easy"
+        app:layout_constraintBottom_toTopOf="@+id/MEDIUM"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <Button
+        android:id="@+id/MEDIUM"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MEDIUM"
+        app:layout_constraintBottom_toTopOf="@+id/HARD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EASY"
+        app:layout_constraintVertical_bias="0.345" />
+
+    <Button
+        android:id="@+id/HARD"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HARD"
+        app:layout_constraintBottom_toTopOf="@+id/undoStp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MEDIUM"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <Button
+        android:id="@+id/undoSetP"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="40dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="324dp"
+        android:layout_marginEnd="64dp"
+        android:text="+"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/undoStp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="144dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="324dp"
+        android:text="Change Undo Steps Here"
+        app:layout_constraintBottom_toBottomOf="@id/HARD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/undoSetP"
+        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintStart_toEndOf="@+id/undoSetM"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/undoSetM"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="40dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="324dp"
+        android:text="-"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    " />
+</android.support.constraint.ConstraintLayout>
