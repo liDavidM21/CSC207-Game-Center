@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-//import fall2018.csc2017.minesweeper.MainActivity;
+import fall2018.csc2017.minesweeper.MainActivity;
 
 public class GameChoosing extends AppCompatActivity {
     @Override
@@ -38,7 +38,7 @@ public class GameChoosing extends AppCompatActivity {
         game2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //switchToGame2();
+                switchToGame2();
             }
         });
     }
@@ -48,8 +48,8 @@ public class GameChoosing extends AppCompatActivity {
         startActivity(tmp);
     }
 
-//    private void switchToGame2() {
-//        Intent tmp = new Intent(this, MainActivity.class);
-//        startActivity(tmp);
-//    }
+    private void switchToGame2() {
+        Intent tmp = new Intent(this, MainActivity.class);
+        startActivity(tmp);
+    }
 }

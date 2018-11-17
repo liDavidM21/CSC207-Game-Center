@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import fall2018.csc2017.minesweeper.GameEngine;
-import fall2018.csc2017.R;
+import fall2018.csc2017.slidingtiles.R;
 
 /**
  * Created by Marcell on 2016. 04. 14..
