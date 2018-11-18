@@ -54,7 +54,7 @@ public class Generator {
         if( isMineAt(grid,x - 1 ,y    ,width,height)) count++; // left
         if( isMineAt(grid,x + 1 ,y    ,width,height)) count++; // right
         if( isMineAt(grid,x - 1 ,y - 1,width,height)) count++; // bottom-left
-        if( isMineAt(grid,x     ,y - 1,width,height)) count++; // bottom
+        if( isMineAt(grid,x ,y - 1,width,height)) count++; // bottom
         if( isMineAt(grid,x + 1 ,y - 1,width,height)) count++; // bottom-right
 
         return count;

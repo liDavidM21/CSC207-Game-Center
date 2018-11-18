@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
+import fall2018.csc2017.minesweeper.MainActivity;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -219,9 +220,16 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1, GameActivity.class);
-                saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-                startActivity(tmp);
+                if (GameChoosing.get_current_game() == "sliding_tiles") {
+                    Intent tmp = new Intent(tmp1, GameActivity.class);
+                    saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+                    startActivity(tmp);
+                }
+                else{
+                    Intent tmp = new Intent(tmp1, MainActivity.class);
+                    saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+                    startActivity(tmp);
+                }
             }
         });
     }

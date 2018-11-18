@@ -64,7 +64,6 @@ public abstract class BaseCell extends View {
     public void setClicked() {
         this.isClicked = true;
         this.isRevealed = true;
-
         invalidate();
     }
 

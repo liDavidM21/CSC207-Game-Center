@@ -5,10 +5,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.Serializable;
+
 /**
  * Created by Marcell on 2016. 04. 01..
  */
-public class GameEngine {
+public class GameEngine implements Serializable {
     private static GameEngine instance;
 
     public static final int BOMB_NUMBER = 10;

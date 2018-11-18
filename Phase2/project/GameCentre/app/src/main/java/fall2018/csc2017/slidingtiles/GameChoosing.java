@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import fall2018.csc2017.R;
 
-import fall2018.csc2017.minesweeper.MainActivity;
-import fall2018.csc2017.slidingtiles.StartingActivity;
-
 public class GameChoosing extends AppCompatActivity {
+    private static boolean minesweeper = false;
+    private static boolean sliding_tiles = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +18,17 @@ public class GameChoosing extends AppCompatActivity {
         addgame1ButtonListener();
         addgame2ButtonListener();
     }
+
+    public static String get_current_game() {
+        if (sliding_tiles == true){
+            return "sliding_tiles";
+        }
+        else{
+            return "minesweeper";
+        }
+    }
+
+
 
     /**
      * Start a new game.
@@ -46,12 +57,16 @@ public class GameChoosing extends AppCompatActivity {
     }
 
     private void switchToGame1() {
+        minesweeper = false;
+        sliding_tiles = true;
         Intent tmp = new Intent(this, StartingActivity.class);
         startActivity(tmp);
     }
 
     private void switchToGame2() {
-        Intent tmp = new Intent(this, MainActivity.class);
+        sliding_tiles = false;
+        minesweeper = true;
+        Intent tmp = new Intent(this, StartingActivity.class);
         startActivity(tmp);
     }
 }
