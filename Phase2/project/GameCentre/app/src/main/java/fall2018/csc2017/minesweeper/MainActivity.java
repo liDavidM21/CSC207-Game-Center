@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import fall2018.csc2017.slidingtiles.R;
+import fall2018.csc2017.R;
 
 public class MainActivity extends Activity {
 

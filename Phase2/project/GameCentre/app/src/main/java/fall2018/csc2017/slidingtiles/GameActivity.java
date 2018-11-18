@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
+import fall2018.csc2017.R;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

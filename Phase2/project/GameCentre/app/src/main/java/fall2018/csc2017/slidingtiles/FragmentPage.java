@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import fall2018.csc2017.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

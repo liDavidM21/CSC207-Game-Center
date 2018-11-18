@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
-    <com.marcellelek.minesweepertutorial.views.grid.Grid
+    <fall2018.csc2017.minesweeper.Grid
         android:id="@+id/minesweeperGridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
