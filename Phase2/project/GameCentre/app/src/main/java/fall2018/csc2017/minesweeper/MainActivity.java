@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 
         ((TextView)findViewById(R.id.textView)).setText("ASDASDASDASD");
 
-        Log.e("MainActivity","onCreate");
+        Log.e("MainActivityTwo","onCreate");
         GameEngine.getInstance().createGrid(this);
     }
 }
