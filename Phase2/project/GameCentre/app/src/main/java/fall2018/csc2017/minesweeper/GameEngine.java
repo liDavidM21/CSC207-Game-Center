@@ -64,7 +64,8 @@ public class GameEngine implements Serializable {
     }
 
     public void click( int x , int y ){
-        if( x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT && !getCellAt(x,y).isClicked() ){
+        if( x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT && !getCellAt(x,y).isClicked() &&
+                !getCellAt(x,y).isFlagged()){
             getCellAt(x,y).setClicked();
 
             if( getCellAt(x,y).getValue() == 0 ){
