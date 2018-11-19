@@ -31,6 +31,10 @@ public class GameEngine implements Serializable {
 
     public static boolean isLost(){return isLost;}
 
+    public static void setIsLost(boolean isLost) {
+        GameEngine.isLost = isLost;
+    }
+
     private Context context;
 
     private Cell[][] MinesweeperGrid = new Cell[WIDTH][HEIGHT];
