@@ -13,9 +13,23 @@ import java.io.Serializable;
 public class GameEngine implements Serializable {
     private static GameEngine instance;
 
-    public static final int BOMB_NUMBER = 10;
-    public static final int WIDTH = 10;
-    public static final int HEIGHT = 16;
+    private static boolean isLost = false;
+    private static int BOMB_NUMBER = 20;
+    private static int WIDTH = 12;
+    private static int HEIGHT = 16;
+
+
+    public static int getWIDTH(){return WIDTH;}
+
+    public static int getHEIGHT(){return HEIGHT;}
+
+    public static void setBombNumber(int b){BOMB_NUMBER = b;}
+
+    public static void setWIDTH(int w){WIDTH = w;}
+
+    public static void setHEIGHT(int h){HEIGHT = h;}
+
+    public static boolean isLost(){return isLost;}
 
     private Context context;
 
@@ -116,6 +130,7 @@ public class GameEngine implements Serializable {
     private void onGameLost(){
         // handle lost game
         Toast.makeText(context,"Game lost", Toast.LENGTH_SHORT).show();
+        isLost = true;
 
         for ( int x = 0 ; x < WIDTH ; x++ ) {
             for (int y = 0; y < HEIGHT; y++) {

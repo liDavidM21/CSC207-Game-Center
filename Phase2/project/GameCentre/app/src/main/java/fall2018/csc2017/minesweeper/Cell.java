@@ -31,6 +31,8 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
 
     @Override
     public void onClick(View v) {
+
+        if (!GameEngine.isLost())
         GameEngine.getInstance().click( getXPos(), getYPos() );
     }
 

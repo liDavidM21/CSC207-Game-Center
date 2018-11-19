@@ -91,7 +91,7 @@ public abstract class BaseCell extends View {
         this.x = x;
         this.y = y;
 
-        this.position = y * GameEngine.WIDTH + x;
+        this.position = y * GameEngine.getWIDTH() + x;
 
         invalidate();
     }

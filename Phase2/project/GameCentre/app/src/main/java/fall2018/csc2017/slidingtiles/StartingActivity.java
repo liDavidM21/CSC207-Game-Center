@@ -24,6 +24,7 @@ import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
 import fall2018.csc2017.minesweeper.MainActivity;
 import fall2018.csc2017.game2048.MainActivityTwo;
+import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -221,12 +222,12 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (GameChoosing.get_current_game() == "sliding_tiles") {
+                if (GameChoosing.get_current_game().equals("sliding_tiles")) {
                     Intent tmp = new Intent(tmp1, GameActivity.class);
                     saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
                     startActivity(tmp);
                 }
-                else if (GameChoosing.get_current_game() == "2048") {
+                else if (GameChoosing.get_current_game().equals("2048")) {
                     Intent tmp = new Intent(tmp1, MainActivityTwo.class);
                     saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
                     startActivity(tmp);
@@ -244,10 +245,18 @@ public class StartingActivity extends AppCompatActivity {
      * Switch to activity_setting interface.
      */
     private void switchToSetting() {
-        Intent tmp = new Intent(this, GameSetting.class);
-        saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-        makeToastUndoText();
-        startActivity(tmp);
+        final StartingActivity tmp1 = this;
+        if (GameChoosing.get_current_game().equals("minesweeper")) {
+            Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
+            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+            startActivity(tmp);
+        }
+        else {
+            Intent tmp = new Intent(tmp1, GameSetting.class);
+            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+            makeToastUndoText();
+            startActivity(tmp);
+        }
     }
 
     /**
