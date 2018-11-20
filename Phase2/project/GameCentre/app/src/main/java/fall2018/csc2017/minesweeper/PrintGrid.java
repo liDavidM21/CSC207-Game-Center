@@ -7,7 +7,7 @@ import android.util.Log;
  */
 public class PrintGrid {
 
-    public static void print( final int[][] grid , final int width , final int height ){
+    public static void print( final int[][] grid , int width , int height ){
         for( int x = 0 ; x < width ; x++ ){
             String printedText = "| ";
             for( int y = 0 ; y < height ; y++ ){

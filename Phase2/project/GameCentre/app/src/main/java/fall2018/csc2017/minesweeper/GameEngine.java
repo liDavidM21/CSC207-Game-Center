@@ -14,9 +14,9 @@ public class GameEngine implements Serializable {
     private static GameEngine instance;
 
     private static boolean isLost = false;
-    private static int BOMB_NUMBER = 20;
-    private static int WIDTH = 12;
-    private static int HEIGHT = 16;
+    private static int BOMB_NUMBER = 14;
+    private static int WIDTH = 10;
+    private static int HEIGHT = 14;
 
 
     public static int getWIDTH(){return WIDTH;}
@@ -37,7 +37,7 @@ public class GameEngine implements Serializable {
 
     private Context context;
 
-    private Cell[][] MinesweeperGrid = new Cell[WIDTH][HEIGHT];
+    private static Cell[][] MinesweeperGrid = new Cell[WIDTH][HEIGHT];
 
     public static GameEngine getInstance() {
         if( instance == null ){
@@ -55,12 +55,13 @@ public class GameEngine implements Serializable {
         // create the grid and store it
         int[][] GeneratedGrid = Generator.generate(BOMB_NUMBER,WIDTH, HEIGHT);
         PrintGrid.print(GeneratedGrid,WIDTH,HEIGHT);
+        MinesweeperGrid = new Cell[getWIDTH()][getHEIGHT()];
         setGrid(context,GeneratedGrid);
     }
 
-    private void setGrid( final Context context, final int[][] grid ){
-        for( int x = 0 ; x < WIDTH ; x++ ){
-            for( int y = 0 ; y < HEIGHT ; y++ ){
+    private void setGrid( final Context context, int[][] grid ){
+        for( int x = 0 ; x < getWIDTH() ; x++ ){
+            for( int y = 0 ; y < getHEIGHT() ; y++ ){
                 if( MinesweeperGrid[x][y] == null ){
                     MinesweeperGrid[x][y] = new Cell( context , x,y);
                 }

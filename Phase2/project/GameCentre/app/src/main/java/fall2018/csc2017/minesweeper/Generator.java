@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class Generator {
 
-    public static int[][] generate( int bombnumber , final int width , final int height){
+    public static int[][] generate( int bombnumber , int width , int height){
         // Random for generating numbers
         Random r = new Random();
 
