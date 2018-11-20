@@ -65,6 +65,7 @@ public class StartingActivity extends AppCompatActivity {
         addSettingButtonListener();
         addScoreboardButtonListener();
         addSignoutButtonListener();
+        addExitButtonListener();
     }
 
     /**
@@ -297,9 +298,35 @@ public class StartingActivity extends AppCompatActivity {
         Toast.makeText(this, "DEFAULT MODE: MEDIUM", Toast.LENGTH_SHORT).show();
     }
 
+
+    /**
+     * Display undo setting configuration: maximum undo steps selected by user.
+     */
     private void makeToastUndoText() {
         String str = " Current Num Undo Steps:" + GameSetting.numUndo;
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Button for go back to game choosing selection layout.
+     */
+    private void addExitButtonListener() {
+        Button exitButton = findViewById(R.id.backTwo);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToSelecting();
+            }
+        });
+    }
+
+    /**
+     * Switch to game choosing interface.
+     * Used by ExitButtonListener.
+     */
+    private void switchToSelecting() {
+        Intent tmp = new Intent(this, GameChoosing.class);
+        startActivity(tmp);
     }
 
     /**
