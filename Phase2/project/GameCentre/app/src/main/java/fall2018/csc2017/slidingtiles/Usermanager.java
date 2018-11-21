@@ -67,7 +67,7 @@ public class Usermanager implements Serializable, Iterable<User> {
     }
 
     /**
-     * List of all registered user.
+     * List of all registered users.
      */
     private List<User> current_user = new ArrayList<>();
 
