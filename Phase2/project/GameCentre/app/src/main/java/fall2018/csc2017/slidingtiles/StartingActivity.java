@@ -40,6 +40,10 @@ public class StartingActivity extends AppCompatActivity {
      */
     public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
     /**
+     * A temporary save file.
+     */
+    public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
+    /**
      * The board manager.
      */
     private BoardManager boardManager;
@@ -58,6 +62,7 @@ public class StartingActivity extends AppCompatActivity {
             showDefault++;
         }
         saveToFile(TEMP_SAVE_FILENAME);
+        saveToFile(AUTO_SAVE_FILENAME);
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();
