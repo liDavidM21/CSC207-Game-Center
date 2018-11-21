@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import fall2018.csc2017.R;
 
 public class GameSetting extends AppCompatActivity {
 

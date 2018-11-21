@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import fall2018.csc2017.R;
 
 /**
  * A login screen that offers login via email/password.
@@ -90,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
      * switch to game menu
      */
     private void game_menu() {
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, GameChoosing.class);
         startActivity(tmp);
     }
 

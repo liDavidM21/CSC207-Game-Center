@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-74dp"
+        android:layout_marginTop="-154dp"
         android:text="New Game" />
 
     <Button
@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
         android:layout_alignStart="@+id/SaveButton"
-        android:layout_marginStart="-7dp"
-        android:layout_marginTop="61dp"
+        android:layout_marginStart="-9dp"
+        android:layout_marginTop="-15dp"
         android:text="SCOREBOARD" />
 
     <Button
@@ -52,8 +52,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="-124dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="-126dp"
         android:layout_toStartOf="@+id/StartButton"
         android:text="Load Saved Game" />
 
@@ -63,8 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="550dp"
-        android:layout_marginEnd="-117dp"
+        android:layout_marginTop="454dp"
+        android:layout_marginEnd="-116dp"
         android:layout_toStartOf="@+id/LoadButton"
         android:text="Signout" />
 
@@ -74,8 +74,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
-        android:layout_marginStart="-99dp"
-        android:layout_marginTop="-6dp"
+        android:layout_marginStart="-98dp"
+        android:layout_marginTop="-84dp"
         android:layout_toEndOf="@+id/StartButton"
         android:text="Save Game"
         android:visibility="visible" />
@@ -85,10 +85,24 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="158dp"
-        android:layout_marginEnd="-117dp"
-        android:layout_toStartOf="@+id/LoadButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="165dp"
         android:text="Setting" />
+
+    <Button
+        android:id="@+id/backTwo"
+        style="@style/Widget.AppCompat.Button.Colored"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="544dp"
+        android:layout_marginEnd="-198dp"
+        android:layout_toStartOf="@+id/scoreboardButton"
+        android:text="Back" />
 
 </RelativeLayout>

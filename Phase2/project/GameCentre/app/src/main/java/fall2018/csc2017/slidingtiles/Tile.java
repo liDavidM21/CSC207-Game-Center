@@ -2,6 +2,7 @@ package fall2018.csc2017.slidingtiles;
 
 
 import android.support.annotation.NonNull;
+import fall2018.csc2017.R;
 
 
 import java.io.Serializable;

@@ -21,6 +21,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import fall2018.csc2017.R;
+import fall2018.csc2017.minesweeper.MainActivity;
+import fall2018.csc2017.game2048.MainActivityTwo;
+import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -35,6 +39,10 @@ public class StartingActivity extends AppCompatActivity {
      * A temporary save file.
      */
     public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
+    /**
+     * A temporary save file.
+     */
+    public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
     /**
      * The board manager.
      */
@@ -54,6 +62,7 @@ public class StartingActivity extends AppCompatActivity {
             showDefault++;
         }
         saveToFile(TEMP_SAVE_FILENAME);
+        saveToFile(AUTO_SAVE_FILENAME);
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();
@@ -61,6 +70,7 @@ public class StartingActivity extends AppCompatActivity {
         addSettingButtonListener();
         addScoreboardButtonListener();
         addSignoutButtonListener();
+        addExitButtonListener();
     }
 
     /**
@@ -218,9 +228,21 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1, GameActivity.class);
-                saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-                startActivity(tmp);
+                if (GameChoosing.get_current_game().equals("sliding_tiles")) {
+                    Intent tmp = new Intent(tmp1, GameActivity.class);
+                    saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+                    startActivity(tmp);
+                }
+                else if (GameChoosing.get_current_game().equals("2048")) {
+                    Intent tmp = new Intent(tmp1, MainActivityTwo.class);
+                    saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+                    startActivity(tmp);
+                }
+                else{
+                    Intent tmp = new Intent(tmp1, MainActivity.class);
+                    saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+                    startActivity(tmp);
+                }
             }
         });
     }
@@ -229,10 +251,18 @@ public class StartingActivity extends AppCompatActivity {
      * Switch to activity_setting interface.
      */
     private void switchToSetting() {
-        Intent tmp = new Intent(this, GameSetting.class);
-        saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-        makeToastUndoText();
-        startActivity(tmp);
+        final StartingActivity tmp1 = this;
+        if (GameChoosing.get_current_game().equals("minesweeper")) {
+            Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
+            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+            startActivity(tmp);
+        }
+        else {
+            Intent tmp = new Intent(tmp1, GameSetting.class);
+            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+            makeToastUndoText();
+            startActivity(tmp);
+        }
     }
 
     /**
@@ -273,9 +303,35 @@ public class StartingActivity extends AppCompatActivity {
         Toast.makeText(this, "DEFAULT MODE: MEDIUM", Toast.LENGTH_SHORT).show();
     }
 
+
+    /**
+     * Display undo setting configuration: maximum undo steps selected by user.
+     */
     private void makeToastUndoText() {
         String str = " Current Num Undo Steps:" + GameSetting.numUndo;
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Button for go back to game choosing selection layout.
+     */
+    private void addExitButtonListener() {
+        Button exitButton = findViewById(R.id.backTwo);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToSelecting();
+            }
+        });
+    }
+
+    /**
+     * Switch to game choosing interface.
+     * Used by ExitButtonListener.
+     */
+    private void switchToSelecting() {
+        Intent tmp = new Intent(this, GameChoosing.class);
+        startActivity(tmp);
     }
 
     /**
