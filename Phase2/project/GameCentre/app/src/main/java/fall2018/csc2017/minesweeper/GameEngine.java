@@ -81,6 +81,13 @@ public class GameEngine implements Serializable {
     }
 
     /**
+     * Get number of bombs.
+     * @return int number of bombs.
+     */
+    public static int getBombNumber(){
+        return BOMB_NUMBER;
+    }
+    /**
      * Initialize a new grid for game minesweeper.
      */
     private static Cell[][] MinesweeperGrid = new Cell[WIDTH][HEIGHT];
