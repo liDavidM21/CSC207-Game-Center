@@ -13,30 +13,83 @@ import java.io.Serializable;
 public class GameEngine implements Serializable {
     private static GameEngine instance;
 
+    /**
+     * Game state pending win or not.
+     */
     private static boolean isLost = false;
+
+    /**
+     * Number of bombs.
+     */
     private static int BOMB_NUMBER = 14;
+
+    /**
+     * Number of horizontal tiles.
+     */
     private static int WIDTH = 10;
+
+    /**
+     * Number of vertical tiles.
+     */
     private static int HEIGHT = 14;
 
+    private Context context;
 
+
+    /**
+     * Get number of horizontal tiles.
+     * @return num tiles in int.
+     */
     public static int getWIDTH(){return WIDTH;}
 
+    /**
+     * Get number of vertical tiles.
+     * @return num tiles in int.
+     */
     public static int getHEIGHT(){return HEIGHT;}
 
+    /**
+     * Set number of bombs.
+     * @param b num of bombs in int.
+     */
     public static void setBombNumber(int b){BOMB_NUMBER = b;}
 
+    /**
+     * Set number of horizontal tiles.
+     * @param w num of tiles in int.
+     */
     public static void setWIDTH(int w){WIDTH = w;}
 
+    /**
+     * Set number of vertical tiles.
+     * @param h num of tiles in int.
+     */
     public static void setHEIGHT(int h){HEIGHT = h;}
 
+    /**
+     * Check the game state., should the game continue or not.
+     * @return boolean representing game state.
+     */
     public static boolean isLost(){return isLost;}
 
+    /**
+     * Set the game state to determine is game finished or not.
+     * @param isLost boolean representing game state.
+     */
     public static void setIsLost(boolean isLost) {
         GameEngine.isLost = isLost;
     }
 
-    private Context context;
-
+    /**
+     * Get number of bombs.
+     * @return int number of bombs.
+     */
+    public static int getBombNumber(){
+        return BOMB_NUMBER;
+    }
+    /**
+     * Initialize a new grid for game minesweeper.
+     */
     private static Cell[][] MinesweeperGrid = new Cell[WIDTH][HEIGHT];
 
     public static GameEngine getInstance() {
@@ -78,10 +131,21 @@ public class GameEngine implements Serializable {
         return MinesweeperGrid[x][y];
     }
 
+    /**
+     * Get particular cell at coordinate (x,y).
+     * @param x int x coordinate.
+     * @param y int y coordinate.
+     * @return cell at that location.
+     */
     public Cell getCellAt( int x , int y ){
         return MinesweeperGrid[x][y];
     }
 
+    /**
+     *
+     * @param x int x coordinate
+     * @param y int y coordinate
+     */
     public void click( int x , int y ){
         if( x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT && !getCellAt(x,y).isClicked() &&
                 !getCellAt(x,y).isFlagged()){
@@ -105,6 +169,10 @@ public class GameEngine implements Serializable {
         checkEnd();
     }
 
+    /**
+     * Check whether the game ends in current state.
+     * @return boolean indicate whether the game ends.
+     */
     private boolean checkEnd(){
         int bombNotFound = BOMB_NUMBER;
         int notRevealed = WIDTH * HEIGHT;
@@ -126,14 +194,21 @@ public class GameEngine implements Serializable {
         return false;
     }
 
+    /**
+     * Set flag for particular cell is user determined there is a bomb.
+     * @param x int x coordinate.
+     * @param y int y coordinate.
+     */
     public void flag( int x , int y ){
         boolean isFlagged = getCellAt(x,y).isFlagged();
         getCellAt(x,y).setFlagged(!isFlagged);
         getCellAt(x,y).invalidate();
     }
 
+    /**
+     * Handle the lost games.
+     */
     private void onGameLost(){
-        // handle lost game
         Toast.makeText(context,"Game lost", Toast.LENGTH_SHORT).show();
         isLost = true;
 

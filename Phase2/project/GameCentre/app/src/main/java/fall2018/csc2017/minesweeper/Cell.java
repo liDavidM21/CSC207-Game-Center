@@ -6,14 +6,20 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
-import fall2018.csc2017.minesweeper.GameEngine;
+import fall2018.csc2017.minesweeper.MainActivity;
 import fall2018.csc2017.R;
 
 /**
  * Created by Marcell on 2016. 04. 14..
  */
+
 public class Cell extends BaseCell implements View.OnClickListener , View.OnLongClickListener{
+    /**
+     * Number of bombs left on show in Main Activity.
+     */
+    private int numBombs = GameEngine.getBombNumber();
 
     public Cell( Context context , int x , int y ){
         super(context);
@@ -40,6 +46,10 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
     public boolean onLongClick(View v) {
         if (!GameEngine.getInstance().getCellAt(getXPos(), getYPos()).isRevealed()) {
             GameEngine.getInstance().flag(getXPos(), getYPos());
+            numBombs--;
+            TextView txt = findViewById(R.id.bombNum);
+            String str = Integer.toString(numBombs);
+            txt.setText(str);
         }
         return true;
     }
