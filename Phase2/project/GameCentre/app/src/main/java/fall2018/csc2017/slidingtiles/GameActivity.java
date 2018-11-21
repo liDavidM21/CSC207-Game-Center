@@ -91,6 +91,11 @@ public class GameActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
+        while (!puzzleHasSolve()){
+            boardManager = new BoardManager();
+            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+            loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
+        }
         createTileButtons(this);
         setContentView(R.layout.activity_main);
 
@@ -269,5 +274,47 @@ public class GameActivity extends AppCompatActivity implements Observer {
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
+    }
+
+    private boolean puzzleHasSolve(){
+        ArrayList<Tile> tempList = new ArrayList<>();
+        int total = 0;
+        int blankPos = 0;
+        boolean findBlank = false;
+        for (int i = 0; i < Board.NUM_COLS; i++) {
+            for (int j = 0; j < Board.NUM_COLS; j++) {
+                Tile temp = boardManager.getBoard().getTile(i,j);
+                    tempList.add(temp);
+            }
+        }
+        while (tempList.size() != 0){
+            Tile firstTile = tempList.get(0);
+            tempList.remove(0);
+            if (firstTile.getId() != Board.NUM_COLS * Board.NUM_ROWS){
+                if (!findBlank){
+                    blankPos ++;
+                }
+                for (Tile tile : tempList){
+                    if (tile.compareTo(firstTile) > 0 ){
+                        total++;
+                    }
+                }
+            }
+            else{
+                findBlank = true;
+            }
+        }
+        boolean condition = false;
+        if ((Board.NUM_ROWS % 2 == 1) && (total % 2 == 0)){
+            condition = true;
+        }
+        else if ((Board.NUM_ROWS %2 == 0) && ((0 <= blankPos && blankPos <= 3)||(8 <= blankPos && blankPos <= 11))&& (total % 2 == 1)){
+            condition = true;
+        }
+        else if ((Board.NUM_ROWS %2 == 0) && ((4 <= blankPos && blankPos <= 7)||(12 <= blankPos && blankPos <= 15))&& (total % 2 == 0)){
+            condition = true;
+        }
+        return condition;
+
     }
 }
