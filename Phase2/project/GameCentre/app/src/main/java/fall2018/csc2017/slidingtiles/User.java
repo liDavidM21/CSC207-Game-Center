@@ -19,6 +19,8 @@ public class User implements Serializable, Comparable<User> {
      * List of top score the user have
      */
     public List<Score> top_score;
+    public List<Score> score_2048;
+    public List<Score> score_Sliding_Tiles;
 
     /**
      * User class constructor. Given email and password.
@@ -30,6 +32,8 @@ public class User implements Serializable, Comparable<User> {
         this.user_email = user_email;
         this.password = password;
         this.top_score = new ArrayList<>();
+        this.score_2048 = new ArrayList<>();
+        this.score_Sliding_Tiles = new ArrayList<>();
     }
 
     /**
@@ -45,7 +49,7 @@ public class User implements Serializable, Comparable<User> {
     /**
      * return the best score of the user.
      *
-     * @return: best score of the user, null if no game is complete.
+     * @return Score: best score of the user, null if no game is complete.
      */
     public Score return_best_score() {
         if (top_score.isEmpty()) {
@@ -83,6 +87,14 @@ public class User implements Serializable, Comparable<User> {
                 j = j - 1;
             }
             top_score.set(j + 1, key);
+        }
+    }
+    public void switch_game(String game){
+        if(game.equals("2048")){
+            top_score = score_2048;
+        }
+        else if(game.equals("Sliding Tiles")){
+            top_score = score_Sliding_Tiles;
         }
     }
 }

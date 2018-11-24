@@ -96,4 +96,10 @@ public class Usermanager implements Serializable, Iterable<User> {
         current_user.add(new_user);
     }
 
+    public void switch_game(String game){
+        for(User u: current_user){
+            u.switch_game(game);
+        }
+    }
+
 }

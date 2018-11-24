@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.Scoreboard;
 /*
 Taken from https://www.youtube.com/watch?v=cKweRL0rHBc. The video demonstrate how to create a
 swipe view using fragment. Class involved are FragmentPage, FragmentPageLocal, SwipeAdapter,
@@ -12,13 +12,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import fall2018.csc2017.R;
+import fall2018.csc2017.slidingtiles.User;
+import fall2018.csc2017.slidingtiles.Usermanager;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class FragmentPageLocal extends Fragment {
+public class FragmentPage extends Fragment {
 
+    List<User> users = new ArrayList<>();
     Usermanager current_manager = Usermanager.get_instance();
     static String text;
 
@@ -26,24 +32,38 @@ public class FragmentPageLocal extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view;
-        User current_user = current_manager.getLoginUser();
-        current_user.sort_score();
-        List<Score> user_score = current_user.top_score;
         Bundle bundle = getArguments();
         int pageNumber = bundle.getInt("pageNumber");
         view = inflater.inflate(R.layout.page_fragment_layout, container, false);
+        setUsers();
+        sortScores();
         TextView email = (TextView) view.findViewById(R.id.UserEmail);
         TextView score = (TextView) view.findViewById(R.id.Score);
-        if (user_score.size() < pageNumber) {
-            email.setText("HOI! You need to play once to let me know your score!");
+        System.out.println(Usermanager.getLoginUser().top_score.size());
+        if (users.size() < pageNumber || users.get(pageNumber - 1).return_best_score() == null) {
+            email.setText("HOI! No one has score recorded here!");
             score.setText("");
         } else {
-            email.setText(current_user.user_email);
-            score.setText(Integer.toString(current_user.top_score.get(pageNumber - 1).final_score));
+            email.setText(users.get(pageNumber - 1).user_email);
+            score.setText(Integer.toString(users.get(pageNumber - 1).return_best_score().final_score));
         }
 
         return view;
 
+    }
+
+    /**
+     * get user list from Usermanager.
+     */
+    private void setUsers() {
+        users = current_manager.getUser();
+    }
+
+    /**
+     * sort user's score based on the final score in descending order.
+     */
+    private void sortScores() {
+        Collections.sort(users, Collections.<User>reverseOrder());
     }
 
 }

@@ -145,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
              */
             User new_user = new User(email, password);
             current_manager.add(new_user);
+            current_manager.setLoginUser(new_user);
             serializeUserManager();
             showProgress(true);
             game_menu();

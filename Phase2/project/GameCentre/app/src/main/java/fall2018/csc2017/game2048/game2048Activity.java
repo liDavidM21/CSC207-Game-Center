@@ -23,7 +23,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.LoginActivity;
-import fall2018.csc2017.slidingtiles.scoreboard;
+import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.Usermanager;
 import fall2018.csc2017.slidingtiles.GameChoosing;
 /**
@@ -47,11 +47,14 @@ public class game2048Activity extends AppCompatActivity {
      * The board manager.
      */
     private static int showDefault = 1;
+    private String current_game = "2048";
+    private Usermanager current_manager = Usermanager.get_instance();
 //    private GameEngine gameengine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
+        current_manager.switch_game(current_game);
         super.onCreate(savedInstanceState);
 //        gameengine = GameEngine.getInstance();
         if (showDefault == 1) {

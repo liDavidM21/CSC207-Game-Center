@@ -22,8 +22,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
-import fall2018.csc2017.minesweeper.MainActivity;
-import fall2018.csc2017.game2048.MainActivityTwo;
+import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
 
 /**
@@ -52,9 +51,12 @@ public class StartingActivity extends AppCompatActivity {
      */
     private static int showDefault = 1;
 
+    private String current_game = "Sliding Tiles";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
+        Usermanager.get_instance().switch_game(current_game);
         super.onCreate(savedInstanceState);
         boardManager = new BoardManager();
         if (showDefault == 1) {

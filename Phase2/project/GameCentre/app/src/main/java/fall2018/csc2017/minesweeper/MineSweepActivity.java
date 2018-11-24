@@ -23,7 +23,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.LoginActivity;
-import fall2018.csc2017.slidingtiles.scoreboard;
+import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.Usermanager;
 import fall2018.csc2017.slidingtiles.GameChoosing;
 /**
