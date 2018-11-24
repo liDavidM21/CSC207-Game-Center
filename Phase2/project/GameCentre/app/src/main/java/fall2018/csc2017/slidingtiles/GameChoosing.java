@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import fall2018.csc2017.R;
+import fall2018.csc2017.minesweeper.MineSweepActivity;
 
 public class GameChoosing extends AppCompatActivity {
     private static boolean minesweeper = false;
@@ -86,7 +87,7 @@ public class GameChoosing extends AppCompatActivity {
         sliding_tiles = false;
         tzfe =false;
         minesweeper = true;
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, MineSweepActivity.class);
         startActivity(tmp);
     }
 

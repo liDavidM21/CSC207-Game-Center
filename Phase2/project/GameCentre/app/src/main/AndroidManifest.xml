@@ -25,11 +25,11 @@
         <activity android:name=".minesweeper.MainActivity" />
         <activity android:name=".slidingtiles.StartingActivity" />
         <activity android:name=".slidingtiles.GameActivity" />
-        <activity android:name=".slidingtiles.Signup" />
         <activity android:name=".slidingtiles.GameSetting" />
         <activity android:name=".slidingtiles.scoreboard" />
         <activity android:name=".game2048.MainActivityTwo" />
         <activity android:name=".minesweeper.GameSettingMinesweeper" />
+        <activity android:name=".minesweeper.MineSweepActivity"></activity>
     </application>
 
 </manifest>
