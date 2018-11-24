@@ -71,6 +71,7 @@ public class StartingActivity extends AppCompatActivity {
         addScoreboardButtonListener();
         addSignoutButtonListener();
         addExitButtonListener();
+        addResumeButtonListener();
     }
 
     /**
@@ -347,5 +348,21 @@ public class StartingActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
+    }
+
+    /**
+     * Activate the resume button.
+     */
+    private void addResumeButtonListener() {
+        Button resumeButton = findViewById(R.id.ResumeButton);
+        resumeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFromFile(AUTO_SAVE_FILENAME);
+                saveToFile(TEMP_SAVE_FILENAME);
+                makeToastLoadedText("Loading game");
+                switchToGame("Resume");
+            }
+        });
     }
 }
