@@ -12,9 +12,21 @@ import android.widget.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-//4×4方格
+import fall2018.csc2017.minesweeper.MainActivity;
+
 public class GameView extends GridLayout {
 
+    private ArrayList<Integer> scoreList = new ArrayList<>();
+
+    private ArrayList<int[][]> stateList = new ArrayList<>();
+
+    public ArrayList<Integer> getScoreList(){
+        return scoreList;
+    }
+
+    public ArrayList<int[][]> getStateList(){
+        return stateList;
+    }
     public static Card[][] cards = new Card[4][4];//4×4=16张卡片
     private static List<Point> emptyPoints = new ArrayList<Point>();//空卡片（数值为0）位置
     public int num[][] = new int[4][4];//用于后退一步
@@ -258,6 +270,7 @@ public class GameView extends GridLayout {
                 hasTouched = true;
             }
 
+//            scoreList.add(MainActivityTwo.score);
             score = MainActivityTwo.score;
 
             for(int y=0;y<4;++y) {
@@ -265,6 +278,7 @@ public class GameView extends GridLayout {
                     num[y][x] = cards[y][x].getNum();
                 }
             }
+            stateList.add(num);
 
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_DOWN:

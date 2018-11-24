@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.game2048;
 /**
  * https://evgenii.com/blog/spring-button-animation-on-android/
  * https://stackoverflow.com/questions/36894384/android-move-background-continuously-with-animation
@@ -22,14 +22,14 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
-import fall2018.csc2017.minesweeper.MainActivity;
-import fall2018.csc2017.game2048.MainActivityTwo;
-import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
-
+import fall2018.csc2017.slidingtiles.LoginActivity;
+import fall2018.csc2017.slidingtiles.scoreboard;
+import fall2018.csc2017.slidingtiles.Usermanager;
+import fall2018.csc2017.slidingtiles.GameChoosing;
 /**
  * The initial activity for the sliding puzzle tile game.
  */
-public class StartingActivity extends AppCompatActivity {
+public class game2048Activity extends AppCompatActivity {
 
     /**
      * The main save file.
@@ -40,23 +40,20 @@ public class StartingActivity extends AppCompatActivity {
      */
     public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
     /**
-     * A auto save file.
+     * A temporary save file.
      */
     public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
     /**
      * The board manager.
      */
-    private BoardManager boardManager;
-    /**
-     * Int created for only pop default mode msg once.
-     */
     private static int showDefault = 1;
+//    private GameEngine gameengine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
         super.onCreate(savedInstanceState);
-        boardManager = new BoardManager();
+//        gameengine = GameEngine.getInstance();
         if (showDefault == 1) {
             makeToastModeText();
             showDefault++;
@@ -67,11 +64,10 @@ public class StartingActivity extends AppCompatActivity {
         addStartButtonListener();
         addLoadButtonListener();
         addSaveButtonListener();
-        addSettingButtonListener();
+//        addSettingButtonListener();
         addScoreboardButtonListener();
         addSignoutButtonListener();
         addExitButtonListener();
-        addResumeButtonListener();
     }
 
     /**
@@ -82,7 +78,7 @@ public class StartingActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boardManager = new BoardManager();
+//                gameengine = GameEngine.getInstance();
                 switchToGame("start");
             }
         });
@@ -105,15 +101,15 @@ public class StartingActivity extends AppCompatActivity {
      * Button listener for game setting.
      * Enter activity_setting interface.
      */
-    private void addSettingButtonListener() {
-        Button startButton = findViewById(R.id.SETTING);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchToSetting();
-            }
-        });
-    }
+//    private void addSettingButtonListener() {
+//        Button startButton = findViewById(R.id.SETTING);
+//        startButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                switchToSetting();
+//            }
+//        });
+//    }
 
     /**
      * Activate the load button.
@@ -161,7 +157,7 @@ public class StartingActivity extends AppCompatActivity {
      */
     private void addSaveButtonListener() {
         final Button saveButton = findViewById(R.id.SaveButton);
-        final StartingActivity tmp1 = this;
+        final game2048Activity tmp1 = this;
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,7 +213,7 @@ public class StartingActivity extends AppCompatActivity {
         MyBounceInterpolator interpolator = new MyBounceInterpolator(0.1, 20);
         myAnim.setInterpolator(interpolator);
         button.startAnimation(myAnim);
-        final StartingActivity tmp1 = this;
+        final game2048Activity tmp1 = this;
         myAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -229,31 +225,22 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1, GameActivity.class);
-                saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+                Intent tmp = new Intent(tmp1,MainActivityTwo.class);
+                saveToFile(game2048Activity.TEMP_SAVE_FILENAME);
                 startActivity(tmp);
             }
         });
     }
 
-    /**
-     * Switch to activity_setting interface.
-     */
-    private void switchToSetting() {
-        final StartingActivity tmp1 = this;
-        if (GameChoosing.get_current_game().equals("minesweeper")) {
-            Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
-            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-            startActivity(tmp);
-        }
-        else {
-            Intent tmp = new Intent(tmp1, GameSetting.class);
-            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-            makeToastUndoText();
-            startActivity(tmp);
-        }
-    }
-
+//    /**
+//     * Switch to activity_setting interface.
+//     */
+//    private void switchToSetting() {
+//        final game2048Activity tmp1 = this;
+//        Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
+//        saveToFile(MineSweepActivity.TEMP_SAVE_FILENAME);
+//        startActivity(tmp);
+//    }
     /**
      * Switch to Scoreboard interface.
      */
@@ -273,16 +260,17 @@ public class StartingActivity extends AppCompatActivity {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                boardManager = (BoardManager) input.readObject();
+//                gameengine = (GameEngine) input.readObject();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
-        } catch (ClassNotFoundException e) {
-            Log.e("login activity", "File contained unexpected data type: " + e.toString());
         }
+//        } catch (ClassNotFoundException e) {
+//            Log.e("login activity", "File contained unexpected data type: " + e.toString());
+//        }
     }
 
     /**
@@ -296,10 +284,6 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * Display undo setting configuration: maximum undo steps selected by user.
      */
-    private void makeToastUndoText() {
-        String str = " Current Num Undo Steps:" + GameSetting.numUndo;
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-    }
 
     /**
      * Button for go back to game choosing selection layout.
@@ -332,7 +316,7 @@ public class StartingActivity extends AppCompatActivity {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(boardManager);
+//            outputStream.writeObject(gameengine);
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -349,20 +333,5 @@ public class StartingActivity extends AppCompatActivity {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
-
-    /**
-     * Activate the resume button.
-     */
-    private void addResumeButtonListener() {
-        Button resumeButton = findViewById(R.id.ResumeButton);
-        resumeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFromFile(AUTO_SAVE_FILENAME);
-                saveToFile(TEMP_SAVE_FILENAME);
-                makeToastLoadedText("Loading game");
-                switchToGame("Resume");
-            }
-        });
-    }
 }
+
