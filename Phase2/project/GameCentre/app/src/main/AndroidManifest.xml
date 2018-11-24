@@ -29,7 +29,8 @@
         <activity android:name=".slidingtiles.scoreboard" />
         <activity android:name=".game2048.MainActivityTwo" />
         <activity android:name=".minesweeper.GameSettingMinesweeper" />
-        <activity android:name=".minesweeper.MineSweepActivity"/>
+        <activity android:name=".minesweeper.MineSweepActivity" />
+        <activity android:name=".slidingtiles.Game_choose"/>
         <activity android:name=".game2048.game2048Activity"></activity>
     </application>
 
