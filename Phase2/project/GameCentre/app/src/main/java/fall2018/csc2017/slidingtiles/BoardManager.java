@@ -129,6 +129,6 @@ class BoardManager implements Serializable {
             }
 
         }
-    }
+}
 
 }

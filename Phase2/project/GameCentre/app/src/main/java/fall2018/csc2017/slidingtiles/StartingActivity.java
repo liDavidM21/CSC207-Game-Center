@@ -40,7 +40,7 @@ public class StartingActivity extends AppCompatActivity {
      */
     public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
     /**
-     * A temporary save file.
+     * A auto save file.
      */
     public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
     /**
