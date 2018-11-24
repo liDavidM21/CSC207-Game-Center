@@ -62,6 +62,12 @@ public class MainActivityTwo extends Activity {
                 if (gameView.hasTouched) {
                     score = gameView.score;
                     showScore();
+//                    score = gameView.getScoreList().get(gameView.getScoreList().size() - 1);
+//                    gameView.getScoreList().remove(gameView.getScoreList().size() - 1);
+//                    showScore();
+//                    int[][] newState =
+//                            gameView.getStateList().get(gameView.getStateList().size() - 1);
+//                    gameView.getStateList().remove(gameView.getStateList().size()-1);
                     for(int y=0;y<4;++y) {
                         for(int x=0;x<4;++x) {
                             gameView.cards[y][x].setNum(gameView.num[y][x]);
