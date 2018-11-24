@@ -22,6 +22,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import fall2018.csc2017.R;
 
 /**
@@ -71,20 +73,12 @@ public class LoginActivity extends AppCompatActivity {
         mEmailSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                sign_up_menu();
+                attemptSignup();
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-    }
-
-    /**
-     * Switch to sign up menu
-     */
-    private void sign_up_menu() {
-        Intent tmp = new Intent(this, Signup.class);
-        startActivity(tmp);
     }
 
     /**
@@ -95,6 +89,84 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(tmp);
     }
 
+    private void attemptSignup() {
+
+        // Reset errors.
+        mEmailView.setError(null);
+        mPasswordView.setError(null);
+
+        // Store values at the time of the login attempt.w
+        /**
+         * Get the password and email.
+         */
+        String email = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            /**
+             * Check if the Email is valid
+             */
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (isEmailregistered(email)) {
+            /**
+             * Check if the email is registered
+             */
+            mEmailView.setError(getString(R.string.error_register_email));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (password.length() <= 4) {
+            /**
+             * Check if the password is valid.
+             */
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            /**
+             * Store the user and user's password and email inside UserManager
+             * and go back to log in activity class.
+             */
+            User new_user = new User(email, password);
+            current_manager.add(new_user);
+            serializeUserManager();
+            showProgress(true);
+            game_menu();
+        }
+    }
+
+    /**
+     *Store the new user information!
+     */
+    private void serializeUserManager() {
+        /**
+         * Save the information inside the UserManager.
+         */
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(
+                    this.openFileOutput("UserManager.ser", MODE_PRIVATE));
+            outputStream.writeObject(current_manager);
+            outputStream.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -122,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
             focusView = mEmailView;
             cancel = true;
         } else if (!isEmailregistered(email)) {
-            mEmailView.setError("This email hasn't been registered yet!");
+            mEmailView.setError("This email hasn't been registered yet, please click on the sign up button to sign up!");
             focusView = mEmailView;
             cancel = true;
         } else if (!correct_password(email, password)) {
