@@ -114,6 +114,13 @@ public class MainActivityTwo extends Activity {
     }
 
     /**
+     * Constructor of class MainActivityTwo.
+     */
+    public MainActivityTwo() {
+        mainActivity = this;
+    }
+
+    /**
      * Get the main activity.
      *
      * @return MainActivity.
