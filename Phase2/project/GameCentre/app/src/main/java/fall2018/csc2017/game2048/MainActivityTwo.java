@@ -65,7 +65,6 @@ public class MainActivityTwo extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-
         Score = (TextView) findViewById(R.id.Score);
         maxScore = (TextView) findViewById(R.id.maxScore);
         maxScore.setText(getSharedPreferences("pMaxScore", MODE_PRIVATE).getInt("maxScore", 0) + "");
@@ -90,6 +89,9 @@ public class MainActivityTwo extends Activity {
         });
 
         addUndoButtonListener();
+        if(gameView.hasTouched){
+            saveToFile("2048.ser");
+        }
         pause = (Button)findViewById(R.id.pause);
         pause.setOnClickListener(new View.OnClickListener() {
             @Override

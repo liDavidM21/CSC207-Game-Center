@@ -80,11 +80,11 @@
             android:id="@+id/restart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:layout_weight="1"
             android:background="#87CEEB"
-            android:text="重新开始" />
+            android:text="Load" />
 
 
         <Button
@@ -95,17 +95,17 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="#87CEEB"
-            android:text="后退一步" />
+            android:text="Undo" />
 
         <Button
             android:id="@+id/pause"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:layout_weight="1"
             android:background="#87CEEB"
-            android:text="暂时离开" />
+            android:text="Save" />
 
     </LinearLayout>
 
