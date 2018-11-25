@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import fall2018.csc2017.R;
 
 public class MainActivityTwo extends Activity {
@@ -20,9 +22,32 @@ public class MainActivityTwo extends Activity {
     private TextView maxScore;
     private ImageView share;
     private Button restart;
-//    private Button back;
     private Button pause;
     private GameView gameView;
+    /**
+     * The maximum step the player can use undo.(default 3)
+     */
+    private static int undoStep = 3;
+
+    /**
+     * Set the maximum step to i
+     *
+     * @param i the maximum step
+     */
+
+    public static void setUndoStep(int i) {
+        undoStep = i;
+    }
+
+    /**
+     * Get the maximum step of undo.
+     *
+     * @return the maximum step of undo.
+     */
+
+    public static int getUndoStep() {
+        return undoStep;
+    }
 
     public MainActivityTwo() {
         mainActivity = this;
@@ -104,6 +129,9 @@ public class MainActivityTwo extends Activity {
         undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (gameView.getStateList().size() == 0) {
+                    makeToastUndo();
+                }
                 if (gameView.hasTouched && gameView.getStateList().size() >= 1) {
                     score = gameView.getScoreList().get(gameView.getScoreList().size() - 1);
                     gameView.getScoreList().remove(gameView.getScoreList().size() - 1);
@@ -119,6 +147,13 @@ public class MainActivityTwo extends Activity {
                 }
             }
         });
+    }
+
+    /**
+     * Display that the player can't undo anymore.
+     */
+    private void makeToastUndo() {
+        Toast.makeText(this, "Can't undo any more!", Toast.LENGTH_SHORT).show();
     }
 
     //显示当前得分
