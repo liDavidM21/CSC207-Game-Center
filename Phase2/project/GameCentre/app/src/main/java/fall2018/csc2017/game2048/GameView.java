@@ -275,16 +275,13 @@ public class GameView extends GridLayout {
             if (!hasTouched) {
                 hasTouched = true;
             }
-
-            scoreList.add(MainActivityTwo.score);
             stateList.add(new int[4][4]);
-
-            for(int y=0;y<4;++y) {
-                for(int x=0;x<4;++x) {
-                    stateList.get(stateList.size() - 1)[y][x] = cards[y][x].getNum();
+            scoreList.add(MainActivityTwo.score);
+                for (int y = 0; y < 4; ++y) {
+                    for (int x = 0; x < 4; ++x) {
+                        stateList.get(stateList.size() - 1)[y][x] = cards[y][x].getNum();
+                    }
                 }
-            }
-
 
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -316,5 +313,4 @@ public class GameView extends GridLayout {
         }
 
     }
-
 }
