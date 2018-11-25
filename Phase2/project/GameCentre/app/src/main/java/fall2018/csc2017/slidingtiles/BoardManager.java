@@ -19,10 +19,20 @@ class BoardManager implements Serializable {
      * The number of move the player made in this game, and the time it takes to complete.
      */
     private int move;
+
+    /**
+     * Playing time.
+     */
     public int time;
 
-    public static boolean canUndo = true;
+    /**
+     * Whether the player can undo.
+     */
+    static boolean canUndo = true;
 
+    /**
+     * List of tiles.
+     */
     public List<Tile> tiles = new ArrayList<>();
 
     /**
@@ -79,7 +89,7 @@ class BoardManager implements Serializable {
             }
         }
         if (solved) {
-            Usermanager.getLoginUser().add_score(new Score(move, time));
+            Usermanager.getLoginUser().add_score(new Score(move, time, Board.NUM_COLS));
             move = 0;
             time = 0;
             canUndo = false;

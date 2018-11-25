@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import fall2018.csc2017.BuildConfig;
 import fall2018.csc2017.R;
 import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
@@ -171,7 +173,7 @@ public class StartingActivity extends AppCompatActivity {
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastSavedText();
                 final Animation myAnim = AnimationUtils.loadAnimation(tmp1, R.anim.bounce);
-                // Use bounce interpolator with amplitude 0.2 and frequency 20
+                // Use bounce interpolator with amplitude 0.c2 and frequency 20
                 MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
                 myAnim.setInterpolator(interpolator);
                 saveButton.startAnimation(myAnim);
@@ -202,8 +204,11 @@ public class StartingActivity extends AppCompatActivity {
         if (s == "start") {
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
-        } else {
+        } else if (s == "load"){
             Button button = (Button) findViewById(R.id.LoadButton);
+            startAnimation(button);
+        }else if (s == "Resume"){
+            Button button = (Button) findViewById(R.id.ResumeButton);
             startAnimation(button);
         }
     }
@@ -215,7 +220,7 @@ public class StartingActivity extends AppCompatActivity {
      */
     private void startAnimation(Button button) {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-        // Use bounce interpolator with amplitude 0.2 and frequency 20
+        // Use bounce interpolator with amplitude 0.c2 and frequency 20
         MyBounceInterpolator interpolator = new MyBounceInterpolator(0.1, 20);
         myAnim.setInterpolator(interpolator);
         button.startAnimation(myAnim);

@@ -18,7 +18,11 @@ public class MainActivityTwo extends Activity {
 
     public static MainActivityTwo mainActivity = null;
     private TextView Score;
-    public static int score = 0;//当前得分
+
+    /**
+     * Current score.
+     */
+    public static int score = 0;
     private TextView maxScore;
     private ImageView share;
     private Button restart;
@@ -61,17 +65,6 @@ public class MainActivityTwo extends Activity {
         Score = (TextView) findViewById(R.id.Score);
         maxScore = (TextView) findViewById(R.id.maxScore);
         maxScore.setText(getSharedPreferences("pMaxScore", MODE_PRIVATE).getInt("maxScore", 0) + "");
-        share = (ImageView) findViewById(R.id.share);
-        share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                String s = "我在“2048”游戏中的得分为" + maxScore.getText() + "，你敢来挑战吗？点击进入>>http://www.amazon.cn/dp/B01KV5AK2Q";
-                shareIntent.putExtra(Intent.EXTRA_TEXT, s);
-                startActivity(Intent.createChooser(shareIntent, "炫耀一下"));
-            }
-        });
         gameView = (GameView)findViewById(R.id.gameView);
         restart = (Button) findViewById(R.id.restart);
         restart.setOnClickListener(new View.OnClickListener() {
@@ -99,20 +92,25 @@ public class MainActivityTwo extends Activity {
         return mainActivity;
     }
 
-    //分数清零
+    /**
+     * Clear the score.
+     */
     public void clearScore() {
         score = 0;
         showScore();
     }
 
-    //分数增加
+    /**
+     * Add score.
+     * @param i Score to add.
+     */
     public void addScore(int i) {
 
         score += i;
         showScore();
         SharedPreferences pref = getSharedPreferences("pMaxScore", MODE_PRIVATE);
 
-        //若当前得分超出最高记录，则更新之
+        //If the current score is higher than the max score, then update the max score.
         if (score > pref.getInt("maxScore", 0)) {
             SharedPreferences.Editor editor = pref.edit();
             editor.putInt("maxScore", score);
@@ -156,7 +154,9 @@ public class MainActivityTwo extends Activity {
         Toast.makeText(this, "Can't undo any more!", Toast.LENGTH_SHORT).show();
     }
 
-    //显示当前得分
+    /**
+     * Show the current score.
+     */
     public void showScore() {
         Score.setText(score + "");
     }
@@ -168,17 +168,17 @@ public class MainActivityTwo extends Activity {
 
     private void createExitTipDialog() {
         new AlertDialog.Builder(MainActivityTwo.this)
-                .setMessage("确认退出吗？")
-                .setTitle("提示")
+                .setMessage("Exit？")
+                .setTitle("Reminder")
                 .setIcon(R.drawable.tip)
-                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         finish();
                     }
                 })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();

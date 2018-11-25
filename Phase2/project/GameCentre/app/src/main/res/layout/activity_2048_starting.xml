@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/GameText"
@@ -32,20 +32,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <Button
-        android:id="@+id/StartButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/GameText"
-        android:layout_centerHorizontal="true"
-        android:text="New Game"
-        app:layout_constraintBottom_toTopOf="@+id/SaveButton"
-        app:layout_constraintEnd_toStartOf="@+id/undoStp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/undoStp"
-        app:layout_constraintTop_toBottomOf="@+id/backTwo" />
-
-    <Button
         android:id="@+id/scoreboardButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
@@ -53,25 +39,12 @@
         android:layout_below="@+id/GameText"
         android:layout_alignStart="@+id/SaveButton"
         android:text="SCOREBOARD"
-        app:layout_constraintBottom_toTopOf="@+id/background_1"
+        app:layout_constraintBottom_toTopOf="@+id/Signout"
         app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/LoadButton" />
-
-    <Button
-        android:id="@+id/LoadButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/GameText"
-        android:layout_toStartOf="@+id/StartButton"
-        android:text="Load Saved Game"
-        app:layout_constraintBottom_toTopOf="@+id/background_1"
-        app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/ResumeButton" />
+        app:layout_constraintTop_toBottomOf="@+id/LoadButton"
+        app:layout_constraintVertical_bias="0.837" />
 
     <Button
         android:id="@+id/Signout"
@@ -81,26 +54,12 @@
         android:layout_alignParentTop="true"
         android:layout_toStartOf="@+id/LoadButton"
         android:text="Signout"
-        app:layout_constraintBottom_toTopOf="@+id/background_1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/undoStp" />
-
-    <Button
-        android:id="@+id/SaveButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/GameText"
-        android:layout_toEndOf="@+id/StartButton"
-        android:text="Save Game"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/LoadButton"
-        app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/StartButton" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.671" />
 
     <Button
         android:id="@+id/backTwo"
@@ -113,66 +72,77 @@
         android:text="Back"
         app:layout_constraintBottom_toTopOf="@+id/background_1"
         app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.436"
+        app:layout_constraintHorizontal_bias="0.236"
         app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/Signout"
-        app:layout_constraintVertical_bias="0.65" />
-
-    <Button
-        android:id="@+id/ResumeButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/GameText"
-        android:layout_centerHorizontal="true"
-        android:layout_toStartOf="@+id/StartButton"
-        android:text="Resume"
-        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
-        app:layout_constraintBottom_toTopOf="@+id/scoreboardButton"
-        app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/LoadButton" />
+        app:layout_constraintTop_toBottomOf="@+id/background_1"
+        app:layout_constraintVertical_bias="0.131" />
 
     <TextView
         android:id="@+id/undoStp"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="144dp"
         android:layout_height="60dp"
-        android:layout_marginStart="33dp"
         android:text="Change Undo Steps Here"
-        app:layout_constraintBottom_toTopOf="@+id/Signout"
+        app:layout_constraintBottom_toTopOf="@+id/background_1"
         app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/scoreboardButton"
-        app:layout_constraintVertical_bias="0.489" />
+        app:layout_constraintTop_toBottomOf="@+id/StartButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/undoSetM"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="50dp"
-        android:layout_height="68dp"
+        android:layout_width="45dp"
+        android:layout_height="60dp"
         android:text="-"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/StartButton"
-        app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintBottom_toTopOf="@+id/background_1"
+        app:layout_constraintEnd_toStartOf="@+id/undoStp"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/background_1"
-        app:layout_constraintVertical_bias="0.478" />
+        app:layout_constraintTop_toBottomOf="@+id/StartButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/undoSetP"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="50dp"
-        android:layout_height="63dp"
-        android:layout_marginEnd="36dp"
+        android:layout_width="45dp"
+        android:layout_height="60dp"
         android:text="+"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/undoSetM"
+        app:layout_constraintEnd_toStartOf="@+id/background_1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/undoStp"
+        app:layout_constraintTop_toBottomOf="@+id/StartButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/StartButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GameText"
+        android:layout_centerHorizontal="true"
+        android:text="New Game"
         app:layout_constraintBottom_toTopOf="@+id/background_1"
-        app:layout_constraintEnd_toStartOf="@+id/undoStp"
+        app:layout_constraintEnd_toStartOf="@+id/background_1"
+        app:layout_constraintStart_toEndOf="@+id/background_1"
         app:layout_constraintTop_toBottomOf="@+id/background_1"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.729" />
+
+    <Button
+        android:id="@+id/LoadButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GameText"
+        android:layout_toStartOf="@+id/StartButton"
+        android:text="Load Saved Game"
+        app:layout_constraintBottom_toTopOf="@+id/scoreboardButton"
+        app:layout_constraintEnd_toStartOf="@+id/background_1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/background_1"
+        app:layout_constraintTop_toBottomOf="@+id/undoStp" />
 
 </android.support.constraint.ConstraintLayout>
