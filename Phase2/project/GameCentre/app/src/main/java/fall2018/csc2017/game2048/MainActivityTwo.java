@@ -109,8 +109,13 @@ public class MainActivityTwo extends Activity {
 
     }
 
+    public MainActivityTwo() {
+        mainActivity = this;
+    }
+
     /**
      * Get the main activity.
+     *
      * @return MainActivity.
      */
     public static MainActivityTwo getMainActivity() {
@@ -127,6 +132,7 @@ public class MainActivityTwo extends Activity {
 
     /**
      * Add score.
+     *
      * @param i Score to add.
      */
     public void addScore(int i) {
@@ -145,6 +151,7 @@ public class MainActivityTwo extends Activity {
         }
 
     }
+
     /**
      * Add the Undo bottom.
      */
