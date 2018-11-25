@@ -1,9 +1,4 @@
 package fall2018.csc2017.minesweeper;
-/**
- * https://evgenii.com/blog/spring-button-animation-on-android/
- * https://stackoverflow.com/questions/36894384/android-move-background-continuously-with-animation
- * https://stackoverflow.com/questions/9107900/how-to-upload-image-from-gallery-in-android
- */
 
 
 import android.content.Intent;
