@@ -14,20 +14,46 @@ import android.widget.Toast;
 
 import fall2018.csc2017.R;
 
+/**
+ * A class to implement the game 2048.
+ */
 public class MainActivityTwo extends Activity {
 
-    public static MainActivityTwo mainActivity = null;
+    /**
+     * A mainActivity.
+     */
+    private static MainActivityTwo mainActivity = null;
+
+    /**
+     * TextView of score.
+     */
     private TextView Score;
 
     /**
      * Current score.
      */
     public static int score = 0;
+
+    /**
+     * TextView of the max score.
+     */
     private TextView maxScore;
-    private ImageView share;
-    private Button restart;
-    private Button pause;
+
+    /**
+     * The button for restarting game.
+     */
+    Button restart;
+
+    /**
+     * The button for saving game.
+     */
+    Button save;
+
+    /**
+     * The GameView gameView.
+     */
     private GameView gameView;
+
     /**
      * The maximum step the player can use undo.(default 3)
      */
@@ -38,7 +64,6 @@ public class MainActivityTwo extends Activity {
      *
      * @param i the maximum step
      */
-
     public static void setUndoStep(int i) {
         undoStep = i;
     }
@@ -48,13 +73,8 @@ public class MainActivityTwo extends Activity {
      *
      * @return the maximum step of undo.
      */
-
     public static int getUndoStep() {
         return undoStep;
-    }
-
-    public MainActivityTwo() {
-        mainActivity = this;
     }
 
     @Override
@@ -62,11 +82,12 @@ public class MainActivityTwo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
-        Score = (TextView) findViewById(R.id.Score);
-        maxScore = (TextView) findViewById(R.id.maxScore);
-        maxScore.setText(getSharedPreferences("pMaxScore", MODE_PRIVATE).getInt("maxScore", 0) + "");
-        gameView = (GameView)findViewById(R.id.gameView);
-        restart = (Button) findViewById(R.id.restart);
+        Score = findViewById(R.id.Score);
+        maxScore = findViewById(R.id.maxScore);
+        String s = getSharedPreferences("pMaxScore", MODE_PRIVATE).getInt("maxScore", 0) + "";
+        maxScore.setText(s);
+        gameView = findViewById(R.id.gameView);
+        restart = findViewById(R.id.restart);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,8 +96,8 @@ public class MainActivityTwo extends Activity {
         });
 
         addUndoButtonListener();
-        pause = (Button)findViewById(R.id.pause);
-        pause.setOnClickListener(new View.OnClickListener() {
+        save = findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -88,6 +109,10 @@ public class MainActivityTwo extends Activity {
 
     }
 
+    /**
+     * Get the main activity.
+     * @return MainActivity.
+     */
     public static MainActivityTwo getMainActivity() {
         return mainActivity;
     }
@@ -114,8 +139,9 @@ public class MainActivityTwo extends Activity {
         if (score > pref.getInt("maxScore", 0)) {
             SharedPreferences.Editor editor = pref.edit();
             editor.putInt("maxScore", score);
-            editor.commit();
-            maxScore.setText(pref.getInt("maxScore", 0) + "");
+            editor.apply();
+            String s = pref.getInt("maxScore", 0) + "";
+            maxScore.setText(s);
         }
 
     }

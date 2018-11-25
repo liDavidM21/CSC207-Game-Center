@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
+import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.Usermanager;
@@ -67,6 +68,29 @@ public class MineSweepActivity extends AppCompatActivity {
         addSettingButtonListener();
         addScoreboardButtonListener();
         addSignoutButtonListener();
+        addBackButtonListener();
+    }
+
+    /**
+     * The back button.
+     */
+    private void addBackButtonListener(){
+        Button backButton = findViewById(R.id.backTwo);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToSelecting();
+            }
+        });
+    }
+
+    /**
+     * Switch to game choosing interface.
+     * Used by ExitButtonListener.
+     */
+    private void switchToSelecting() {
+        Intent tmp = new Intent(this, Game_choose.class);
+        startActivity(tmp);
     }
 
     /**

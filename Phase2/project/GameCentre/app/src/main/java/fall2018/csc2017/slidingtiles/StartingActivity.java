@@ -216,7 +216,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * Animation added for start button.
      *
-     * @param button
+     * @param button the start button.
      */
     private void startAnimation(Button button) {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
