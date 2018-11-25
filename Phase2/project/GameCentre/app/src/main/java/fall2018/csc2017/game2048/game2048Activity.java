@@ -72,7 +72,6 @@ public class game2048Activity extends AppCompatActivity {
         setContentView(R.layout.activity_2048_starting);
         addStartButtonListener();
         addLoadButtonListener();
-        addSaveButtonListener();
         addScoreboardButtonListener();
         addSignoutButtonListener();
         addSetPButtonListener();
@@ -197,34 +196,6 @@ public class game2048Activity extends AppCompatActivity {
      */
     private void makeToastLoadedText(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Activate the save button.
-     */
-    private void addSaveButtonListener() {
-        final Button saveButton = findViewById(R.id.SaveButton);
-        final game2048Activity tmp1 = this;
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveToFile(SAVE_FILENAME);
-                saveToFile(TEMP_SAVE_FILENAME);
-                makeToastSavedText();
-                final Animation myAnim = AnimationUtils.loadAnimation(tmp1, R.anim.bounce);
-                // Use bounce interpolator with amplitude 0.c2 and frequency 20
-                MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
-                myAnim.setInterpolator(interpolator);
-                saveButton.startAnimation(myAnim);
-            }
-        });
-    }
-
-    /**
-     * Display that a game was saved successfully.
-     */
-    private void makeToastSavedText() {
-        Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
     }
 
     /**
