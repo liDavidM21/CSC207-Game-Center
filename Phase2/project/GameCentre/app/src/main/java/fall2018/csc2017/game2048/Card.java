@@ -121,25 +121,25 @@ public class Card extends FrameLayout {
             case 1024:
                 lable.setBackgroundColor(0xffffff00);
                 lable.setTextColor(0xff99cc00);
-                lable.setTextSize(50);
+                lable.setTextSize(40);
                 lable.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 2048:
                 lable.setBackgroundColor(0xffcd5c5c);
                 lable.setTextColor(0xff8b4513);
-                lable.setTextSize(50);
+                lable.setTextSize(40);
                 lable.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 4096:
                 lable.setBackgroundColor(0xffff9933);
                 lable.setTextColor(0xff663300);
-                lable.setTextSize(50);
+                lable.setTextSize(40);
                 lable.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 8192:
                 lable.setBackgroundColor(0xff99ccff);
                 lable.setTextColor(0xff003366);
-                lable.setTextSize(50);
+                lable.setTextSize(40);
                 lable.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             default:
