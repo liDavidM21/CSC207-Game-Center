@@ -30,6 +30,7 @@ import fall2018.csc2017.R;
 
 /**
  * A login screen that offers login via email/password.
+ * https://www.youtube.com/watch?v=-8QrtXkfF9A
  */
 public class LoginActivity extends AppCompatActivity {
 

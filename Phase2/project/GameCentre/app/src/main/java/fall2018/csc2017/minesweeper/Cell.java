@@ -1,6 +1,7 @@
 package fall2018.csc2017.minesweeper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
@@ -46,10 +47,6 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
     public boolean onLongClick(View v) {
         if (!GameEngine.getInstance().getCellAt(getXPos(), getYPos()).isRevealed()) {
             GameEngine.getInstance().flag(getXPos(), getYPos());
-            numBombs--;
-            TextView txt = findViewById(R.id.bombNum);
-            String str = Integer.toString(numBombs);
-            txt.setText(str);
         }
         return true;
     }
@@ -61,8 +58,9 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
         Log.d("Minesweeper" , "Cell::onDraw");
         drawButton(canvas);
 
-        if( isFlagged() ){
+        if( isFlagged()){
             drawFlag(canvas);
+            GameEngine.setBombNumber(GameEngine.getBombNumber()-1);
         }else if( isRevealed() && isBomb() && !isClicked() ){
             drawNormalBomb(canvas);
         }else {
@@ -77,6 +75,7 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
             }
         }
     }
+
 
     private void drawBombExploded(Canvas canvas ){
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.bomb_exploded);
@@ -101,7 +100,6 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
         drawable.setBounds(0,0,getWidth(),getHeight());
         drawable.draw(canvas);
     }
-
     private void drawNumber( Canvas canvas ){
         Drawable drawable = null;
 

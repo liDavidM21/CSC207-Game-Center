@@ -8,6 +8,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fall2018.csc2017.R;
+/*
+https://www.youtube.com/watch?v=h_hTuaEpc-8
+ */
 public class SplashActivity extends AppCompatActivity {
     private ImageView iv;
     private ImageView iv1;

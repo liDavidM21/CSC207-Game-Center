@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import fall2018.csc2017.R;
-import fall2018.csc2017.minesweeper.MineSweepActivity;
 import fall2018.csc2017.game2048.game2048Activity;
 
 public class Game_choose extends AppCompatActivity {
@@ -110,7 +108,7 @@ public class Game_choose extends AppCompatActivity {
         sliding_tiles = false;
         tzfe = false;
         minesweeper = true;
-        Intent tmp = new Intent(this,MineSweepActivity.class);
+        Intent tmp = new Intent(this,StartingActivity.class);
         startActivity(tmp);
     }
 
