@@ -6,6 +6,8 @@ package fall2018.csc2017.slidingtiles;
  */
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import java.io.ObjectOutputStream;
 import fall2018.csc2017.BuildConfig;
 import fall2018.csc2017.R;
 import fall2018.csc2017.Scoreboard.scoreboard;
+import fall2018.csc2017.game2048.MainActivityTwo;
 import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
 
 /**
@@ -66,7 +69,6 @@ public class StartingActivity extends AppCompatActivity {
             showDefault++;
         }
         saveToFile(TEMP_SAVE_FILENAME);
-        saveToFile(AUTO_SAVE_FILENAME);
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();
@@ -75,7 +77,6 @@ public class StartingActivity extends AppCompatActivity {
         addScoreboardButtonListener();
         addSignoutButtonListener();
         addExitButtonListener();
-        addResumeButtonListener();
     }
 
     /**
@@ -86,10 +87,39 @@ public class StartingActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boardManager = new BoardManager();
-                switchToGame("start");
+                createResumeTipDialog();
             }
         });
+    }
+
+    /**
+     * Enquire if the player want to continue the game
+     */
+
+    private void createResumeTipDialog() {
+        new AlertDialog.Builder(StartingActivity.this)
+                .setMessage("Do you want to resume previous game?")
+                .setTitle("Reminder")
+                .setIcon(R.drawable.tip)
+                .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        loadFromFile(AUTO_SAVE_FILENAME);
+                        saveToFile(TEMP_SAVE_FILENAME);
+                        makeToastLoadedText("Resuming game");
+                        switchToGame("Resume");
+                    }
+                })
+                .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        boardManager = new BoardManager();
+                        switchToGame("start");
+                    }
+                })
+                .show();
     }
 
     /**
@@ -208,7 +238,7 @@ public class StartingActivity extends AppCompatActivity {
             Button button = (Button) findViewById(R.id.LoadButton);
             startAnimation(button);
         }else if (s == "Resume"){
-            Button button = (Button) findViewById(R.id.ResumeButton);
+            Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
         }
     }
@@ -357,19 +387,4 @@ public class StartingActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Activate the resume button.
-     */
-    private void addResumeButtonListener() {
-        Button resumeButton = findViewById(R.id.ResumeButton);
-        resumeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFromFile(AUTO_SAVE_FILENAME);
-                saveToFile(TEMP_SAVE_FILENAME);
-                makeToastLoadedText("Loading game");
-                switchToGame("Resume");
-            }
-        });
-    }
 }
