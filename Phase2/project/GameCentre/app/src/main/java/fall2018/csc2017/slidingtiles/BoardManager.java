@@ -28,12 +28,18 @@ class BoardManager implements Serializable {
     /**
      * Whether the player can undo.
      */
-    static boolean canUndo = true;
+    private static boolean canUndo = true;
+
+    /**
+     * Return if the player can undo.
+     * @return canUndo
+     */
+    public static boolean getCanUndo(){return canUndo;}
 
     /**
      * List of tiles.
      */
-    public List<Tile> tiles = new ArrayList<>();
+    private List<Tile> tiles = new ArrayList<>();
 
     /**
      * Manage a board that has been pre-populated.

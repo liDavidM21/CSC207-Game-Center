@@ -73,7 +73,7 @@ public class StartingActivity extends AppCompatActivity {
         addSaveButtonListener();
         addSettingButtonListener();
         addScoreboardButtonListener();
-        addSignoutButtonListener();
+        addSignOutButtonListener();
         addExitButtonListener();
         addResumeButtonListener();
     }
@@ -138,7 +138,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * Attempt to sign out
      */
-    private void addSignoutButtonListener() {
+    private void addSignOutButtonListener() {
         Button loadButton = findViewById(R.id.Signout);
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,14 +201,14 @@ public class StartingActivity extends AppCompatActivity {
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame(String s) {
-        if (s == "start") {
-            Button button = (Button) findViewById(R.id.StartButton);
+        if (s.equals("start")) {
+            Button button = findViewById(R.id.StartButton);
             startAnimation(button);
-        } else if (s == "load"){
-            Button button = (Button) findViewById(R.id.LoadButton);
+        } else if (s.equals("load")){
+            Button button = findViewById(R.id.LoadButton);
             startAnimation(button);
-        }else if (s == "Resume"){
-            Button button = (Button) findViewById(R.id.ResumeButton);
+        }else if (s.equals("Resume")){
+            Button button = findViewById(R.id.ResumeButton);
             startAnimation(button);
         }
     }

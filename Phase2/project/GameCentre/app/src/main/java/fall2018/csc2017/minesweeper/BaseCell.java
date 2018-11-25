@@ -11,6 +11,10 @@ import fall2018.csc2017.minesweeper.GameEngine;
 public abstract class BaseCell extends View {
 
     private int value;
+
+    /**
+     * Wheter
+     */
     private boolean isBomb;
     private boolean isRevealed;
     private boolean isClicked;
@@ -42,10 +46,6 @@ public abstract class BaseCell extends View {
 
     public boolean isBomb() {
         return isBomb;
-    }
-
-    public void setBomb(boolean bomb) {
-        isBomb = bomb;
     }
 
     public boolean isRevealed() {

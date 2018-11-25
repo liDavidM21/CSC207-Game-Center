@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +31,7 @@ public class MainActivityTwo extends Activity {
     /**
      * Current score.
      */
-    public static int score = 0;
+    private static int score = 0;
 
     /**
      * TextView of the max score.
@@ -77,6 +76,10 @@ public class MainActivityTwo extends Activity {
         return undoStep;
     }
 
+    public static int getScore() {
+        return score;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,10 +110,6 @@ public class MainActivityTwo extends Activity {
             }
         });
 
-    }
-
-    public MainActivityTwo() {
-        mainActivity = this;
     }
 
     /**

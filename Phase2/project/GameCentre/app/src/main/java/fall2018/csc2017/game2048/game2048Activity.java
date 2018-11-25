@@ -45,43 +45,41 @@ public class game2048Activity extends AppCompatActivity {
      * A temporary save file.
      */
     public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
-    /**
-     * The board manager.
-     */
 
     /**
      * Initialize the default UndoStep.
      */
-    public static int numUndo = 3;
-    private static int showDefault = 1;
-    private String current_game = "2048";
+    private static int numUndo = 3;
+
+    /**
+     * The string of the current game.
+     */
+    String current_game = "2048";
+
+    /**
+     * The current manager.
+     */
     private Usermanager current_manager = Usermanager.get_instance();
-//    private GameEngine gameengine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
         current_manager.switch_game(current_game);
         super.onCreate(savedInstanceState);
-//        gameengine = GameEngine.getInstance();
-        if (showDefault == 1) {
-            makeToastModeText();
-            showDefault++;
-        }
         saveToFile(TEMP_SAVE_FILENAME);
         saveToFile(AUTO_SAVE_FILENAME);
         setContentView(R.layout.activity_2048_starting);
         addStartButtonListener();
         addLoadButtonListener();
         addScoreboardButtonListener();
-        addSignoutButtonListener();
+        addSignOutButtonListener();
         addSetPButtonListener();
         addSetMButtonListener();
         addBackButtonListener();
     }
 
     /**
-     *
+     * Go back to the game choosing menu.
      */
     private void addBackButtonListener(){
         Button backButton = findViewById(R.id.backTwo);
@@ -162,7 +160,6 @@ public class game2048Activity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                gameengine = GameEngine.getInstance();
                 switchToGame("start");
             }
         });
@@ -200,7 +197,7 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * Attempt to sign out
      */
-    private void addSignoutButtonListener() {
+    private void addSignOutButtonListener() {
         Button loadButton = findViewById(R.id.Signout);
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,11 +232,11 @@ public class game2048Activity extends AppCompatActivity {
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame(String s) {
-        if (s == "start") {
-            Button button = (Button) findViewById(R.id.StartButton);
+        if (s.equals("start")) {
+            Button button = findViewById(R.id.StartButton);
             startAnimation(button);
         } else {
-            Button button = (Button) findViewById(R.id.LoadButton);
+            Button button = findViewById(R.id.LoadButton);
             startAnimation(button);
         }
     }
@@ -293,7 +290,6 @@ public class game2048Activity extends AppCompatActivity {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-//                gameengine = (GameEngine) input.readObject();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
@@ -301,29 +297,7 @@ public class game2048Activity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
-//        } catch (ClassNotFoundException e) {
-//            Log.e("login activity", "File contained unexpected data type: " + e.toString());
-//        }
     }
-
-    /**
-     * Display the default mode -- medium.
-     */
-    private void makeToastModeText() {
-        Toast.makeText(this, "DEFAULT MODE: MEDIUM", Toast.LENGTH_SHORT).show();
-    }
-
-
-    /**
-     * Display undo setting configuration: maximum undo steps selected by user.
-     */
-
-    /**
-     * Button for go back to game choosing selection layout.
-     */
-    /**
-     * Switch to game choosing interface.
-     * Used by ExitButtonListener.
 
     /**
      * Save the board manager to fileName.
@@ -334,7 +308,6 @@ public class game2048Activity extends AppCompatActivity {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
-//            outputStream.writeObject(gameengine);
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());

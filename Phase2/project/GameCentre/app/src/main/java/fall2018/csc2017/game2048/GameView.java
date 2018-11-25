@@ -17,6 +17,9 @@ import fall2018.csc2017.minesweeper.MainActivity;
 import fall2018.csc2017.slidingtiles.Score;
 import fall2018.csc2017.slidingtiles.Usermanager;
 
+/**
+ * A class to implement the layout.
+ */
 public class GameView extends GridLayout {
 
     /**
@@ -56,12 +59,7 @@ public class GameView extends GridLayout {
     /**
      * A 2D array(4 * 4) used to store current cards state.
      */
-    public int num[][] = new int[4][4];
-
-    /**
-     * Used to store the current score.
-     */
-    public int score;
+    private int num[][] = new int[4][4];
 
     /**
      * Whether the player has touched the gameView.
@@ -306,9 +304,9 @@ public class GameView extends GridLayout {
         }
         //Game is over.
         if (isOver) {
-            Usermanager.getLoginUser().add_score(new Score(MainActivityTwo.score));
+            Usermanager.getLoginUser().add_score(new Score(MainActivityTwo.getScore()));
             new AlertDialog.Builder(getContext()).setTitle("Sorry, game is over!").
-                    setMessage("Your score is "+ MainActivityTwo.score).
+                    setMessage("Your score is "+ MainActivityTwo.getScore()).
                     setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -336,7 +334,7 @@ public class GameView extends GridLayout {
             }
 
             if (stateList.size() <= 1) {
-                scoreList.add(MainActivityTwo.score);
+                scoreList.add(MainActivityTwo.getScore());
                 stateList.add(new int[4][4]);
 
                 for (int y = 0; y < 4; ++y) {
@@ -347,7 +345,7 @@ public class GameView extends GridLayout {
             } else {
                 if (!(Arrays.deepEquals(num, stateList.get(stateList.size() - 1)))) {
 
-                    scoreList.add(MainActivityTwo.score);
+                    scoreList.add(MainActivityTwo.getScore());
                     stateList.add(new int[4][4]);
 
                     for (int y = 0; y < 4; ++y) {
