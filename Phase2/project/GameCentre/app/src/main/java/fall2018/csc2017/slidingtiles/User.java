@@ -7,20 +7,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Serializable, Comparable<User> {
+
     /**
      * The email of the user.
      */
-    public String user_email;
+    String user_email;
+
     /**
      * The password of the user
      */
-    public String password;
+    String password;
+
     /**
      * List of top score the user have
      */
-    public List<Score> top_score;
-    public List<Score> score_2048;
-    public List<Score> score_Sliding_Tiles;
+    private List<Score> top_score;
+
+    /**
+     * Get the top score the user have.
+     *
+     * @return the top_score.
+     */
+    public List<Score> getTop_score() {
+        return top_score;
+    }
+
+    /**
+     * Get the user's email.
+     *
+     * @return the user_email.
+     */
+    public String getUser_email(){return user_email;}
+
+    private List<Score> score_2048;
+    private List<Score> score_Sliding_Tiles;
 
     /**
      * User class constructor. Given email and password.
@@ -89,11 +109,11 @@ public class User implements Serializable, Comparable<User> {
             top_score.set(j + 1, key);
         }
     }
-    public void switch_game(String game){
-        if(game.equals("2048")){
+
+    public void switch_game(String game) {
+        if (game.equals("2048")) {
             top_score = score_2048;
-        }
-        else if(game.equals("Sliding Tiles")){
+        } else if (game.equals("Sliding Tiles")) {
             top_score = score_Sliding_Tiles;
         }
     }

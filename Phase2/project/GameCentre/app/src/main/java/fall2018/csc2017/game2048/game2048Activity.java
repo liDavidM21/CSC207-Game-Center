@@ -23,12 +23,13 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
+import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.Usermanager;
 
 /**
- * The initial activity for the sliding puzzle tile game.
+ * The initial activity for the game2048.
  */
 public class game2048Activity extends AppCompatActivity {
 
@@ -51,9 +52,16 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * Initialize the default UndoStep.
      */
-    public static int numUndo = 3;
-    private static int showDefault = 1;
-    private String current_game = "2048";
+    private static int numUndo = 3;
+
+    /**
+     * The string of the current game.
+     */
+    String current_game = "2048";
+
+    /**
+     * The current manager.
+     */
     private Usermanager current_manager = Usermanager.get_instance();
     private GameManager gm = GameManager.get_instance();
 
@@ -62,20 +70,38 @@ public class game2048Activity extends AppCompatActivity {
         serializeUserManager();
         current_manager.switch_game(current_game);
         super.onCreate(savedInstanceState);
-        if (showDefault == 1) {
-            makeToastModeText();
-            showDefault++;
-        }
         saveToFile(TEMP_SAVE_FILENAME);
         saveToFile(AUTO_SAVE_FILENAME);
         setContentView(R.layout.activity_2048_starting);
         addStartButtonListener();
         addLoadButtonListener();
-        addSaveButtonListener();
         addScoreboardButtonListener();
-        addSignoutButtonListener();
+        addSignOutButtonListener();
         addSetPButtonListener();
         addSetMButtonListener();
+        addBackButtonListener();
+    }
+
+    /**
+     * Go back to the game choosing menu.
+     */
+    private void addBackButtonListener(){
+        Button backButton = findViewById(R.id.backTwo);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToSelecting();
+            }
+        });
+    }
+
+    /**
+     * Switch to game choosing interface.
+     * Used by ExitButtonListener.
+     */
+    private void switchToSelecting() {
+        Intent tmp = new Intent(this, Game_choose.class);
+        startActivity(tmp);
     }
 
     /**
@@ -175,7 +201,7 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * Attempt to sign out
      */
-    private void addSignoutButtonListener() {
+    private void addSignOutButtonListener() {
         Button loadButton = findViewById(R.id.Signout);
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,34 +224,6 @@ public class game2048Activity extends AppCompatActivity {
     }
 
     /**
-     * Activate the save button.
-     */
-    private void addSaveButtonListener() {
-        final Button saveButton = findViewById(R.id.SaveButton);
-        final game2048Activity tmp1 = this;
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveToFile(SAVE_FILENAME);
-                saveToFile(TEMP_SAVE_FILENAME);
-                makeToastSavedText();
-                final Animation myAnim = AnimationUtils.loadAnimation(tmp1, R.anim.bounce);
-                // Use bounce interpolator with amplitude 0.c2 and frequency 20
-                MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
-                myAnim.setInterpolator(interpolator);
-                saveButton.startAnimation(myAnim);
-            }
-        });
-    }
-
-    /**
-     * Display that a game was saved successfully.
-     */
-    private void makeToastSavedText() {
-        Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
-    }
-
-    /**
      * Read the temporary board from disk.
      */
     @Override
@@ -238,8 +236,8 @@ public class game2048Activity extends AppCompatActivity {
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame(String s) {
-        if (s == "start") {
-            Button button = (Button) findViewById(R.id.StartButton);
+        if (s.equals("start")) {
+            Button button = findViewById(R.id.StartButton);
             startAnimation(button);
         } else {
             Button button = (Button) findViewById(R.id.LoadButton);
@@ -250,7 +248,7 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * Animation added for start button.
      *
-     * @param button
+     * @param button the start button.
      */
     private void startAnimation(Button button) {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
@@ -309,25 +307,6 @@ public class game2048Activity extends AppCompatActivity {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
     }
-
-    /**
-     * Display the default mode -- medium.
-     */
-    private void makeToastModeText() {
-        Toast.makeText(this, "DEFAULT MODE: MEDIUM", Toast.LENGTH_SHORT).show();
-    }
-
-
-    /**
-     * Display undo setting configuration: maximum undo steps selected by user.
-     */
-
-    /**
-     * Button for go back to game choosing selection layout.
-     */
-    /**
-     * Switch to game choosing interface.
-     * Used by ExitButtonListener.
 
     /**
      * Save the board manager to fileName.

@@ -17,26 +17,54 @@ import fall2018.csc2017.minesweeper.MainActivity;
 import fall2018.csc2017.slidingtiles.Score;
 import fall2018.csc2017.slidingtiles.Usermanager;
 
+/**
+ * A class to implement the layout.
+ */
 public class GameView extends GridLayout {
 
+    /**
+     * An ArrayList to store score.
+     */
     private static ArrayList<Integer> scoreList = new ArrayList<>();
 
+    /**
+     * An ArrayList to store state.
+     */
     private static ArrayList<int[][]> stateList = new ArrayList<>();
 
+    /**
+     * Get the scoreList.
+     * @return scoreList
+     */
     public ArrayList<Integer> getScoreList(){
         return scoreList;
     }
 
-    public ArrayList<int[][]> getStateList(){
-        return stateList;
-    }
+    /**
+     * Get the stateList.
+     * @return stateList
+     */
+    public ArrayList<int[][]> getStateList(){ return stateList; }
 
-    public static Card[][] cards = new Card[4][4];//4×4=16张卡片
-    private static List<Point> emptyPoints = new ArrayList<Point>();//空卡片（数值为0）位置
-    public int num[][] = new int[4][4];//用于后退一步
-    public int score;//用于后退一步
+    /**
+     * A 2D array(4 * 4) to store cards.
+     */
+    public static Card[][] cards = new Card[4][4];
+
+    /**
+     * List of positions of blank card.
+     */
+    private static List<Point> emptyPoints = new ArrayList<>();
+
+    /**
+     * A 2D array(4 * 4) used to store current cards state.
+     */
+    private int num[][] = new int[4][4];
+
+    /**
+     * Whether the player has touched the gameView.
+     */
     public boolean hasTouched = false;
-    static private int num_of_moves;
 
     public GameView(Context context) {
         super(context);
@@ -53,7 +81,9 @@ public class GameView extends GridLayout {
         initGameView();
     }
 
-    //初始化游戏布局
+    /**
+     * Initialize the gameView.
+     */
     private void initGameView() {
         setRowCount(4);
         setColumnCount(4);
@@ -64,13 +94,18 @@ public class GameView extends GridLayout {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 
         super.onSizeChanged(w, h, oldw, oldh);
-        int cardWidth = (Math.min(w, h)-10)/4;//根据屏幕大小设置卡片宽度
-        addCards(cardWidth, cardWidth);
+        int cardWidth = (Math.min(w, h)-10)/4;
+        int cardHeight = (Math.min(w, h)-10)/4;
+        addCards(cardWidth, cardHeight);
         startGame();
 
     }
 
-    //初始化卡片
+    /**
+     * Initialize the cards on the gameView.
+     * @param cardWidth the width of each card.
+     * @param cardHeight the height of each card.
+     */
     private void addCards(int cardWidth, int cardHeight) {
         this.removeAllViews();
         Card c;
@@ -84,10 +119,11 @@ public class GameView extends GridLayout {
         }
     }
 
-    //随即增加卡片，数值为2或4（二者概率不同）
+    /**
+     * Add card(2 or 4) randomly, the probability is different.
+     */
     private static void addRandomNum() {
-        num_of_moves += 1;
-        emptyPoints.clear();//重新记录空卡片位置
+        emptyPoints.clear();
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
                 if (cards[x][y].getNum() == 0) {
@@ -95,12 +131,14 @@ public class GameView extends GridLayout {
                 }
             }
         }
-        //随机将一个空卡片的数值设置成2或4（概率之比为9：1）
-        Point p = emptyPoints.remove((int)(Math.random()*emptyPoints.size()));
+        //Set the number on a blank card as 2 or 4 (the probability ratio is 9:1)
+        Point p = emptyPoints.remove((int)(Math.random() * emptyPoints.size()));
         cards[p.x][p.y].setNum(Math.random()>0.1?2:4);
     }
 
-    //开始游戏
+    /**
+     * Start the game.
+     */
     public static void startGame() {
         MainActivityTwo.getMainActivity().clearScore();
         for(int y=0;y<4;++y) {
@@ -112,44 +150,47 @@ public class GameView extends GridLayout {
         addRandomNum();
     }
 
-    //向左滑动
+    /**
+     * Swipe left.
+     */
     private void swipeLeft() {
         boolean b = false;
-        //每一行（横坐标为x，纵坐标为y）
         for(int y=0;y<4;++y) {
-            //每一列（考虑到最后一列无需继续比较，故此处只需3列）
+            //Each column.(There is no need to compare the last column)
             for(int x=0;x<3;++x) {
-                //比较卡片数值
+                //Compare the number on cards.
                 for(int x1=x+1;x1<4;++x1) {
-                    //卡片（x1，y）不空，则与（x，y）比较
+                    //If cards[x1][y] is not blank, then compare it with cards[x][y].
                     if (cards[x1][y].getNum()>0) {
-                        //卡片（x，y）为空，则将（x1，y）左移
+                        //If [x][y] is blank, then move [x1][y] to left.
                         if (cards[x][y].getNum()==0) {
                             cards[x][y].setNum(cards[x1][y].getNum());
                             cards[x1][y].setNum(0);
-                            --x;//（x1，y）需要继续比较
+                            --x;
                             b = true;
                         } else if (cards[x][y].equals(cards[x1][y])) {
-                            //合并卡片
+                            //Combine two cards.
                             cards[x][y].setNum(cards[x][y].getNum()*2);
                             cards[x1][y].setNum(0);
                             MainActivityTwo.getMainActivity().addScore(cards[x][y].getNum());
                             b = true;
                         }
-                        //遇到非空卡片，则（x，y）无需继续比较
+                        //If the card is empty, there is no need to compare.
                         break;
                     }
                 }
             }
         }
-        //一旦卡片有所变动，便随机添加数值为2或4的卡片，以继续游戏
+        //Add a random card once the gameView changes.
         if (b) {
             addRandomNum();
-            checkGameOver();//每次添加数值为2或4的卡片，都需要判断游戏是否结束
+            checkGameOver();//Check if the game is over after adding new cards.
         }
     }
 
-    //向右滑动
+    /**
+     * Swipe Right.
+     */
     private void swipeRight() {
         boolean b = false;
         for(int y=0;y<4;++y) {
@@ -178,7 +219,9 @@ public class GameView extends GridLayout {
         }
     }
 
-    //向上滑动
+    /**
+     * Swipe Up.
+     */
     private void swipeUp() {
         boolean b = false;
         for(int x=0;x<4;++x) {
@@ -207,7 +250,9 @@ public class GameView extends GridLayout {
         }
     }
 
-    //向下滑动
+    /**
+     * Swipe Down.
+     */
     private void swipeDown() {
         boolean b = false;
         for(int x=0;x<4;++x) {
@@ -236,28 +281,33 @@ public class GameView extends GridLayout {
         }
     }
 
+    /**
+     * Check if the game is over.
+     */
     private void checkGameOver() {
         boolean isOver = true;
         ALL:
         for(int y=0;y<4;++y) {
             for(int x=0;x<4;++x) {
-                /*游戏继续的条件是：1.至少有一个空卡片
-                 *                  2.没有空卡片，但存在相邻两个卡片数值相等，表现为左右相等或上下相等
-                 */
+                // The condition for continuing the game：
+                // 1. At least one blank card.
+                // 2.No blank card, but there exists two cards adjacent to each other and the number
+                // on these two cards are equal.
+
                 if (cards[x][y].getNum()==0||
                         (x<3&&cards[x][y].getNum()==cards[x+1][y].getNum())||
                         (y<3&&cards[x][y].getNum()==cards[x][y+1].getNum())) {
-                    //没有结束，游戏继续
                     isOver = false;
                     break ALL;
                 }
             }
         }
-        //游戏结束
+        //Game is over.
         if (isOver) {
-            Usermanager.getLoginUser().add_score(new Score(MainActivityTwo.score));
-            num_of_moves = 0;
-            new AlertDialog.Builder(getContext()).setTitle("很遗憾，游戏结束啦").setMessage("当前得分为"+MainActivityTwo.score+"，再接再厉哦！").setPositiveButton("点击此处再玩一局", new DialogInterface.OnClickListener() {
+            Usermanager.getLoginUser().add_score(new Score(MainActivityTwo.getScore()));
+            new AlertDialog.Builder(getContext()).setTitle("Sorry, game is over!").
+                    setMessage("Your score is "+ MainActivityTwo.getScore()).
+                    setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     startGame();
@@ -266,7 +316,6 @@ public class GameView extends GridLayout {
         }
     }
 
-    //游戏方格部分滑动监听
     class Listener implements View.OnTouchListener {
 
         private float startX, startY, offsetX, offsetY;
@@ -285,7 +334,7 @@ public class GameView extends GridLayout {
             }
 
             if (stateList.size() <= 1) {
-                scoreList.add(MainActivityTwo.score);
+                scoreList.add(MainActivityTwo.getScore());
                 stateList.add(new int[4][4]);
 
                 for (int y = 0; y < 4; ++y) {
@@ -296,7 +345,7 @@ public class GameView extends GridLayout {
             } else {
                 if (!(Arrays.deepEquals(num, stateList.get(stateList.size() - 1)))) {
 
-                    scoreList.add(MainActivityTwo.score);
+                    scoreList.add(MainActivityTwo.getScore());
                     stateList.add(new int[4][4]);
 
                     for (int y = 0; y < 4; ++y) {

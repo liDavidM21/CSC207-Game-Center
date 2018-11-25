@@ -1,9 +1,4 @@
 package fall2018.csc2017.minesweeper;
-/**
- * https://evgenii.com/blog/spring-button-animation-on-android/
- * https://stackoverflow.com/questions/36894384/android-move-background-continuously-with-animation
- * https://stackoverflow.com/questions/9107900/how-to-upload-image-from-gallery-in-android
- */
 
 
 import android.content.Intent;
@@ -22,6 +17,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
+import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.Usermanager;
@@ -48,7 +44,7 @@ public class MineSweepActivity extends AppCompatActivity {
      */
     private static int showDefault = 1;
     private GameEngine gameengine;
-
+    //git
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
@@ -67,6 +63,29 @@ public class MineSweepActivity extends AppCompatActivity {
         addSettingButtonListener();
         addScoreboardButtonListener();
         addSignoutButtonListener();
+        addBackButtonListener();
+    }
+
+    /**
+     * The back button.
+     */
+    private void addBackButtonListener(){
+        Button backButton = findViewById(R.id.backTwo);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToSelecting();
+            }
+        });
+    }
+
+    /**
+     * Switch to game choosing interface.
+     * Used by ExitButtonListener.
+     */
+    private void switchToSelecting() {
+        Intent tmp = new Intent(this, Game_choose.class);
+        startActivity(tmp);
     }
 
     /**
@@ -164,7 +183,7 @@ public class MineSweepActivity extends AppCompatActivity {
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastSavedText();
                 final Animation myAnim = AnimationUtils.loadAnimation(tmp1, R.anim.bounce);
-                // Use bounce interpolator with amplitude 0.2 and frequency 20
+                // Use bounce interpolator with amplitude 0.c2 and frequency 20
                 MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
                 myAnim.setInterpolator(interpolator);
                 saveButton.startAnimation(myAnim);
@@ -208,7 +227,7 @@ public class MineSweepActivity extends AppCompatActivity {
      */
     private void startAnimation(Button button) {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-        // Use bounce interpolator with amplitude 0.2 and frequency 20
+        // Use bounce interpolator with amplitude 0.c2 and frequency 20
         MyBounceInterpolator interpolator = new MyBounceInterpolator(0.1, 20);
         myAnim.setInterpolator(interpolator);
         button.startAnimation(myAnim);

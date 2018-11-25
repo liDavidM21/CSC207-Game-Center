@@ -19,11 +19,27 @@ class BoardManager implements Serializable {
      * The number of move the player made in this game, and the time it takes to complete.
      */
     private int move;
+
+    /**
+     * Playing time.
+     */
     public int time;
 
-    public static boolean canUndo = true;
+    /**
+     * Whether the player can undo.
+     */
+    private static boolean canUndo = true;
 
-    public List<Tile> tiles = new ArrayList<>();
+    /**
+     * Return if the player can undo.
+     * @return canUndo
+     */
+    public static boolean getCanUndo(){return canUndo;}
+
+    /**
+     * List of tiles.
+     */
+    private List<Tile> tiles = new ArrayList<>();
 
     /**
      * Manage a board that has been pre-populated.

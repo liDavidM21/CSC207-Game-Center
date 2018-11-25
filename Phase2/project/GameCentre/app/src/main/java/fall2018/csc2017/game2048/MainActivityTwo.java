@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,15 +20,44 @@ import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
 
+/**
+ * A class to implement the game 2048.
+ */
 public class MainActivityTwo extends Activity {
 
-    public static MainActivityTwo mainActivity = null;
+    /**
+     * A mainActivity.
+     */
+    private static MainActivityTwo mainActivity = null;
+
+    /**
+     * TextView of score.
+     */
     private TextView Score;
-    public static int score = 0;//当前得分
+
+    /**
+     * Current score.
+     */
+    private static int score = 0;
+
+    /**
+     * TextView of the max score.
+     */
     private TextView maxScore;
-    private ImageView share;
-    private Button restart;
-    private Button pause;
+
+    /**
+     * The button for restarting game.
+     */
+    Button restart;
+
+    /**
+     * The button for saving game.
+     */
+    Button save;
+
+    /**
+     * The GameView gameView.
+     */
     private GameView gameView;
     private GameManager gm = GameManager.get_instance();
     /**
@@ -42,7 +70,6 @@ public class MainActivityTwo extends Activity {
      *
      * @param i the maximum step
      */
-
     public static void setUndoStep(int i) {
         undoStep = i;
     }
@@ -52,35 +79,24 @@ public class MainActivityTwo extends Activity {
      *
      * @return the maximum step of undo.
      */
-
     public static int getUndoStep() {
         return undoStep;
     }
 
-    public MainActivityTwo() {
-        mainActivity = this;
+    public static int getScore() {
+        return score;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        Score = (TextView) findViewById(R.id.Score);
-        maxScore = (TextView) findViewById(R.id.maxScore);
-        maxScore.setText(getSharedPreferences("pMaxScore", MODE_PRIVATE).getInt("maxScore", 0) + "");
-        share = (ImageView) findViewById(R.id.share);
-        share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                String s = "我在“2048”游戏中的得分为" + maxScore.getText() + "，你敢来挑战吗？点击进入>>http://www.amazon.cn/dp/B01KV5AK2Q";
-                shareIntent.putExtra(Intent.EXTRA_TEXT, s);
-                startActivity(Intent.createChooser(shareIntent, "炫耀一下"));
-            }
-        });
-        gameView = (GameView)findViewById(R.id.gameView);
-        restart = (Button) findViewById(R.id.restart);
+        Score = findViewById(R.id.Score);
+        maxScore = findViewById(R.id.maxScore);
+        String s = getSharedPreferences("pMaxScore", MODE_PRIVATE).getInt("maxScore", 0) + "";
+        maxScore.setText(s);
+        gameView = findViewById(R.id.gameView);
+        restart = findViewById(R.id.restart);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,8 +108,8 @@ public class MainActivityTwo extends Activity {
         if(gameView.hasTouched){
             saveToFile("2048.ser");
         }
-        pause = (Button)findViewById(R.id.pause);
-        pause.setOnClickListener(new View.OnClickListener() {
+        save = (Button)findViewById(R.id.pause);
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveToFile("2048.ser");
@@ -102,32 +118,52 @@ public class MainActivityTwo extends Activity {
 
     }
 
+    /**
+     * Constructor of class MainActivityTwo.
+     */
+    public MainActivityTwo() {
+        mainActivity = this;
+    }
+
+    /**
+     * Get the main activity.
+     *
+     * @return MainActivity.
+     */
     public static MainActivityTwo getMainActivity() {
         return mainActivity;
     }
 
-    //分数清零
+    /**
+     * Clear the score.
+     */
     public void clearScore() {
         score = 0;
         showScore();
     }
 
-    //分数增加
+    /**
+     * Add score.
+     *
+     * @param i Score to add.
+     */
     public void addScore(int i) {
 
         score += i;
         showScore();
         SharedPreferences pref = getSharedPreferences("pMaxScore", MODE_PRIVATE);
 
-        //若当前得分超出最高记录，则更新之
+        //If the current score is higher than the max score, then update the max score.
         if (score > pref.getInt("maxScore", 0)) {
             SharedPreferences.Editor editor = pref.edit();
             editor.putInt("maxScore", score);
-            editor.commit();
-            maxScore.setText(pref.getInt("maxScore", 0) + "");
+            editor.apply();
+            String s = pref.getInt("maxScore", 0) + "";
+            maxScore.setText(s);
         }
 
     }
+
     /**
      * Add the Undo bottom.
      */
@@ -163,7 +199,9 @@ public class MainActivityTwo extends Activity {
         Toast.makeText(this, "Can't undo any more!", Toast.LENGTH_SHORT).show();
     }
 
-    //显示当前得分
+    /**
+     * Show the current score.
+     */
     public void showScore() {
         Score.setText(score + "");
     }
@@ -175,17 +213,17 @@ public class MainActivityTwo extends Activity {
 
     private void createExitTipDialog() {
         new AlertDialog.Builder(MainActivityTwo.this)
-                .setMessage("确认退出吗？")
-                .setTitle("提示")
+                .setMessage("Exit？")
+                .setTitle("Reminder")
                 .setIcon(R.drawable.tip)
-                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         finish();
                     }
                 })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();

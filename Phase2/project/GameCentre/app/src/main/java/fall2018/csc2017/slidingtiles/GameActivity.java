@@ -21,6 +21,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+ * The algorithm of preventing unsolvable sliding tiles cite from https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+ */
+
+/**
  * The game activity.
  */
 public class GameActivity extends AppCompatActivity implements Observer {
@@ -76,7 +80,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
     // Grid View and calculated column height and width based on device size
     private GestureDetectGridView gridView;
     private static int columnWidth, columnHeight;
-    private boolean is_count_running = true;
 
 
 
@@ -161,7 +164,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 }
                 if (positionList.size() == 0) {
                     makeToastUndo();
-                } else if (positionList.size() != 0 && BoardManager.canUndo){
+                } else if (BoardManager.getCanUndo()){
                     int swapPosition = positionList.remove(positionList.size() - 1);
                     int swapRow = swapPosition / Board.NUM_ROWS;
                     int swapCol = swapPosition % Board.NUM_COLS;

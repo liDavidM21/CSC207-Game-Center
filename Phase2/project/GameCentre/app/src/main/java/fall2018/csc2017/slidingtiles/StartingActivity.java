@@ -6,6 +6,8 @@ package fall2018.csc2017.slidingtiles;
  */
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,9 +23,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import fall2018.csc2017.BuildConfig;
 import fall2018.csc2017.R;
 import fall2018.csc2017.Scoreboard.scoreboard;
+import fall2018.csc2017.game2048.MainActivityTwo;
 import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
+import fall2018.csc2017.minesweeper.MainActivity;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -64,7 +70,6 @@ public class StartingActivity extends AppCompatActivity {
             showDefault++;
         }
         saveToFile(TEMP_SAVE_FILENAME);
-        saveToFile(AUTO_SAVE_FILENAME);
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
         addLoadButtonListener();
@@ -73,7 +78,6 @@ public class StartingActivity extends AppCompatActivity {
         addScoreboardButtonListener();
         addSignoutButtonListener();
         addExitButtonListener();
-        addResumeButtonListener();
     }
 
     /**
@@ -84,10 +88,39 @@ public class StartingActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boardManager = new BoardManager();
-                switchToGame("start");
+                createResumeTipDialog();
             }
         });
+    }
+
+    /**
+     * Enquire if the player want to continue the game
+     */
+
+    private void createResumeTipDialog() {
+        new AlertDialog.Builder(StartingActivity.this)
+                .setMessage("Do you want to resume previous game?")
+                .setTitle("Reminder")
+                .setIcon(R.drawable.tip)
+                .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        loadFromFile(AUTO_SAVE_FILENAME);
+                        saveToFile(TEMP_SAVE_FILENAME);
+                        makeToastLoadedText("Resuming game");
+                        switchToGame("Resume");
+                    }
+                })
+                .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        boardManager = new BoardManager();
+                        switchToGame("start");
+                    }
+                })
+                .show();
     }
 
     /**
@@ -171,7 +204,7 @@ public class StartingActivity extends AppCompatActivity {
                 saveToFile(TEMP_SAVE_FILENAME);
                 makeToastSavedText();
                 final Animation myAnim = AnimationUtils.loadAnimation(tmp1, R.anim.bounce);
-                // Use bounce interpolator with amplitude 0.2 and frequency 20
+                // Use bounce interpolator with amplitude 0.c2 and frequency 20
                 MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
                 myAnim.setInterpolator(interpolator);
                 saveButton.startAnimation(myAnim);
@@ -202,8 +235,11 @@ public class StartingActivity extends AppCompatActivity {
         if (s == "start") {
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
-        } else {
+        } else if (s == "load"){
             Button button = (Button) findViewById(R.id.LoadButton);
+            startAnimation(button);
+        }else if (s == "Resume"){
+            Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
         }
     }
@@ -211,11 +247,11 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * Animation added for start button.
      *
-     * @param button
+     * @param button the start button.
      */
     private void startAnimation(Button button) {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-        // Use bounce interpolator with amplitude 0.2 and frequency 20
+        // Use bounce interpolator with amplitude 0.c2 and frequency 20
         MyBounceInterpolator interpolator = new MyBounceInterpolator(0.1, 20);
         myAnim.setInterpolator(interpolator);
         button.startAnimation(myAnim);
@@ -231,9 +267,15 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1, GameActivity.class);
-                saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-                startActivity(tmp);
+                if (Game_choose.get_current_game().equals("sliding_tiles")) {
+                    Intent tmp = new Intent(tmp1, GameActivity.class);
+                    saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+                    startActivity(tmp);
+                }
+                else{
+                    Intent tmp = new Intent(tmp1, MainActivity.class);
+                    startActivity(tmp);
+                }
             }
         });
     }
@@ -352,19 +394,4 @@ public class StartingActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Activate the resume button.
-     */
-    private void addResumeButtonListener() {
-        Button resumeButton = findViewById(R.id.ResumeButton);
-        resumeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFromFile(AUTO_SAVE_FILENAME);
-                saveToFile(TEMP_SAVE_FILENAME);
-                makeToastLoadedText("Loading game");
-                switchToGame("Resume");
-            }
-        });
-    }
 }
