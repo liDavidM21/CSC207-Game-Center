@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fall2018.csc2017.minesweeper.MainActivity;
+import fall2018.csc2017.slidingtiles.Score;
+import fall2018.csc2017.slidingtiles.Usermanager;
 
 public class GameView extends GridLayout {
 
@@ -32,6 +34,7 @@ public class GameView extends GridLayout {
     public int num[][] = new int[4][4];//用于后退一步
     public int score;//用于后退一步
     public boolean hasTouched = false;
+    static private int num_of_moves;
 
     public GameView(Context context) {
         super(context);
@@ -81,6 +84,7 @@ public class GameView extends GridLayout {
 
     //随即增加卡片，数值为2或4（二者概率不同）
     private static void addRandomNum() {
+        num_of_moves += 1;
         emptyPoints.clear();//重新记录空卡片位置
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
@@ -249,6 +253,8 @@ public class GameView extends GridLayout {
         }
         //游戏结束
         if (isOver) {
+            Usermanager.getLoginUser().add_score(new Score(num_of_moves - 2, 0));
+            num_of_moves = 0;
             new AlertDialog.Builder(getContext()).setTitle("很遗憾，游戏结束啦").setMessage("当前得分为"+MainActivityTwo.score+"，再接再厉哦！").setPositiveButton("点击此处再玩一局", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

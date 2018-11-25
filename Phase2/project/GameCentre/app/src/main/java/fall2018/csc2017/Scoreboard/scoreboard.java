@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.Scoreboard;
 /*
 Taken from https://www.youtube.com/watch?v=cKweRL0rHBc. The video demonstrate how to create a
 swipe view using fragment. Class involved are FragmentPage, FragmentPageLocal, SwipeAdapter,
