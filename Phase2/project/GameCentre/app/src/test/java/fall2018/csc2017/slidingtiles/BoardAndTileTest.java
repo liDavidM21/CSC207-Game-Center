@@ -48,7 +48,7 @@ public class BoardAndTileTest {
     }
 
     /**
-     * Test whether swapping two tiles makes a solved board unsolved.
+     * Test whether swapping c2 tiles makes a solved board unsolved.
      */
     @Test
     public void testIsSolved() {
@@ -59,7 +59,7 @@ public class BoardAndTileTest {
     }
 
     /**
-     * Test whether swapping the first two tiles works.
+     * Test whether swapping the first c2 tiles works.
      */
     @Test
     public void testSwapFirstTwo() {
@@ -72,7 +72,7 @@ public class BoardAndTileTest {
     }
 
     /**
-     * Test whether swapping the last two tiles works.
+     * Test whether swapping the last c2 tiles works.
      */
     @Test
     public void testSwapLastTwo() {

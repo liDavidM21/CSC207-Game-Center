@@ -23,12 +23,13 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
+import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.Usermanager;
 
 /**
- * The initial activity for the sliding puzzle tile game.
+ * The initial activity for the game2048.
  */
 public class game2048Activity extends AppCompatActivity {
 
@@ -76,6 +77,29 @@ public class game2048Activity extends AppCompatActivity {
         addSignoutButtonListener();
         addSetPButtonListener();
         addSetMButtonListener();
+        addBackButtonListener();
+    }
+
+    /**
+     *
+     */
+    private void addBackButtonListener(){
+        Button backButton = findViewById(R.id.backTwo);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchToSelecting();
+            }
+        });
+    }
+
+    /**
+     * Switch to game choosing interface.
+     * Used by ExitButtonListener.
+     */
+    private void switchToSelecting() {
+        Intent tmp = new Intent(this, Game_choose.class);
+        startActivity(tmp);
     }
 
     /**
@@ -223,7 +247,7 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * Animation added for start button.
      *
-     * @param button
+     * @param button the start button.
      */
     private void startAnimation(Button button) {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);

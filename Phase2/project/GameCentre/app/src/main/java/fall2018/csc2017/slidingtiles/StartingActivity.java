@@ -29,6 +29,7 @@ import fall2018.csc2017.R;
 import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.game2048.MainActivityTwo;
 import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
+import fall2018.csc2017.minesweeper.MainActivity;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -246,7 +247,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * Animation added for start button.
      *
-     * @param button
+     * @param button the start button.
      */
     private void startAnimation(Button button) {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
@@ -266,9 +267,15 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1, GameActivity.class);
-                saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-                startActivity(tmp);
+                if (Game_choose.get_current_game().equals("sliding_tiles")) {
+                    Intent tmp = new Intent(tmp1, GameActivity.class);
+                    saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+                    startActivity(tmp);
+                }
+                else{
+                    Intent tmp = new Intent(tmp1, MainActivity.class);
+                    startActivity(tmp);
+                }
             }
         });
     }
