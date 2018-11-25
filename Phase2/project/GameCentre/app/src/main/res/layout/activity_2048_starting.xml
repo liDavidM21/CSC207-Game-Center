@@ -17,10 +17,10 @@
         android:src="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/GameText"
@@ -41,25 +41,10 @@
         android:text="SCOREBOARD"
         app:layout_constraintBottom_toTopOf="@+id/Signout"
         app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toEndOf="@+id/background_1"
         app:layout_constraintTop_toBottomOf="@+id/LoadButton"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/LoadButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/GameText"
-        android:layout_toStartOf="@+id/StartButton"
-        android:text="Load Saved Game"
-        app:layout_constraintBottom_toTopOf="@+id/background_1"
-        app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/SaveButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.837" />
 
     <Button
         android:id="@+id/Signout"
@@ -71,26 +56,10 @@
         android:text="Signout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/background_1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674" />
-
-    <Button
-        android:id="@+id/SaveButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/GameText"
-        android:layout_toEndOf="@+id/StartButton"
-        android:text="Save Game"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/background_1"
-        app:layout_constraintEnd_toStartOf="@+id/background_1"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toEndOf="@+id/background_1"
-        app:layout_constraintTop_toBottomOf="@+id/background_1"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.671" />
 
     <Button
         android:id="@+id/backTwo"
@@ -161,5 +130,19 @@
         app:layout_constraintStart_toEndOf="@+id/background_1"
         app:layout_constraintTop_toBottomOf="@+id/background_1"
         app:layout_constraintVertical_bias="0.729" />
+
+    <Button
+        android:id="@+id/LoadButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GameText"
+        android:layout_toStartOf="@+id/StartButton"
+        android:text="Load Saved Game"
+        app:layout_constraintBottom_toTopOf="@+id/scoreboardButton"
+        app:layout_constraintEnd_toStartOf="@+id/background_1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/background_1"
+        app:layout_constraintTop_toBottomOf="@+id/undoStp" />
 
 </android.support.constraint.ConstraintLayout>
