@@ -58,7 +58,7 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
         Log.d("Minesweeper" , "Cell::onDraw");
         drawButton(canvas);
 
-        if( isFlagged() ){
+        if( isFlagged()){
             drawFlag(canvas);
         }else if( isRevealed() && isBomb() && !isClicked() ){
             drawNormalBomb(canvas);

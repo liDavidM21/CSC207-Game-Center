@@ -21,6 +21,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+ * The algorithm of preventing unsolvable sliding tiles cite from https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+ */
+
+/**
  * The game activity.
  */
 public class GameActivity extends AppCompatActivity implements Observer {

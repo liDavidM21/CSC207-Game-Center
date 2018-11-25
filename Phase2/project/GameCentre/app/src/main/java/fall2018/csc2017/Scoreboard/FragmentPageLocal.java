@@ -31,7 +31,7 @@ public class FragmentPageLocal extends Fragment {
         final View view;
         User current_user = current_manager.getLoginUser();
         current_user.sort_score();
-        List<Score> user_score = current_user.top_score;
+        List<Score> user_score = current_user.getTop_score();
         Bundle bundle = getArguments();
         int pageNumber = bundle.getInt("pageNumber");
         view = inflater.inflate(R.layout.page_fragment_layout, container, false);
@@ -41,8 +41,8 @@ public class FragmentPageLocal extends Fragment {
             email.setText("HOI! You need to play once to let me know your score!");
             score.setText("");
         } else {
-            email.setText(current_user.user_email);
-            score.setText(Integer.toString(current_user.top_score.get(pageNumber - 1).final_score));
+            email.setText(current_user.getUser_email());
+            score.setText(Integer.toString(current_user.getTop_score().get(pageNumber - 1).final_score));
         }
 
         return view;

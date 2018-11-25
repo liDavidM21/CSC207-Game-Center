@@ -39,12 +39,12 @@ public class FragmentPage extends Fragment {
         sortScores();
         TextView email = (TextView) view.findViewById(R.id.UserEmail);
         TextView score = (TextView) view.findViewById(R.id.Score);
-        System.out.println(Usermanager.getLoginUser().top_score.size());
+        System.out.println(Usermanager.getLoginUser().getTop_score().size());
         if (users.size() < pageNumber || users.get(pageNumber - 1).return_best_score() == null) {
             email.setText("HOI! No one has score recorded here!");
             score.setText("");
         } else {
-            email.setText(users.get(pageNumber - 1).user_email);
+            email.setText(users.get(pageNumber - 1).getUser_email());
             score.setText(Integer.toString(users.get(pageNumber - 1).return_best_score().final_score));
         }
 
