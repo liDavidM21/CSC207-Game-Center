@@ -6,10 +6,15 @@ import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-//卡片类（小方格）
+/**
+ * Card in game2048.
+ */
 public class Card extends FrameLayout {
 
-    private int num = 0;//卡片上的数
+    /**
+     * The number on the card.
+     */
+    private int num = 0;
     private TextView lable;
 
     public Card(Context context) {
@@ -23,14 +28,20 @@ public class Card extends FrameLayout {
         setNum(0);
     }
 
+    /**
+     * Get the number on the card.
+     * @return the number on the card.
+     */
     public int getNum() {
         return num;
     }
 
-    //设置卡片上的数
+    /**
+     * Set the number on the card.
+     * @param num
+     */
     public void setNum(int num) {
 
-        //设置数的大小
         this.num = num;
         if (num > 0) {
             lable.setText(num + "");
@@ -38,7 +49,6 @@ public class Card extends FrameLayout {
             lable.setText("");
         }
 
-        //根据数值大小改变卡片的背景颜色
         switch (num) {
             case 0:
                 lable.setBackgroundColor(0xffccc0b2);
@@ -132,7 +142,11 @@ public class Card extends FrameLayout {
 
     }
 
-    //判断两个卡片上的数值是否相等
+    /**
+     * Find if the numbers on two cards are equal.
+     * @param card
+     * @return whether the numbers on two cards are equal.
+     */
     public boolean equals(Card card) {
         return getNum() == card.getNum();
     }

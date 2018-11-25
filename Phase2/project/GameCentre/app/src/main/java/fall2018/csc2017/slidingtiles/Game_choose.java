@@ -12,6 +12,7 @@ import fall2018.csc2017.minesweeper.MineSweepActivity;
 import fall2018.csc2017.game2048.game2048Activity;
 
 public class Game_choose extends AppCompatActivity {
+
     private static boolean minesweeper = false;
     private static boolean sliding_tiles = false;
     private static boolean tzfe = false;

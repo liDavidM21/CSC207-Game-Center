@@ -161,7 +161,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 }
                 if (positionList.size() == 0) {
                     makeToastUndo();
-                } else if (positionList.size() != 0 && BoardManager.canUndo){
+                } else if (BoardManager.canUndo){
                     int swapPosition = positionList.remove(positionList.size() - 1);
                     int swapRow = swapPosition / Board.NUM_ROWS;
                     int swapCol = swapPosition % Board.NUM_COLS;
