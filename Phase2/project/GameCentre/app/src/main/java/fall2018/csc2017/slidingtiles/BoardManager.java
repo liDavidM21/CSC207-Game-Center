@@ -21,6 +21,8 @@ class BoardManager implements Serializable {
     private int move;
     public int time;
 
+    public static boolean canUndo = true;
+
     public List<Tile> tiles = new ArrayList<>();
 
     /**
@@ -80,6 +82,7 @@ class BoardManager implements Serializable {
             Usermanager.getLoginUser().add_score(new Score(move, time));
             move = 0;
             time = 0;
+            canUndo = false;
         }
         return solved;
     }
@@ -116,7 +119,7 @@ class BoardManager implements Serializable {
         int row = position / Board.NUM_ROWS;
         int col = position % Board.NUM_COLS;
         int blankId = board.numTiles();
-        if (isValidTap(position)) {
+        if (isValidTap(position) && (!puzzleSolved())) {
             move += 1;
             if (row > 0 && board.getTile(row - 1, col) != null && board.getTile(row - 1, col).getId() == blankId) {
                 board.swapTiles(row, col, row - 1, col);
