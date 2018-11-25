@@ -22,8 +22,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
-import fall2018.csc2017.minesweeper.MainActivity;
-import fall2018.csc2017.game2048.MainActivityTwo;
+import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
 
 /**
@@ -52,9 +51,12 @@ public class StartingActivity extends AppCompatActivity {
      */
     private static int showDefault = 1;
 
+    private String current_game = "Sliding Tiles";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
+        Usermanager.get_instance().switch_game(current_game);
         super.onCreate(savedInstanceState);
         boardManager = new BoardManager();
         if (showDefault == 1) {
@@ -241,7 +243,7 @@ public class StartingActivity extends AppCompatActivity {
      */
     private void switchToSetting() {
         final StartingActivity tmp1 = this;
-        if (GameChoosing.get_current_game().equals("minesweeper")) {
+        if (Game_choose.get_current_game().equals("minesweeper")) {
             Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
             saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
             startActivity(tmp);
@@ -319,7 +321,7 @@ public class StartingActivity extends AppCompatActivity {
      * Used by ExitButtonListener.
      */
     private void switchToSelecting() {
-        Intent tmp = new Intent(this, GameChoosing.class);
+        Intent tmp = new Intent(this, Game_choose.class);
         startActivity(tmp);
     }
 

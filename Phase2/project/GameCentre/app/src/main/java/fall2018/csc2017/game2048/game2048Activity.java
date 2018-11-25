@@ -23,9 +23,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.LoginActivity;
-import fall2018.csc2017.slidingtiles.scoreboard;
+import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.Usermanager;
-import fall2018.csc2017.slidingtiles.GameChoosing;
+
 /**
  * The initial activity for the sliding puzzle tile game.
  */
@@ -47,11 +47,14 @@ public class game2048Activity extends AppCompatActivity {
      * The board manager.
      */
     private static int showDefault = 1;
+    private String current_game = "2048";
+    private Usermanager current_manager = Usermanager.get_instance();
 //    private GameEngine gameengine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
+        current_manager.switch_game(current_game);
         super.onCreate(savedInstanceState);
 //        gameengine = GameEngine.getInstance();
         if (showDefault == 1) {
@@ -67,7 +70,6 @@ public class game2048Activity extends AppCompatActivity {
 //        addSettingButtonListener();
         addScoreboardButtonListener();
         addSignoutButtonListener();
-        addExitButtonListener();
     }
 
     /**
@@ -288,24 +290,9 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * Button for go back to game choosing selection layout.
      */
-    private void addExitButtonListener() {
-        Button exitButton = findViewById(R.id.backTwo);
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchToSelecting();
-            }
-        });
-    }
-
     /**
      * Switch to game choosing interface.
      * Used by ExitButtonListener.
-     */
-    private void switchToSelecting() {
-        Intent tmp = new Intent(this, GameChoosing.class);
-        startActivity(tmp);
-    }
 
     /**
      * Save the board manager to fileName.
