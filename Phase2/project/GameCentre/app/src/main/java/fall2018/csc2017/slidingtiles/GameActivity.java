@@ -79,6 +79,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     private boolean is_count_running = true;
 
 
+
     /**
      * Set up the background image for each button based on the master list
      * of positions, and then call the adapter to set the view.
@@ -207,7 +208,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
             b.setBackgroundResource(board.getTile(row, col).getBackground());
             nextPos++;
         }
-        saveToFile(StartingActivity.SAVE_FILENAME);
+        saveToFile(StartingActivity.AUTO_SAVE_FILENAME);
     }
 
     /**

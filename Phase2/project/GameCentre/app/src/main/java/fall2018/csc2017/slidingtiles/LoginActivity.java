@@ -85,12 +85,12 @@ public class LoginActivity extends AppCompatActivity {
      * switch to game menu
      */
     private void game_menu() {
-        Intent tmp = new Intent(this, GameChoosing.class);
+        Intent tmp = new Intent(this, Game_choose.class);
         startActivity(tmp);
     }
 
     private void attemptSignup() {
-
+        deserialize();
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -104,8 +104,6 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean cancel = false;
         View focusView = null;
-
-
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
@@ -125,7 +123,9 @@ public class LoginActivity extends AppCompatActivity {
             mEmailView.setError(getString(R.string.error_register_email));
             focusView = mEmailView;
             cancel = true;
-        } else if (password.length() <= 4) {
+            System.out.println(cancel);
+        }
+        else if (password.length() <= 4) {
             /**
              * Check if the password is valid.
              */
@@ -145,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
              */
             User new_user = new User(email, password);
             current_manager.add(new_user);
+            current_manager.setLoginUser(new_user);
             serializeUserManager();
             showProgress(true);
             game_menu();

@@ -91,9 +91,9 @@
             android:id="@+id/back"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:layout_weight="1"
             android:background="#87CEEB"
             android:text="后退一步" />
 
@@ -112,8 +112,7 @@
     <fall2018.csc2017.game2048.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/topPanel"
-        ></fall2018.csc2017.game2048.GameView>
+        android:layout_height="458dp"
+        android:layout_below="@+id/topPanel"></fall2018.csc2017.game2048.GameView>
 
 </RelativeLayout>

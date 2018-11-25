@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-154dp"
+        android:layout_marginTop="-169dp"
         android:text="New Game" />
 
     <Button
@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
         android:layout_alignStart="@+id/SaveButton"
-        android:layout_marginStart="-9dp"
-        android:layout_marginTop="-15dp"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="3dp"
         android:text="SCOREBOARD" />
 
     <Button
@@ -52,8 +52,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="-126dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="-133dp"
         android:layout_toStartOf="@+id/StartButton"
         android:text="Load Saved Game" />
 
@@ -63,8 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="454dp"
-        android:layout_marginEnd="-116dp"
+        android:layout_marginTop="452dp"
+        android:layout_marginEnd="-110dp"
         android:layout_toStartOf="@+id/LoadButton"
         android:text="Signout" />
 
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
         android:layout_marginStart="-98dp"
-        android:layout_marginTop="-84dp"
+        android:layout_marginTop="-65dp"
         android:layout_toEndOf="@+id/StartButton"
         android:text="Save Game"
         android:visibility="visible" />
@@ -104,5 +104,18 @@
         android:layout_marginEnd="-198dp"
         android:layout_toStartOf="@+id/scoreboardButton"
         android:text="Back" />
+
+    <Button
+        android:id="@+id/ResumeButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GameText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-122dp"
+        android:layout_marginEnd="-93dp"
+        android:layout_toStartOf="@+id/StartButton"
+        android:text="Resume"
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
 
 </RelativeLayout>
