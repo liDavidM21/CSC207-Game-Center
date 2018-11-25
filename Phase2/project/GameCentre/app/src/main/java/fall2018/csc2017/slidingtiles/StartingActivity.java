@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import fall2018.csc2017.BuildConfig;
 import fall2018.csc2017.R;
 import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
@@ -202,8 +204,11 @@ public class StartingActivity extends AppCompatActivity {
         if (s == "start") {
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
-        } else {
+        } else if (s == "load"){
             Button button = (Button) findViewById(R.id.LoadButton);
+            startAnimation(button);
+        }else if (s == "Resume"){
+            Button button = (Button) findViewById(R.id.ResumeButton);
             startAnimation(button);
         }
     }
