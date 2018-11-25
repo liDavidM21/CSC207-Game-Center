@@ -29,6 +29,7 @@ public class GameView extends GridLayout {
     public ArrayList<int[][]> getStateList(){
         return stateList;
     }
+
     public static Card[][] cards = new Card[4][4];//4×4=16张卡片
     private static List<Point> emptyPoints = new ArrayList<Point>();//空卡片（数值为0）位置
     public int num[][] = new int[4][4];//用于后退一步
@@ -275,13 +276,36 @@ public class GameView extends GridLayout {
             if (!hasTouched) {
                 hasTouched = true;
             }
-            stateList.add(new int[4][4]);
-            scoreList.add(MainActivityTwo.score);
+
+            for (int y = 0; y < 4; ++y) {
+                for (int x = 0; x < 4; ++x) {
+                    num[y][x] = cards[y][x].getNum();
+                }
+            }
+
+            if (stateList.size() <= 1) {
+                scoreList.add(MainActivityTwo.score);
+                stateList.add(new int[4][4]);
+
                 for (int y = 0; y < 4; ++y) {
                     for (int x = 0; x < 4; ++x) {
                         stateList.get(stateList.size() - 1)[y][x] = cards[y][x].getNum();
                     }
                 }
+            } else {
+                if (!(Arrays.deepEquals(num, stateList.get(stateList.size() - 1)))) {
+
+                    scoreList.add(MainActivityTwo.score);
+                    stateList.add(new int[4][4]);
+
+                    for (int y = 0; y < 4; ++y) {
+                        for (int x = 0; x < 4; ++x) {
+                            stateList.get(stateList.size() - 1)[y][x] = cards[y][x].getNum();
+                        }
+                    }
+                }
+            }
+
 
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -313,4 +337,5 @@ public class GameView extends GridLayout {
         }
 
     }
+
 }
