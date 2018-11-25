@@ -15,6 +15,10 @@ public class Card extends FrameLayout {
      * The number on the card.
      */
     private int num = 0;
+
+    /**
+     * Each individual card.
+     */
     private TextView lable;
 
     public Card(Context context) {
@@ -30,6 +34,7 @@ public class Card extends FrameLayout {
 
     /**
      * Get the number on the card.
+     *
      * @return the number on the card.
      */
     public int getNum() {
@@ -38,13 +43,15 @@ public class Card extends FrameLayout {
 
     /**
      * Set the number on the card.
-     * @param num
+     *
+     * @param num the number on the card.
      */
     public void setNum(int num) {
 
         this.num = num;
         if (num > 0) {
-            lable.setText(num + "");
+            String s = Integer.toString(num);
+            lable.setText(s);
         } else {
             lable.setText("");
         }
@@ -144,7 +151,8 @@ public class Card extends FrameLayout {
 
     /**
      * Find if the numbers on two cards are equal.
-     * @param card
+     *
+     * @param card the other card.
      * @return whether the numbers on two cards are equal.
      */
     public boolean equals(Card card) {
