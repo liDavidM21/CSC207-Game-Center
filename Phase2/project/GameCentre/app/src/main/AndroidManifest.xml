@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".slidingtiles.LoginActivity">
+        <activity android:name=".slidingtiles.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,8 +29,9 @@
         <activity android:name=".game2048.MainActivityTwo" />
         <activity android:name=".minesweeper.GameSettingMinesweeper" />
         <activity android:name=".minesweeper.MineSweepActivity" />
-        <activity android:name=".slidingtiles.Game_choose"/>
-        <activity android:name=".game2048.game2048Activity"></activity>
+        <activity android:name=".slidingtiles.Game_choose" />
+        <activity android:name=".game2048.game2048Activity" />
+        <activity android:name=".slidingtiles.LoginActivity"></activity>
     </application>
 
 </manifest>
