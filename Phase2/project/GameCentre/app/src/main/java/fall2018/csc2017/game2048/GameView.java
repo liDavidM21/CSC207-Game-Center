@@ -306,6 +306,10 @@ public class GameView extends GridLayout {
                     }
                 }
             }
+            if (stateList.size() > MainActivityTwo.getUndoStep()) {
+                stateList.remove(0);
+                scoreList.remove(0);
+            }
 
 
             switch (motionEvent.getAction()) {
