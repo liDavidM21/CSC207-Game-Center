@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.GridLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import fall2018.csc2017.minesweeper.MainActivity;
@@ -22,13 +23,14 @@ public class GameView extends GridLayout {
 
     private static ArrayList<int[][]> stateList = new ArrayList<>();
 
-    public ArrayList<Integer> getScoreList(){
+    public ArrayList<Integer> getScoreList() {
         return scoreList;
     }
 
-    public ArrayList<int[][]> getStateList(){
+    public ArrayList<int[][]> getStateList() {
         return stateList;
     }
+
     public static Card[][] cards = new Card[4][4];//4×4=16张卡片
     private static List<Point> emptyPoints = new ArrayList<Point>();//空卡片（数值为0）位置
     public int num[][] = new int[4][4];//用于后退一步
@@ -62,7 +64,7 @@ public class GameView extends GridLayout {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 
         super.onSizeChanged(w, h, oldw, oldh);
-        int cardWidth = (Math.min(w, h)-10)/4;//根据屏幕大小设置卡片宽度
+        int cardWidth = (Math.min(w, h) - 10) / 4;//根据屏幕大小设置卡片宽度
         addCards(cardWidth, cardWidth);
         startGame();
 
@@ -72,8 +74,8 @@ public class GameView extends GridLayout {
     private void addCards(int cardWidth, int cardHeight) {
         this.removeAllViews();
         Card c;
-        for(int y=0;y<4;++y) {
-            for(int x = 0;x<4;++x) {
+        for (int y = 0; y < 4; ++y) {
+            for (int x = 0; x < 4; ++x) {
                 c = new Card(getContext());
                 c.setNum(0);
                 addView(c, cardWidth, cardHeight);
@@ -94,15 +96,17 @@ public class GameView extends GridLayout {
             }
         }
         //随机将一个空卡片的数值设置成2或4（概率之比为9：1）
-        Point p = emptyPoints.remove((int)(Math.random()*emptyPoints.size()));
-        cards[p.x][p.y].setNum(Math.random()>0.1?2:4);
+        Point p = emptyPoints.remove((int) (Math.random() * emptyPoints.size()));
+        cards[p.x][p.y].setNum(Math.random() > 0.1 ? 2 : 4);
     }
 
     //开始游戏
     public static void startGame() {
         MainActivityTwo.getMainActivity().clearScore();
-        for(int y=0;y<4;++y) {
-            for(int x=0;x<4;++x) {
+        scoreList.clear();
+        stateList.clear();
+        for (int y = 0; y < 4; ++y) {
+            for (int x = 0; x < 4; ++x) {
                 cards[x][y].setNum(0);
             }
         }
@@ -114,22 +118,22 @@ public class GameView extends GridLayout {
     private void swipeLeft() {
         boolean b = false;
         //每一行（横坐标为x，纵坐标为y）
-        for(int y=0;y<4;++y) {
+        for (int y = 0; y < 4; ++y) {
             //每一列（考虑到最后一列无需继续比较，故此处只需3列）
-            for(int x=0;x<3;++x) {
+            for (int x = 0; x < 3; ++x) {
                 //比较卡片数值
-                for(int x1=x+1;x1<4;++x1) {
+                for (int x1 = x + 1; x1 < 4; ++x1) {
                     //卡片（x1，y）不空，则与（x，y）比较
-                    if (cards[x1][y].getNum()>0) {
+                    if (cards[x1][y].getNum() > 0) {
                         //卡片（x，y）为空，则将（x1，y）左移
-                        if (cards[x][y].getNum()==0) {
+                        if (cards[x][y].getNum() == 0) {
                             cards[x][y].setNum(cards[x1][y].getNum());
                             cards[x1][y].setNum(0);
                             --x;//（x1，y）需要继续比较
                             b = true;
                         } else if (cards[x][y].equals(cards[x1][y])) {
                             //合并卡片
-                            cards[x][y].setNum(cards[x][y].getNum()*2);
+                            cards[x][y].setNum(cards[x][y].getNum() * 2);
                             cards[x1][y].setNum(0);
                             MainActivityTwo.getMainActivity().addScore(cards[x][y].getNum());
                             b = true;
@@ -150,17 +154,17 @@ public class GameView extends GridLayout {
     //向右滑动
     private void swipeRight() {
         boolean b = false;
-        for(int y=0;y<4;++y) {
-            for(int x=3;x>0;--x) {
-                for(int x1=x-1;x1>=0;--x1) {
-                    if (cards[x1][y].getNum()>0) {
-                        if (cards[x][y].getNum()==0) {
+        for (int y = 0; y < 4; ++y) {
+            for (int x = 3; x > 0; --x) {
+                for (int x1 = x - 1; x1 >= 0; --x1) {
+                    if (cards[x1][y].getNum() > 0) {
+                        if (cards[x][y].getNum() == 0) {
                             cards[x][y].setNum(cards[x1][y].getNum());
                             cards[x1][y].setNum(0);
                             ++x;
                             b = true;
                         } else if (cards[x][y].equals(cards[x1][y])) {
-                            cards[x][y].setNum(cards[x][y].getNum()*2);
+                            cards[x][y].setNum(cards[x][y].getNum() * 2);
                             cards[x1][y].setNum(0);
                             MainActivityTwo.getMainActivity().addScore(cards[x][y].getNum());
                             b = true;
@@ -179,17 +183,17 @@ public class GameView extends GridLayout {
     //向上滑动
     private void swipeUp() {
         boolean b = false;
-        for(int x=0;x<4;++x) {
-            for(int y=0;y<3;++y) {
-                for(int y1=y+1;y1<4;++y1) {
-                    if (cards[x][y1].getNum()>0) {
-                        if (cards[x][y].getNum()==0) {
+        for (int x = 0; x < 4; ++x) {
+            for (int y = 0; y < 3; ++y) {
+                for (int y1 = y + 1; y1 < 4; ++y1) {
+                    if (cards[x][y1].getNum() > 0) {
+                        if (cards[x][y].getNum() == 0) {
                             cards[x][y].setNum(cards[x][y1].getNum());
                             cards[x][y1].setNum(0);
                             --y;
                             b = true;
                         } else if (cards[x][y].equals(cards[x][y1])) {
-                            cards[x][y].setNum(cards[x][y].getNum()*2);
+                            cards[x][y].setNum(cards[x][y].getNum() * 2);
                             cards[x][y1].setNum(0);
                             MainActivityTwo.getMainActivity().addScore(cards[x][y].getNum());
                             b = true;
@@ -208,17 +212,17 @@ public class GameView extends GridLayout {
     //向下滑动
     private void swipeDown() {
         boolean b = false;
-        for(int x=0;x<4;++x) {
-            for(int y=3;y>0;--y) {
-                for(int y1=y-1;y1>=0;--y1) {
-                    if (cards[x][y1].getNum()>0) {
-                        if (cards[x][y].getNum()==0) {
+        for (int x = 0; x < 4; ++x) {
+            for (int y = 3; y > 0; --y) {
+                for (int y1 = y - 1; y1 >= 0; --y1) {
+                    if (cards[x][y1].getNum() > 0) {
+                        if (cards[x][y].getNum() == 0) {
                             cards[x][y].setNum(cards[x][y1].getNum());
                             cards[x][y1].setNum(0);
                             ++y;
                             b = true;
                         } else if (cards[x][y].equals(cards[x][y1])) {
-                            cards[x][y].setNum(cards[x][y].getNum()*2);
+                            cards[x][y].setNum(cards[x][y].getNum() * 2);
                             cards[x][y1].setNum(0);
                             MainActivityTwo.getMainActivity().addScore(cards[x][y].getNum());
                             b = true;
@@ -237,14 +241,14 @@ public class GameView extends GridLayout {
     private void checkGameOver() {
         boolean isOver = true;
         ALL:
-        for(int y=0;y<4;++y) {
-            for(int x=0;x<4;++x) {
+        for (int y = 0; y < 4; ++y) {
+            for (int x = 0; x < 4; ++x) {
                 /*游戏继续的条件是：1.至少有一个空卡片
                  *                  2.没有空卡片，但存在相邻两个卡片数值相等，表现为左右相等或上下相等
                  */
-                if (cards[x][y].getNum()==0||
-                        (x<3&&cards[x][y].getNum()==cards[x+1][y].getNum())||
-                        (y<3&&cards[x][y].getNum()==cards[x][y+1].getNum())) {
+                if (cards[x][y].getNum() == 0 ||
+                        (x < 3 && cards[x][y].getNum() == cards[x + 1][y].getNum()) ||
+                        (y < 3 && cards[x][y].getNum() == cards[x][y + 1].getNum())) {
                     //没有结束，游戏继续
                     isOver = false;
                     break ALL;
@@ -255,7 +259,7 @@ public class GameView extends GridLayout {
         if (isOver) {
             Usermanager.getLoginUser().add_score(new Score(num_of_moves - 2, 0));
             num_of_moves = 0;
-            new AlertDialog.Builder(getContext()).setTitle("很遗憾，游戏结束啦").setMessage("当前得分为"+MainActivityTwo.score+"，再接再厉哦！").setPositiveButton("点击此处再玩一局", new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(getContext()).setTitle("很遗憾，游戏结束啦").setMessage("当前得分为" + MainActivityTwo.score + "，再接再厉哦！").setPositiveButton("点击此处再玩一局", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     startGame();
@@ -276,12 +280,32 @@ public class GameView extends GridLayout {
                 hasTouched = true;
             }
 
-            scoreList.add(MainActivityTwo.score);
-            stateList.add(new int[4][4]);
+            for (int y = 0; y < 4; ++y) {
+                for (int x = 0; x < 4; ++x) {
+                    num[y][x] = cards[y][x].getNum();
+                }
+            }
 
-            for(int y=0;y<4;++y) {
-                for(int x=0;x<4;++x) {
-                    stateList.get(stateList.size() - 1)[y][x] = cards[y][x].getNum();
+            if (stateList.size() <= 1) {
+                scoreList.add(MainActivityTwo.score);
+                stateList.add(new int[4][4]);
+
+                for (int y = 0; y < 4; ++y) {
+                    for (int x = 0; x < 4; ++x) {
+                        stateList.get(stateList.size() - 1)[y][x] = cards[y][x].getNum();
+                    }
+                }
+            } else {
+                if (!(Arrays.deepEquals(num, stateList.get(stateList.size() - 1)))) {
+
+                    scoreList.add(MainActivityTwo.score);
+                    stateList.add(new int[4][4]);
+
+                    for (int y = 0; y < 4; ++y) {
+                        for (int x = 0; x < 4; ++x) {
+                            stateList.get(stateList.size() - 1)[y][x] = cards[y][x].getNum();
+                        }
+                    }
                 }
             }
 
@@ -292,19 +316,19 @@ public class GameView extends GridLayout {
                     startY = motionEvent.getY();
                     break;
                 case MotionEvent.ACTION_UP:
-                    offsetX = motionEvent.getX()-startX;
-                    offsetY = motionEvent.getY()-startY;
+                    offsetX = motionEvent.getX() - startX;
+                    offsetY = motionEvent.getY() - startY;
 
-                    if (Math.abs(offsetX)>Math.abs(offsetY)) {
-                        if (offsetX<-5) {
+                    if (Math.abs(offsetX) > Math.abs(offsetY)) {
+                        if (offsetX < -5) {
                             swipeLeft();
-                        } else if (offsetX>5) {
+                        } else if (offsetX > 5) {
                             swipeRight();
                         }
                     } else {
-                        if (offsetY<-5) {
+                        if (offsetY < -5) {
                             swipeUp();
-                        } else if (offsetY>5) {
+                        } else if (offsetY > 5) {
                             swipeDown();
                         }
                     }

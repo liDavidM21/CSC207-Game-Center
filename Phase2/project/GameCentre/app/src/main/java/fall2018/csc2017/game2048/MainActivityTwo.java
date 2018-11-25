@@ -55,25 +55,7 @@ public class MainActivityTwo extends Activity {
                 GameView.startGame();
             }
         });
-        //back = (Button)findViewById(R.id.back);
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (gameView.hasTouched) {
-//                    score = gameView.getScoreList().get(gameView.getScoreList().size() - 1);
-//                    gameView.getScoreList().remove(gameView.getScoreList().size() - 1);
-//                    showScore();
-//                    int[][] newState =
-//                            gameView.getStateList().get(gameView.getStateList().size() - 1);
-//                    gameView.getStateList().remove(gameView.getStateList().size()-1);
-//                    for(int y=0;y<4;++y) {
-//                        for(int x=0;x<4;++x) {
-//                            gameView.cards[y][x].setNum(newState[y][x]);
-//                        }
-//                    }
-//                }
-//            }
-//        });
+
         addUndoButtonListener();
         pause = (Button)findViewById(R.id.pause);
         pause.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +104,7 @@ public class MainActivityTwo extends Activity {
         undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if (gameView.hasTouched) {
+                if (gameView.hasTouched && gameView.getStateList().size() >= 1) {
                     score = gameView.getScoreList().get(gameView.getScoreList().size() - 1);
                     gameView.getScoreList().remove(gameView.getScoreList().size() - 1);
                     showScore();
@@ -135,7 +117,7 @@ public class MainActivityTwo extends Activity {
                         }
                     }
                 }
-            //}
+            }
         });
     }
 
