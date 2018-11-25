@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
@@ -46,6 +47,11 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * The board manager.
      */
+
+    /**
+     * Initialize the default UndoStep.
+     */
+    public static int numUndo = 3;
     private static int showDefault = 1;
     private String current_game = "2048";
     private Usermanager current_manager = Usermanager.get_instance();
@@ -63,13 +69,66 @@ public class game2048Activity extends AppCompatActivity {
         }
         saveToFile(TEMP_SAVE_FILENAME);
         saveToFile(AUTO_SAVE_FILENAME);
-        setContentView(R.layout.activity_starting_);
+        setContentView(R.layout.activity_2048_starting);
         addStartButtonListener();
         addLoadButtonListener();
         addSaveButtonListener();
-//        addSettingButtonListener();
         addScoreboardButtonListener();
         addSignoutButtonListener();
+        addSetPButtonListener();
+        addSetMButtonListener();
+    }
+
+    /**
+     * Add one undo step.
+     */
+    private void addSetPButtonListener() {
+        Button setButton = findViewById(R.id.undoSetP);
+        setButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView txt = findViewById(R.id.undoStp);
+                numUndo += 1;
+                String str = "Undo " + Integer.toString(numUndo) + " Steps";
+                txt.setText(str);
+                MainActivityTwo.setUndoStep(numUndo);
+                makeToastUndoText();
+            }
+        });
+    }
+
+    /**
+     * Minus one undo step.
+     */
+    private void addSetMButtonListener() {
+        Button setButton = findViewById(R.id.undoSetM);
+        setButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView txt = findViewById(R.id.undoStp);
+                if (numUndo >= 1) {
+                    numUndo -= 1;
+                }
+                String str = "Undo " + Integer.toString(numUndo) + " Steps";
+                if (numUndo == 1) {
+                    str = "Undo " + Integer.toString(numUndo) + " Step";
+                }
+                txt.setText(str);
+                MainActivityTwo.setUndoStep(numUndo);
+                makeToastUndoText();
+            }
+        });
+    }
+
+    /**
+     * Toast information of number of undo step selected.
+     */
+    private void makeToastUndoText() {
+        String str = "Number of Undo Steps:" + numUndo;
+        if (numUndo == 0) {
+            str = "Minimum Undo Step:" + numUndo;
+        }
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -98,20 +157,6 @@ public class game2048Activity extends AppCompatActivity {
             }
         });
     }
-
-    /**
-     * Button listener for game setting.
-     * Enter activity_setting interface.
-     */
-//    private void addSettingButtonListener() {
-//        Button startButton = findViewById(R.id.SETTING);
-//        startButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                switchToSetting();
-//            }
-//        });
-//    }
 
     /**
      * Activate the load button.
@@ -234,15 +279,6 @@ public class game2048Activity extends AppCompatActivity {
         });
     }
 
-//    /**
-//     * Switch to activity_setting interface.
-//     */
-//    private void switchToSetting() {
-//        final game2048Activity tmp1 = this;
-//        Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
-//        saveToFile(MineSweepActivity.TEMP_SAVE_FILENAME);
-//        startActivity(tmp);
-//    }
     /**
      * Switch to Scoreboard interface.
      */
