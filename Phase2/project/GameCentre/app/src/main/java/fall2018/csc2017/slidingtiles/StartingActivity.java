@@ -241,7 +241,7 @@ public class StartingActivity extends AppCompatActivity {
      */
     private void switchToSetting() {
         final StartingActivity tmp1 = this;
-        if (GameChoosing.get_current_game().equals("minesweeper")) {
+        if (Game_choose.get_current_game().equals("minesweeper")) {
             Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
             saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
             startActivity(tmp);
@@ -319,7 +319,7 @@ public class StartingActivity extends AppCompatActivity {
      * Used by ExitButtonListener.
      */
     private void switchToSelecting() {
-        Intent tmp = new Intent(this, GameChoosing.class);
+        Intent tmp = new Intent(this, Game_choose.class);
         startActivity(tmp);
     }
 
