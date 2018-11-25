@@ -20,7 +20,7 @@ public class MainActivityTwo extends Activity {
     private TextView maxScore;
     private ImageView share;
     private Button restart;
-    private Button back;
+//    private Button back;
     private Button pause;
     private GameView gameView;
 
@@ -55,27 +55,26 @@ public class MainActivityTwo extends Activity {
                 GameView.startGame();
             }
         });
-        back = (Button)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (gameView.hasTouched) {
-                    score = gameView.score;
-                    showScore();
+        //back = (Button)findViewById(R.id.back);
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (gameView.hasTouched) {
 //                    score = gameView.getScoreList().get(gameView.getScoreList().size() - 1);
 //                    gameView.getScoreList().remove(gameView.getScoreList().size() - 1);
 //                    showScore();
 //                    int[][] newState =
 //                            gameView.getStateList().get(gameView.getStateList().size() - 1);
 //                    gameView.getStateList().remove(gameView.getStateList().size()-1);
-                    for(int y=0;y<4;++y) {
-                        for(int x=0;x<4;++x) {
-                            gameView.cards[y][x].setNum(gameView.num[y][x]);
-                        }
-                    }
-                }
-            }
-        });
+//                    for(int y=0;y<4;++y) {
+//                        for(int x=0;x<4;++x) {
+//                            gameView.cards[y][x].setNum(newState[y][x]);
+//                        }
+//                    }
+//                }
+//            }
+//        });
+        addUndoButtonListener();
         pause = (Button)findViewById(R.id.pause);
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +113,30 @@ public class MainActivityTwo extends Activity {
             maxScore.setText(pref.getInt("maxScore", 0) + "");
         }
 
+    }
+    /**
+     * Add the Undo bottom.
+     */
+    private void addUndoButtonListener() {
+        Button undoButton = findViewById(R.id.back);
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //if (gameView.hasTouched) {
+                    score = gameView.getScoreList().get(gameView.getScoreList().size() - 1);
+                    gameView.getScoreList().remove(gameView.getScoreList().size() - 1);
+                    showScore();
+                    int[][] newState =
+                            gameView.getStateList().get(gameView.getStateList().size() - 1);
+                    gameView.getStateList().remove(gameView.getStateList().size() - 1);
+                    for (int y = 0; y < 4; ++y) {
+                        for (int x = 0; x < 4; ++x) {
+                            gameView.cards[y][x].setNum(newState[y][x]);
+                        }
+                    }
+                }
+            //}
+        });
     }
 
     //显示当前得分

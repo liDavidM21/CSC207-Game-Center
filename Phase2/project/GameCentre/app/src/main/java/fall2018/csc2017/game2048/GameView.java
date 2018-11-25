@@ -16,9 +16,9 @@ import fall2018.csc2017.minesweeper.MainActivity;
 
 public class GameView extends GridLayout {
 
-    private ArrayList<Integer> scoreList = new ArrayList<>();
+    private static ArrayList<Integer> scoreList = new ArrayList<>();
 
-    private ArrayList<int[][]> stateList = new ArrayList<>();
+    private static ArrayList<int[][]> stateList = new ArrayList<>();
 
     public ArrayList<Integer> getScoreList(){
         return scoreList;
@@ -270,15 +270,15 @@ public class GameView extends GridLayout {
                 hasTouched = true;
             }
 
-//            scoreList.add(MainActivityTwo.score);
-            score = MainActivityTwo.score;
+            scoreList.add(MainActivityTwo.score);
+            stateList.add(new int[4][4]);
 
             for(int y=0;y<4;++y) {
                 for(int x=0;x<4;++x) {
-                    num[y][x] = cards[y][x].getNum();
+                    stateList.get(stateList.size() - 1)[y][x] = cards[y][x].getNum();
                 }
             }
-            stateList.add(num);
+
 
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_DOWN:
