@@ -21,6 +21,7 @@ public class Score implements Comparable<Score>, Serializable {
      * Time it takes to complete the game.
      */
     private int time;
+    private int complexcity;
 
     /**
      * Record the score of the player
@@ -28,9 +29,10 @@ public class Score implements Comparable<Score>, Serializable {
      * @param number_of_move
      * @param time
      */
-    public Score(int number_of_move, int time) {
+    public Score(int number_of_move, int time, int complexcity) {
         this.number_of_move = number_of_move;
         this.time = time;
+        this.complexcity = complexcity;
         calculate_final_score();
     }
 
@@ -42,7 +44,7 @@ public class Score implements Comparable<Score>, Serializable {
      * Calculate the final score base on the number of moves and time.
      */
     private void calculate_final_score() {
-        final_score = 10000 - 5 * time - 30 * number_of_move;
+        final_score = 10000 - 5 * time - 30 * number_of_move + 5000*(complexcity-3);
         if (final_score < 0) {
             final_score = 0;
         }

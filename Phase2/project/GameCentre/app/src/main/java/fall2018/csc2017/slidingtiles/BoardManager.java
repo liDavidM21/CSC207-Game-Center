@@ -79,7 +79,7 @@ class BoardManager implements Serializable {
             }
         }
         if (solved) {
-            Usermanager.getLoginUser().add_score(new Score(move, time));
+            Usermanager.getLoginUser().add_score(new Score(move, time, Board.NUM_COLS));
             move = 0;
             time = 0;
             canUndo = false;
