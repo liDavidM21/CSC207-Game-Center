@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.GridLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import fall2018.csc2017.minesweeper.MainActivity;
