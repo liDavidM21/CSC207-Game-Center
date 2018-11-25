@@ -56,14 +56,12 @@ public class game2048Activity extends AppCompatActivity {
     private String current_game = "2048";
     private Usermanager current_manager = Usermanager.get_instance();
     private GameManager gm = GameManager.get_instance();
-//    private GameEngine gameengine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
         current_manager.switch_game(current_game);
         super.onCreate(savedInstanceState);
-//        gameengine = GameEngine.getInstance();
         if (showDefault == 1) {
             makeToastModeText();
             showDefault++;
