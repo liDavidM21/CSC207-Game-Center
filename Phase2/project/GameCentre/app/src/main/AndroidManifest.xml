@@ -21,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".slidingtiles.GameChoosing" />
         <activity android:name=".minesweeper.MainActivity" />
         <activity android:name=".slidingtiles.StartingActivity" />
         <activity android:name=".slidingtiles.GameActivity" />
