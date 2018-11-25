@@ -5,8 +5,10 @@ import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 //卡片类（小方格）
-public class Card extends FrameLayout {
+public class Card extends FrameLayout{
 
     private int num = 0;//卡片上的数
     private TextView lable;

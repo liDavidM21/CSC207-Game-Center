@@ -35,15 +35,15 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static final String SAVE_FILENAME = "save_file.ser";
+    public static final String SAVE_FILENAME = "save_file_2048.ser";
     /**
      * A temporary save file.
      */
-    public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
+    public static final String TEMP_SAVE_FILENAME = "save_file_tmp_2048.ser";
     /**
      * A temporary save file.
      */
-    public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
+    public static final String AUTO_SAVE_FILENAME = "save_file_auto_2048.ser";
     /**
      * The board manager.
      */
@@ -55,6 +55,7 @@ public class game2048Activity extends AppCompatActivity {
     private static int showDefault = 1;
     private String current_game = "2048";
     private Usermanager current_manager = Usermanager.get_instance();
+    private GameManager gm = GameManager.get_instance();
 //    private GameEngine gameengine;
 
     @Override
@@ -139,7 +140,6 @@ public class game2048Activity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                gameengine = GameEngine.getInstance();
                 switchToGame("start");
             }
         });
@@ -298,17 +298,18 @@ public class game2048Activity extends AppCompatActivity {
             InputStream inputStream = this.openFileInput(fileName);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-//                gameengine = (GameEngine) input.readObject();
+                GameView.cards = (Card[][]) input.readObject();
                 inputStream.close();
             }
-        } catch (FileNotFoundException e) {
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("No class is found.");
+        }
+        catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
-//        } catch (ClassNotFoundException e) {
-//            Log.e("login activity", "File contained unexpected data type: " + e.toString());
-//        }
     }
 
     /**
@@ -339,7 +340,7 @@ public class game2048Activity extends AppCompatActivity {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
-//            outputStream.writeObject(gameengine);
+            outputStream.writeObject(GameView.cards);
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());

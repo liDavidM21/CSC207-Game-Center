@@ -6,11 +6,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
 
@@ -24,6 +31,7 @@ public class MainActivityTwo extends Activity {
     private Button restart;
     private Button pause;
     private GameView gameView;
+    private GameManager gm = GameManager.get_instance();
     /**
      * The maximum step the player can use undo.(default 3)
      */
@@ -77,7 +85,7 @@ public class MainActivityTwo extends Activity {
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GameView.startGame();
+                loadFromFile("2048.ser");
             }
         });
 
@@ -86,10 +94,7 @@ public class MainActivityTwo extends Activity {
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                startActivity(intent);
+                saveToFile("2048.ser");
             }
         });
 
@@ -187,4 +192,38 @@ public class MainActivityTwo extends Activity {
                 .show();
     }
 
+    public void saveToFile(String fileName) {
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(
+                    this.openFileOutput(fileName, MODE_PRIVATE));
+            gm.getData(GameView.cards, score);
+            System.out.println(gm.score);
+            outputStream.writeObject(gm);
+            outputStream.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+    private void loadFromFile(String fileName) {
+
+        try {
+            InputStream inputStream = this.openFileInput(fileName);
+            if (inputStream != null) {
+                ObjectInputStream input = new ObjectInputStream(inputStream);
+                gm = (GameManager) input.readObject();
+                gm.setData(GameView.cards);
+                score = gm.score;
+                showScore();
+                inputStream.close();
+            }
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("No class is found.");
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+    }
 }
