@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.GridLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import fall2018.csc2017.minesweeper.MainActivity;
@@ -254,7 +255,7 @@ public class GameView extends GridLayout {
         }
         //游戏结束
         if (isOver) {
-            Usermanager.getLoginUser().add_score(new Score(num_of_moves - 2, 0));
+            Usermanager.getLoginUser().add_score(new Score(MainActivityTwo.score));
             num_of_moves = 0;
             new AlertDialog.Builder(getContext()).setTitle("很遗憾，游戏结束啦").setMessage("当前得分为"+MainActivityTwo.score+"，再接再厉哦！").setPositiveButton("点击此处再玩一局", new DialogInterface.OnClickListener() {
                 @Override

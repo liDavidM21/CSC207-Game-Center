@@ -34,6 +34,10 @@ public class Score implements Comparable<Score>, Serializable {
         calculate_final_score();
     }
 
+    public Score(int final_score){
+        this.final_score = final_score;
+    }
+
     /**
      * Calculate the final score base on the number of moves and time.
      */
