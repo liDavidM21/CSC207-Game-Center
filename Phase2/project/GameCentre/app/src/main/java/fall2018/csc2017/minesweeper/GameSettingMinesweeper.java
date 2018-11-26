@@ -103,7 +103,7 @@ public class GameSettingMinesweeper extends AppCompatActivity {
      * Switch back to Starting activity.
      */
     private void switchToGame() {
-        Intent tmp = new Intent(this, StartingActivity.class);
+        Intent tmp = new Intent(this, MineSweepActivity.class);
         startActivity(tmp);
     }
 }

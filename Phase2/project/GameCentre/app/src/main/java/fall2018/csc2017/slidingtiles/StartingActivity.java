@@ -39,15 +39,15 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static final String SAVE_FILENAME = "save_file.ser";
+    public static final String SAVE_FILENAME = "save_file_st.ser";
     /**
      * A temporary save file.
      */
-    public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
+    public static final String TEMP_SAVE_FILENAME = "save_file_st_tmp.ser";
     /**
      * A auto save file.
      */
-    public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
+    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto.ser";
     /**
      * The board manager.
      */
@@ -57,12 +57,11 @@ public class StartingActivity extends AppCompatActivity {
      */
     private static int showDefault = 1;
 
-    private String current_game = "Sliding Tiles";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
-        Usermanager.get_instance().switch_game(current_game);
+        Usermanager.get_instance().switch_game("Sliding Tiles");
         super.onCreate(savedInstanceState);
         boardManager = new BoardManager();
         if (showDefault == 1) {
@@ -99,10 +98,10 @@ public class StartingActivity extends AppCompatActivity {
 
     private void createResumeTipDialog() {
         new AlertDialog.Builder(StartingActivity.this)
-                .setMessage("Do you want to resume previous game?")
+                .setMessage("Which game do you want?")
                 .setTitle("Reminder")
                 .setIcon(R.drawable.tip)
-                .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Resume previous Game", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -112,7 +111,7 @@ public class StartingActivity extends AppCompatActivity {
                         switchToGame("Resume");
                     }
                 })
-                .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton("New Game", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -232,13 +231,13 @@ public class StartingActivity extends AppCompatActivity {
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame(String s) {
-        if (s == "start") {
+        if (s.equals("start")) {
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
-        } else if (s == "load"){
+        } else if (s.equals("load")){
             Button button = (Button) findViewById(R.id.LoadButton);
             startAnimation(button);
-        }else if (s == "Resume"){
+        }else if (s.equals("Resume")){
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
         }
@@ -267,15 +266,9 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (Game_choose.get_current_game().equals("sliding_tiles")) {
                     Intent tmp = new Intent(tmp1, GameActivity.class);
                     saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
                     startActivity(tmp);
-                }
-                else{
-                    Intent tmp = new Intent(tmp1, MainActivity.class);
-                    startActivity(tmp);
-                }
             }
         });
     }
@@ -285,18 +278,11 @@ public class StartingActivity extends AppCompatActivity {
      */
     private void switchToSetting() {
         final StartingActivity tmp1 = this;
-        if (Game_choose.get_current_game().equals("minesweeper")) {
-            Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
-            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-            startActivity(tmp);
-        }
-        else {
             Intent tmp = new Intent(tmp1, GameSetting.class);
             saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
             makeToastUndoText();
             startActivity(tmp);
         }
-    }
 
     /**
      * Switch to Scoreboard interface.
@@ -318,6 +304,10 @@ public class StartingActivity extends AppCompatActivity {
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
                 boardManager = (BoardManager) input.readObject();
+                System.out.println(boardManager.getBoard().tiles.length);
+                Board.setNumCols(boardManager.getBoard().tiles.length);
+
+                Board.setNumRows(boardManager.getBoard().tiles.length);
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {

@@ -139,7 +139,7 @@ class BoardManager implements Serializable {
             move += 1;
             if (row > 0 && board.getTile(row - 1, col) != null && board.getTile(row - 1, col).getId() == blankId) {
                 board.swapTiles(row, col, row - 1, col);
-            } else if (row < board.NUM_ROWS - 1 && board.getTile(row + 1, col) != null && board.getTile(row + 1, col).getId() == blankId) {
+            } else if (row < Board.NUM_ROWS - 1 && board.getTile(row + 1, col) != null && board.getTile(row + 1, col).getId() == blankId) {
                 board.swapTiles(row, col, row + 1, col);
             } else if (col > 0 && board.getTile(row, col - 1) != null && board.getTile(row, col - 1).getId() == blankId) {
                 board.swapTiles(row, col, row, col - 1);
