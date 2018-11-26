@@ -108,7 +108,7 @@ public class MainActivityTwo extends Activity {
         if(gameView.hasTouched){
             saveToFile("2048.ser");
         }
-        save = (Button)findViewById(R.id.pause);
+        save = (Button)findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
