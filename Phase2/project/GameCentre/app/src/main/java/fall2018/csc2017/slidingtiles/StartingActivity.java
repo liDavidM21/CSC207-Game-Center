@@ -39,15 +39,15 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static final String SAVE_FILENAME = "save_file.ser";
+    public static final String SAVE_FILENAME = "save_file_st.ser";
     /**
      * A temporary save file.
      */
-    public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
+    public static final String TEMP_SAVE_FILENAME = "save_file_st_tmp.ser";
     /**
      * A auto save file.
      */
-    public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
+    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto.ser";
     /**
      * The board manager.
      */
@@ -99,10 +99,10 @@ public class StartingActivity extends AppCompatActivity {
 
     private void createResumeTipDialog() {
         new AlertDialog.Builder(StartingActivity.this)
-                .setMessage("Do you want to resume previous game?")
+                .setMessage("Which game do you want?")
                 .setTitle("Reminder")
                 .setIcon(R.drawable.tip)
-                .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Resume previous Game", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -112,7 +112,7 @@ public class StartingActivity extends AppCompatActivity {
                         switchToGame("Resume");
                     }
                 })
-                .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton("New Game", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
