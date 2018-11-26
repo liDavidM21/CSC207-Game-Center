@@ -56,10 +56,8 @@ public class MineSweepActivity extends AppCompatActivity {
         }
         saveToFile(TEMP_SAVE_FILENAME);
         saveToFile(AUTO_SAVE_FILENAME);
-        setContentView(R.layout.activity_starting_);
+        setContentView(R.layout.activity_starting_mine);
         addStartButtonListener();
-        addLoadButtonListener();
-        addSaveButtonListener();
         addSettingButtonListener();
         addScoreboardButtonListener();
         addSignoutButtonListener();
@@ -130,22 +128,6 @@ public class MineSweepActivity extends AppCompatActivity {
     }
 
     /**
-     * Activate the load button.
-     */
-    private void addLoadButtonListener() {
-        Button loadButton = findViewById(R.id.LoadButton);
-        loadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFromFile(SAVE_FILENAME);
-                saveToFile(TEMP_SAVE_FILENAME);
-                makeToastLoadedText("Loading game");
-                switchToGame("load");
-            }
-        });
-    }
-
-    /**
      * Attempt to sign out
      */
     private void addSignoutButtonListener() {
@@ -161,41 +143,6 @@ public class MineSweepActivity extends AppCompatActivity {
     private void signout() {
         Intent tmp = new Intent(this, LoginActivity.class);
         startActivity(tmp);
-    }
-
-    /**
-     * Display that a game was loaded successfully.
-     */
-    private void makeToastLoadedText(String s) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Activate the save button.
-     */
-    private void addSaveButtonListener() {
-        final Button saveButton = findViewById(R.id.SaveButton);
-        final MineSweepActivity tmp1 = this;
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveToFile(SAVE_FILENAME);
-                saveToFile(TEMP_SAVE_FILENAME);
-                makeToastSavedText();
-                final Animation myAnim = AnimationUtils.loadAnimation(tmp1, R.anim.bounce);
-                // Use bounce interpolator with amplitude 0.c2 and frequency 20
-                MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
-                myAnim.setInterpolator(interpolator);
-                saveButton.startAnimation(myAnim);
-            }
-        });
-    }
-
-    /**
-     * Display that a game was saved successfully.
-     */
-    private void makeToastSavedText() {
-        Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
     }
 
     /**

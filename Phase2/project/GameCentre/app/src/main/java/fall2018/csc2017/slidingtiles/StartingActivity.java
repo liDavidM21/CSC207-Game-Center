@@ -57,12 +57,11 @@ public class StartingActivity extends AppCompatActivity {
      */
     private static int showDefault = 1;
 
-    private String current_game = "Sliding Tiles";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
-        Usermanager.get_instance().switch_game(current_game);
+        Usermanager.get_instance().switch_game("Sliding Tiles");
         super.onCreate(savedInstanceState);
         boardManager = new BoardManager();
         if (showDefault == 1) {
@@ -232,13 +231,13 @@ public class StartingActivity extends AppCompatActivity {
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame(String s) {
-        if (s == "start") {
+        if (s.equals("start")) {
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
-        } else if (s == "load"){
+        } else if (s.equals("load")){
             Button button = (Button) findViewById(R.id.LoadButton);
             startAnimation(button);
-        }else if (s == "Resume"){
+        }else if (s.equals("Resume")){
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
         }
@@ -267,15 +266,9 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (Game_choose.get_current_game().equals("sliding_tiles")) {
                     Intent tmp = new Intent(tmp1, GameActivity.class);
                     saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
                     startActivity(tmp);
-                }
-                else{
-                    Intent tmp = new Intent(tmp1, MainActivity.class);
-                    startActivity(tmp);
-                }
             }
         });
     }
@@ -285,18 +278,11 @@ public class StartingActivity extends AppCompatActivity {
      */
     private void switchToSetting() {
         final StartingActivity tmp1 = this;
-        if (Game_choose.get_current_game().equals("minesweeper")) {
-            Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
-            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-            startActivity(tmp);
-        }
-        else {
             Intent tmp = new Intent(tmp1, GameSetting.class);
             saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
             makeToastUndoText();
             startActivity(tmp);
         }
-    }
 
     /**
      * Switch to Scoreboard interface.
