@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".minesweeper.MainActivity" />
+        <activity android:name=".minesweeper.MineSweepActivity" />
         <activity android:name=".slidingtiles.StartingActivity" />
         <activity android:name=".slidingtiles.GameActivity" />
         <activity android:name=".slidingtiles.GameSetting" />
