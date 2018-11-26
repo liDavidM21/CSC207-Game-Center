@@ -53,7 +53,7 @@ public class MainActivityTwo extends Activity {
     /**
      * The button for saving game.
      */
-    Button save;
+    Button pause;
 
     /**
      * The GameView gameView.
@@ -108,8 +108,8 @@ public class MainActivityTwo extends Activity {
         if(gameView.hasTouched){
             saveToFile("2048.ser");
         }
-        save = (Button)findViewById(R.id.save);
-        save.setOnClickListener(new View.OnClickListener() {
+        pause = (Button)findViewById(R.id.pause);
+        pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveToFile("2048.ser");
