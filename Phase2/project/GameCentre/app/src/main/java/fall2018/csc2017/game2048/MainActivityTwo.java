@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -87,6 +88,10 @@ public class MainActivityTwo extends Activity {
         return score;
     }
 
+    private String save_file_name = "2048.ser";
+
+    private String auto_save_file_name = "2048auto.ser";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,24 +100,21 @@ public class MainActivityTwo extends Activity {
         maxScore = findViewById(R.id.maxScore);
         String s = getSharedPreferences("pMaxScore", MODE_PRIVATE).getInt("maxScore", 0) + "";
         maxScore.setText(s);
+        createGameOptionDialog();
         gameView = findViewById(R.id.gameView);
         restart = findViewById(R.id.restart);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadFromFile("2048.ser");
+                loadFromFile(save_file_name);
             }
         });
-
         addUndoButtonListener();
-        if(gameView.hasTouched){
-            saveToFile("2048.ser");
-        }
-        save = (Button)findViewById(R.id.pause);
+        save = (Button)findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveToFile("2048.ser");
+                saveToFile(save_file_name);
             }
         });
 
@@ -232,6 +234,34 @@ public class MainActivityTwo extends Activity {
                 .show();
     }
 
+    private void createGameOptionDialog() {
+        new AlertDialog.Builder(MainActivityTwo.this)
+                .setMessage("hOI, what do you want to do?")
+                .setTitle("Option")
+                .setIcon(R.drawable.tip)
+                .setPositiveButton("New Game", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        GameView.startGame();
+                    }
+                })
+                .setNegativeButton("Load", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        loadFromFile(save_file_name);
+                    }
+                })
+                .setNeutralButton("Resume",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        loadFromFile(auto_save_file_name);
+                    }
+                })
+                .show();
+    }
     public void saveToFile(String fileName) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(

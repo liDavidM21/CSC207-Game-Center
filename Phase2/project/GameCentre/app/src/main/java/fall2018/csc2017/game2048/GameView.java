@@ -97,7 +97,6 @@ public class GameView extends GridLayout {
         int cardWidth = (Math.min(w, h)-10)/4;
         int cardHeight = (Math.min(w, h)-10)/4;
         addCards(cardWidth, cardHeight);
-        startGame();
 
     }
 
@@ -326,6 +325,8 @@ public class GameView extends GridLayout {
             if (!hasTouched) {
                 hasTouched = true;
             }
+
+            MainActivityTwo.getMainActivity().saveToFile("2048auto.ser");
 
             for (int y = 0; y < 4; ++y) {
                 for (int x = 0; x < 4; ++x) {
