@@ -232,13 +232,13 @@ public class StartingActivity extends AppCompatActivity {
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame(String s) {
-        if (s == "start") {
+        if (s.equals("start")) {
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
-        } else if (s == "load"){
+        } else if (s.equals("load")){
             Button button = (Button) findViewById(R.id.LoadButton);
             startAnimation(button);
-        }else if (s == "Resume"){
+        }else if (s.equals("Resume")){
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
         }
