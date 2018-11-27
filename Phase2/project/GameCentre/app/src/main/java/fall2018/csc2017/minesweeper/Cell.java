@@ -21,7 +21,7 @@ import fall2018.csc2017.R;
 public class Cell extends BaseCell implements View.OnClickListener , View.OnLongClickListener{
 
 
-    public Cell( Context context , int x , int y ){
+    public Cell(Context context , int x , int y ){
         super(context);
 
         setPosition(x,y);

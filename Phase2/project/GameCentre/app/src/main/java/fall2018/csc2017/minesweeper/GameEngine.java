@@ -114,11 +114,11 @@ public class GameEngine implements Serializable {
     /**
      * Constructor of class GameEngine.
      */
-    private GameEngine(){ }
+    public GameEngine(){ }
 
     /**
      * Initialize a new grid for new game.
-     * @param context
+     * @param context the context of GameEngine.
      */
     public void createGrid(Context context){
         Log.e("GameEngine","createGrid is working");
@@ -133,7 +133,7 @@ public class GameEngine implements Serializable {
 
     /**
      * Set tile at location.
-     * @param context
+     * @param context the context of GameEngine.
      * @param grid grid location
      */
     private void setGrid( final Context context, int[][] grid ){
