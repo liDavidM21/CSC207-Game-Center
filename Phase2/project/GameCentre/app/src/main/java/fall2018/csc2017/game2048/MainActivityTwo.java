@@ -115,6 +115,7 @@ public class MainActivityTwo extends Activity {
             @Override
             public void onClick(View view) {
                 loadFromFile(save_file_name);
+                saveToFile(save_file_name);
             }
         });
         addUndoButtonListener();
