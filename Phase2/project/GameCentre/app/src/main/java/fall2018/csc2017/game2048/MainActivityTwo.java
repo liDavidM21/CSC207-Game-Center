@@ -88,6 +88,10 @@ public class MainActivityTwo extends Activity {
         return undoStep;
     }
 
+    /**
+     * Get current score.
+     * @return int current score.
+     */
     public static int getScore() {
         return score;
     }
