@@ -3,11 +3,9 @@ package fall2018.csc2017.game2048;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,7 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
-import fall2018.csc2017.slidingtiles.Usermanager;
+import fall2018.csc2017.slidingtiles.UserManager;
 
 /**
  * A class to implement the game 2048.
@@ -89,9 +87,9 @@ public class MainActivityTwo extends Activity {
         return score;
     }
 
-    private String save_file_name = "2048" + Usermanager.getLoginUser().getUser_email() + ".ser";
+    private String save_file_name = "2048" + UserManager.getLoginUser().getUser_email() + ".ser";
 
-    private String auto_save_file_name = "2048auto" + Usermanager.getLoginUser().getUser_email() + ".ser";
+    private String auto_save_file_name = "2048auto" + UserManager.getLoginUser().getUser_email() + ".ser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

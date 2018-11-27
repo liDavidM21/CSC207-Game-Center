@@ -20,7 +20,7 @@ import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
-import fall2018.csc2017.slidingtiles.Usermanager;
+import fall2018.csc2017.slidingtiles.UserManager;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -271,7 +271,7 @@ public class MineSweepActivity extends AppCompatActivity {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput("UserManager.ser", MODE_PRIVATE));
-            outputStream.writeObject(Usermanager.get_instance());
+            outputStream.writeObject(UserManager.get_instance());
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());

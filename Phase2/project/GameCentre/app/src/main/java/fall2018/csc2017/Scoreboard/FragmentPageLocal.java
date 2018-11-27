@@ -16,13 +16,13 @@ import android.widget.TextView;
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Score;
 import fall2018.csc2017.slidingtiles.User;
-import fall2018.csc2017.slidingtiles.Usermanager;
+import fall2018.csc2017.slidingtiles.UserManager;
 
 import java.util.List;
 
 public class FragmentPageLocal extends Fragment {
 
-    Usermanager current_manager = Usermanager.get_instance();
+    UserManager current_manager = UserManager.get_instance();
     static String text;
 
     @Nullable

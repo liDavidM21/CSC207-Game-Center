@@ -12,11 +12,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.User;
-import fall2018.csc2017.slidingtiles.Usermanager;
+import fall2018.csc2017.slidingtiles.UserManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +24,7 @@ import java.util.List;
 public class FragmentPage extends Fragment {
 
     List<User> users = new ArrayList<>();
-    Usermanager current_manager = Usermanager.get_instance();
+    UserManager current_manager = UserManager.get_instance();
     static String text;
 
     @Nullable
@@ -39,7 +38,7 @@ public class FragmentPage extends Fragment {
         sortScores();
         TextView email = (TextView) view.findViewById(R.id.UserEmail);
         TextView score = (TextView) view.findViewById(R.id.Score);
-        System.out.println(Usermanager.getLoginUser().getTop_score().size());
+        System.out.println(UserManager.getLoginUser().getTop_score().size());
         if (users.size() < pageNumber || users.get(pageNumber - 1).return_best_score() == null) {
             email.setText("HOI! No one has score recorded here!");
             score.setText("");
@@ -53,7 +52,7 @@ public class FragmentPage extends Fragment {
     }
 
     /**
-     * get user list from Usermanager.
+     * get user list from UserManager.
      */
     private void setUsers() {
         users = current_manager.getUser();
