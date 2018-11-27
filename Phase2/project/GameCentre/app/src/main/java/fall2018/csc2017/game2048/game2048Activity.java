@@ -4,7 +4,11 @@ package fall2018.csc2017.game2048;
  * https://stackoverflow.com/questions/36894384/android-move-background-continuously-with-animation
  * https://stackoverflow.com/questions/9107900/how-to-upload-image-from-gallery-in-android
  */
-
+/**
+ * The source code is originated from
+ * https://github.com/JimZhou-001/2048-Android.git
+ * It is used to construct basic game structure and modified by our group member.
+ */
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

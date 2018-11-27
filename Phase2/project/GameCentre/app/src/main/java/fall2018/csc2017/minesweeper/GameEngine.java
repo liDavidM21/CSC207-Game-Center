@@ -9,7 +9,9 @@ import java.io.Serializable;
 
 
 /**
- * Created by Marcell on 2016. 04. 01..
+ * The source code is originated from
+ * https://github.com/marcellelek/Minesweeper.git
+ * It is used to construct basic game structure and modified by our group member.
  */
 public class GameEngine implements Serializable {
     private static GameEngine instance;

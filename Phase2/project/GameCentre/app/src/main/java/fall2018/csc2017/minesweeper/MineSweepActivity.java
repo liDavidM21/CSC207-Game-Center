@@ -1,6 +1,11 @@
 package fall2018.csc2017.minesweeper;
 
 
+/**
+ * The source code is originated from
+ * https://github.com/marcellelek/Minesweeper.git
+ * It is used to construct basic game structure and modified by our group member.
+ */
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,7 +49,7 @@ public class MineSweepActivity extends AppCompatActivity {
      */
     private static int showDefault = 1;
     private GameEngine gameengine;
-    //git
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();

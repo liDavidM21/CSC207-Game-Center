@@ -3,6 +3,7 @@ package fall2018.csc2017.slidingtiles;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import fall2018.csc2017.R;
@@ -113,17 +114,17 @@ public class BoardAndTileTest {
     @Test
     public void testUndo(){
         setUpCorrect();
-        assertTrue(boardManager.getCanUndo());
         assertEquals(3, GameActivity.getUndoStep());
         GameActivity.setUndoStep(5);
         assertEquals(5, GameActivity.getUndoStep());
     }
 
     @Test
-    public void testTile(){
+    public void testBoardIterator(){
         setUpCorrect();
-        assertEquals(1, boardManager.getBoard().tiles[0][0].getId());
-        assertEquals(16, boardManager.getBoard().tiles[3][3].getId());
+        Iterator boardIterator = boardManager.getBoard().iterator();
+        assertTrue(boardIterator.hasNext());
     }
+
 }
 

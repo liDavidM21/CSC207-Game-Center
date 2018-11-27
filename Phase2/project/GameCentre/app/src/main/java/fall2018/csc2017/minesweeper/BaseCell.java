@@ -6,7 +6,9 @@ import android.view.View;
 import fall2018.csc2017.minesweeper.GameEngine;
 
 /**
- * Created by Marcell on 2016. 04. 14..
+ * The source code is originated from
+ * https://github.com/marcellelek/Minesweeper.git
+ * It is used to construct basic game structure and modified by our group member.
  */
 public abstract class BaseCell extends View {
 

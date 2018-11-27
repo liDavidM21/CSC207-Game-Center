@@ -8,7 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 
 /**
- * Created by Marcell on 2016. 04. 14..
+ * The source code is originated from
+ * https://github.com/marcellelek/Minesweeper.git
+ * It is used to construct basic game structure and modified by our group member.
  */
 public class Grid extends GridView{
 
