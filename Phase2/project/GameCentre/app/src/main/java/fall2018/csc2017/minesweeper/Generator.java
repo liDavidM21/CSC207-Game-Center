@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class Generator {
 
-    public static int[][] generate( int bombnumber , int width , int height){
+    public static int[][] generate( int bombNumber , int width , int height){
         // Random for generating numbers
         Random r = new Random();
 
@@ -18,22 +18,22 @@ public class Generator {
             grid[x] = new int[height];
         }
 
-        while( bombnumber > 0 ){
+        while( bombNumber > 0 ){
             int x = r.nextInt(width);
             int y = r.nextInt(height);
 
             // -1 is the bomb
             if( grid[x][y] != -1 ){
                 grid[x][y] = -1;
-                bombnumber--;
+                bombNumber--;
             }
         }
-        grid = calculateNeigbours(grid,width,height);
+        grid = calculateNeighbours(grid,width,height);
 
         return grid;
     }
 
-    private static int[][] calculateNeigbours( int[][] grid , final int width , final int height){
+    private static int[][] calculateNeighbours( int[][] grid , final int width , final int height){
         for( int x = 0 ; x < width ; x++){
             for( int y = 0 ; y < height ; y++){
                 grid[x][y] = getNeighbourNumber(grid,x,y,width,height);
