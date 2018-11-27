@@ -48,11 +48,13 @@ public class MineSweepActivity extends AppCompatActivity {
      * The board manager.
      */
     private static int showDefault = 1;
+    private String current_game = "Mine Sweeper";
     private GameEngine gameengine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
+        UserManager.get_instance().switch_game(current_game);
         super.onCreate(savedInstanceState);
         gameengine = GameEngine.getInstance();
         if (showDefault == 1) {

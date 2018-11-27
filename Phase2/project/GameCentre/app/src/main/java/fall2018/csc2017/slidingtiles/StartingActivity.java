@@ -101,9 +101,7 @@ public class StartingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         loadFromFile(SAVE_FILENAME);
-                        saveToFile(TEMP_SAVE_FILENAME);
-                        makeToastLoadedText("Loading game");
-                        switchToGame("load");
+                        switchToGame("Resume");
                     }
                 })
                 .setNeutralButton("Resume", new DialogInterface.OnClickListener() {
@@ -111,8 +109,8 @@ public class StartingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         loadFromFile(AUTO_SAVE_FILENAME);
-                        saveToFile(TEMP_SAVE_FILENAME);
-                        switchToGame("resume");
+                        switchToGame("Resume");
+                        makeToastLoadedText("Resuming game");
                 }
                 })
                 .setNegativeButton("New Game", new DialogInterface.OnClickListener() {

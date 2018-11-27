@@ -144,6 +144,10 @@ public class GameView extends GridLayout {
      */
     public static void startGame() {
         MainActivityTwo.getMainActivity().clearScore();
+        set_cards();
+    }
+
+    public static void set_cards(){
         for(int y=0;y<4;++y) {
             for(int x=0;x<4;++x) {
                 cards[x][y].setNum(0);

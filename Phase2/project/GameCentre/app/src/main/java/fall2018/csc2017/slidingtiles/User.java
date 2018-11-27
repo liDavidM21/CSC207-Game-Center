@@ -41,6 +41,7 @@ public class User implements Serializable, Comparable<User> {
 
     private List<Score> score_2048;
     private List<Score> score_Sliding_Tiles;
+    private List<Score> score_mine_sweeper;
 
     /**
      * User class constructor. Given email and password.
@@ -54,6 +55,7 @@ public class User implements Serializable, Comparable<User> {
         this.top_score = new ArrayList<>();
         this.score_2048 = new ArrayList<>();
         this.score_Sliding_Tiles = new ArrayList<>();
+        this.score_mine_sweeper = new ArrayList<>();
     }
 
     /**
@@ -115,6 +117,8 @@ public class User implements Serializable, Comparable<User> {
             top_score = score_2048;
         } else if (game.equals("Sliding Tiles")) {
             top_score = score_Sliding_Tiles;
+        } else if (game.equals("Mine Sweeper")){
+            top_score = score_mine_sweeper;
         }
     }
 }

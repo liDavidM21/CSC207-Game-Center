@@ -3,6 +3,7 @@ package fall2018.csc2017.minesweeper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,18 @@ public class MainActivity extends Activity {
         String str = "#BOMBS: " + Integer.toString(GameEngine.getBombNumber());
         txt.setText(str);
         addHardButtonListener();
+        CountDownTimer timer = new CountDownTimer(600000, 1000) {
+            @Override
+            public void onTick(long l) {
+                GameEngine.getInstance().time += 1;
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+        timer.start();
     }
 
     private void addHardButtonListener() {
@@ -34,6 +47,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent tmp = new Intent(main, MainActivity.class);
                 startActivity(tmp);
+
                 finish();
             }
         });

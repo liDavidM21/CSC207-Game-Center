@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 
 public class GameManager implements Serializable {
+
     private static GameManager single_instance = GameManager.get_instance();
 
     public int[][] cards;
