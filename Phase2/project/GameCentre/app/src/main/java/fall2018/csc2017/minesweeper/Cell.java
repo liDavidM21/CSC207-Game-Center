@@ -60,7 +60,7 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
 
         if( isFlagged()){
             drawFlag(canvas);
-            GameEngine.setBombNumber(GameEngine.getBombNumber()-1);
+            //GameEngine.setBombNumber(GameEngine.getBombNumber()-1);
         }else if( isRevealed() && isBomb() && !isClicked() ){
             drawNormalBomb(canvas);
         }else {

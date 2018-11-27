@@ -7,6 +7,9 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
+import fall2018.csc2017.slidingtiles.Score;
+import fall2018.csc2017.slidingtiles.UserManager;
+
 
 /**
  * Created by Marcell on 2016. 04. 01..
@@ -33,6 +36,8 @@ public class GameEngine implements Serializable {
      * Number of vertical tiles.
      */
     private static int HEIGHT = 14;
+
+    public int time;
 
     private Context context;
 
@@ -212,6 +217,8 @@ public class GameEngine implements Serializable {
 
         if( bombNotFound == 0 && notRevealed == 0 ){
             Toast.makeText(context,"Game won", Toast.LENGTH_SHORT).show();
+            UserManager.getLoginUser().add_score(new Score(time));
+
         }
         return false;
     }
