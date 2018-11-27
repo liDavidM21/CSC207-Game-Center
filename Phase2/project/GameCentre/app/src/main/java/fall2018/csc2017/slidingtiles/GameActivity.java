@@ -273,4 +273,5 @@ public class GameActivity extends AppCompatActivity implements Observer {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
+
 }
