@@ -13,7 +13,9 @@ import fall2018.csc2017.minesweeper.MainActivity;
 import fall2018.csc2017.R;
 
 /**
- * Created by Marcell on 2016. 04. 14..
+ * The source code is originated from
+ * https://github.com/marcellelek/Minesweeper.git
+ * It is used to construct basic game structure and modified by our group member.
  */
 
 public class Cell extends BaseCell implements View.OnClickListener , View.OnLongClickListener{
