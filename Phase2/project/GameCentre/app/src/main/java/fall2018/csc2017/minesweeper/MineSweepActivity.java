@@ -169,7 +169,7 @@ public class MineSweepActivity extends AppCompatActivity {
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
         } else {
-            Button button = (Button) findViewById(R.id.LoadButton);
+            Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
         }
     }
