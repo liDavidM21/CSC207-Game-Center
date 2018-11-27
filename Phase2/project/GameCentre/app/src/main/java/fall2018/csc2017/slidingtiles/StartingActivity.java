@@ -39,7 +39,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static final String SAVE_FILENAME = "save_file_st.ser";
+    public static final String SAVE_FILENAME = "save_file_st" + Usermanager.getLoginUser().getUser_email() + ".ser";
     /**
      * A temporary save file.
      */
@@ -47,7 +47,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * A auto save file.
      */
-    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto.ser";
+    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto"  + Usermanager.getLoginUser().getUser_email() + ".ser";
     /**
      * The board manager.
      */
@@ -101,15 +101,23 @@ public class StartingActivity extends AppCompatActivity {
                 .setMessage("Choose the game mode you want")
                 .setTitle("Reminder")
                 .setIcon(R.drawable.tip)
-                .setPositiveButton("Resume previous Game", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Load", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        loadFromFile(SAVE_FILENAME);
+                        //saveToFile(TEMP_SAVE_FILENAME);
+                        makeToastLoadedText("Resuming game");
+                        switchToGame("Resume");
+                    }
+                })
+                .setNeutralButton("Resume", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         loadFromFile(AUTO_SAVE_FILENAME);
-                        saveToFile(TEMP_SAVE_FILENAME);
-                        makeToastLoadedText("Resuming game");
                         switchToGame("Resume");
-                    }
+                }
                 })
                 .setNegativeButton("New Game", new DialogInterface.OnClickListener() {
                     @Override
@@ -311,7 +319,7 @@ public class StartingActivity extends AppCompatActivity {
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
+            boardManager = new BoardManager();
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
         } catch (ClassNotFoundException e) {

@@ -33,6 +33,7 @@ import fall2018.csc2017.slidingtiles.Usermanager;
  */
 public class game2048Activity extends AppCompatActivity {
 
+    //TODO: Remove all save/load related stuff.
     /**
      * The main save file.
      */
@@ -70,8 +71,6 @@ public class game2048Activity extends AppCompatActivity {
         serializeUserManager();
         current_manager.switch_game(current_game);
         super.onCreate(savedInstanceState);
-        saveToFile(TEMP_SAVE_FILENAME);
-        saveToFile(AUTO_SAVE_FILENAME);
         setContentView(R.layout.activity_2048_starting);
         addStartButtonListener();
         addLoadButtonListener();
@@ -190,10 +189,9 @@ public class game2048Activity extends AppCompatActivity {
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFromFile(SAVE_FILENAME);
-                saveToFile(TEMP_SAVE_FILENAME);
                 makeToastLoadedText("Loading game");
                 switchToGame("load");
+
             }
         });
     }
