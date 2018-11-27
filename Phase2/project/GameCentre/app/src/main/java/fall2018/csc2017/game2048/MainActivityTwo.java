@@ -20,6 +20,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
+import fall2018.csc2017.slidingtiles.Usermanager;
 
 /**
  * A class to implement the game 2048.
@@ -88,9 +89,9 @@ public class MainActivityTwo extends Activity {
         return score;
     }
 
-    private String save_file_name = "2048.ser";
+    private String save_file_name = "2048" + Usermanager.getLoginUser().getUser_email() + ".ser";
 
-    private String auto_save_file_name = "2048auto.ser";
+    private String auto_save_file_name = "2048auto" + Usermanager.getLoginUser().getUser_email() + ".ser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
