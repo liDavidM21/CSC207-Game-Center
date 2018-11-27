@@ -18,6 +18,18 @@
 * If you want to load your manual save game, Click "Load Saved Game"(Caution: If you want to restore auto save game, Click "New Game" - "Resume Previous Game")
 * If you want to play another game, Click "Back" to return to the game selection page
 * If you want to exit the game or log out current account, Click "Sign out"
+* If you want to check your current highest score, Click "Scoreboard"
 
 # 2048
+* If you want to start a new game or resume previous auto save game or load manual game, Click "New Game" button, then choose the game you want in the dialog
+* If you want to change the undo step, Click "+" and "-"
+* If you want to save the current game, you can Click "Save" button on the game page
+* If you want to exit the game or log out current account, Click "Sign out"
+* If you want to play another game, Click "Back" to return to the game selection page
 
+# Minesweeper
+* If you want to start a new game, Click "New Game" button.
+* If you want to change difficulty, Click "Setting"
+* If you want to check your current highest score, Click "Scoreboard"
+* If you want to exit the game or log out current account, Click "Sign out"
+* If you want to play another game, Click "Back" to return to the game selection page
