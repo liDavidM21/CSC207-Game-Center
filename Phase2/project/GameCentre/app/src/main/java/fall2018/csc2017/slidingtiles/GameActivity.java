@@ -266,13 +266,13 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
     /**
-     * Save Usermanager to UserManager.ser
+     * Save UserManager to UserManager.ser
      */
     private void serializeUserManager() {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput("UserManager.ser", MODE_PRIVATE));
-            outputStream.writeObject(Usermanager.get_instance());
+            outputStream.writeObject(UserManager.get_instance());
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
