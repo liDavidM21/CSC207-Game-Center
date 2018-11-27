@@ -2,10 +2,11 @@ package fall2018.csc2017.minesweeper;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
+
 import android.widget.Toast;
 
 import java.io.Serializable;
+
 
 /**
  * Created by Marcell on 2016. 04. 01..
@@ -92,6 +93,10 @@ public class GameEngine implements Serializable {
      */
     private static Cell[][] MinesweeperGrid = new Cell[WIDTH][HEIGHT];
 
+    /**
+     * Return current state game engine.
+     * @return game state as game engine.
+     */
     public static GameEngine getInstance() {
         if( instance == null ){
             instance = new GameEngine();
@@ -99,8 +104,15 @@ public class GameEngine implements Serializable {
         return instance;
     }
 
+    /**
+     * Constructor of class GameEngine.
+     */
     private GameEngine(){ }
 
+    /**
+     * Initialize a new grid for new game.
+     * @param context
+     */
     public void createGrid(Context context){
         Log.e("GameEngine","createGrid is working");
         this.context = context;
@@ -112,6 +124,11 @@ public class GameEngine implements Serializable {
         setGrid(context,GeneratedGrid);
     }
 
+    /**
+     * Set tile at location.
+     * @param context
+     * @param grid grid location
+     */
     private void setGrid( final Context context, int[][] grid ){
         for( int x = 0 ; x < getWIDTH() ; x++ ){
             for( int y = 0 ; y < getHEIGHT() ; y++ ){
@@ -124,6 +141,11 @@ public class GameEngine implements Serializable {
         }
     }
 
+    /**
+     * Get particular cell at coordinate (x,y).
+     * @param position position.
+     * @return cell at that location.
+     */
     public Cell getCellAt(int position) {
         int x = position % WIDTH;
         int y = position / WIDTH;

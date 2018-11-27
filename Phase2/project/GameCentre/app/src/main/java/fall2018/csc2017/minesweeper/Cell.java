@@ -18,10 +18,6 @@ import fall2018.csc2017.R;
 
 public class Cell extends BaseCell implements View.OnClickListener , View.OnLongClickListener{
 
-    /**
-     * Number of bombs left on show in Main Activity.
-     */
-    private int numBomb = GameEngine.getBombNumber();
 
     public Cell( Context context , int x , int y ){
         super(context);
@@ -42,6 +38,9 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
 
         if (!GameEngine.isLost())
         GameEngine.getInstance().click( getXPos(), getYPos() );
+        else{
+
+        }
     }
 
     @Override

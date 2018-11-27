@@ -23,16 +23,30 @@
 
     <TextView
         android:id="@+id/bombNum"
-        android:layout_width="73dp"
-        android:layout_height="44dp"
+        android:layout_width="231dp"
+        android:layout_height="38dp"
         android:layout_marginStart="109dp"
-        android:layout_marginBottom="568dp"
+        android:layout_marginBottom="588dp"
         android:text="TextView"
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintHorizontal_bias="0.994"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/newGame"
+        android:layout_width="102dp"
+        android:layout_height="37dp"
+        android:text="New Game"
+        app:layout_constraintBottom_toTopOf="@+id/minesweeperGridView"
+        app:layout_constraintEnd_toStartOf="@+id/bombNum"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 </android.support.constraint.ConstraintLayout>
