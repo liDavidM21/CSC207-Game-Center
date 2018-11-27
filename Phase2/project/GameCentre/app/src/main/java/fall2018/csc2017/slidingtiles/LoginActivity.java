@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
     private UserManager current_manager = UserManager.get_instance();
-    ConstraintLayout mylayout;
+    ConstraintLayout myLayout;
     AnimationDrawable animationDrawable;
 
     @Override
@@ -49,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mylayout = (ConstraintLayout) findViewById(R.id.mylayout);
-        animationDrawable = (AnimationDrawable) mylayout.getBackground();
+        myLayout = (ConstraintLayout) findViewById(R.id.mylayout);
+        animationDrawable = (AnimationDrawable) myLayout.getBackground();
         animationDrawable.setEnterFadeDuration(4500);
         animationDrawable.setExitFadeDuration(4500);
         animationDrawable.start();
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmailSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptSignup();
+                attemptSignUp();
             }
         });
 
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(tmp);
     }
 
-    private void attemptSignup() {
+    private void attemptSignUp() {
         deserialize();
         // Reset errors.
         mEmailView.setError(null);
@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
-        } else if (isEmailregistered(email)) {
+        } else if (isEmailRegistered(email)) {
             /**
              * Check if the email is registered
              */
@@ -205,7 +205,7 @@ public class LoginActivity extends AppCompatActivity {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailregistered(email)) {
+        } else if (!isEmailRegistered(email)) {
             mEmailView.setError("This email hasn't been registered yet, please click on the sign up button to sign up!");
             focusView = mEmailView;
             cancel = true;
@@ -256,7 +256,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param email: the given email
      * @return: true iff the email is already registered.
      */
-    private boolean isEmailregistered(String email) {
+    private boolean isEmailRegistered(String email) {
         for (User T : current_manager) {
             if (T.user_email.equals(email)) {
                 return true;

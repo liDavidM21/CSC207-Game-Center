@@ -1,6 +1,11 @@
 package fall2018.csc2017.game2048;
 
 import java.io.Serializable;
+/**
+ * The source code is originated from
+ * https://github.com/JimZhou-001/2048-Android.git
+ * It is used to construct basic game structure and modified by our group member.
+ */
 
 public class GameManager implements Serializable {
 

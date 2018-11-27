@@ -1,5 +1,10 @@
 package fall2018.csc2017.game2048;
 
+/**
+ * The source code is originated from
+ * https://github.com/JimZhou-001/2048-Android.git
+ * It is used to construct basic game structure and modified by our group member.
+ */
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;

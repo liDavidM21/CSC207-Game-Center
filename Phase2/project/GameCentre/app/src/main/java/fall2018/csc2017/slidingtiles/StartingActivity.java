@@ -67,7 +67,6 @@ public class StartingActivity extends AppCompatActivity {
         saveToFile(TEMP_SAVE_FILENAME);
         setContentView(R.layout.activity_starting_);
         addStartButtonListener();
-        addLoadButtonListener();
         addSaveButtonListener();
         addSettingButtonListener();
         addScoreboardButtonListener();
@@ -153,22 +152,6 @@ public class StartingActivity extends AppCompatActivity {
     }
 
     /**
-     * Activate the load button.
-     */
-    private void addLoadButtonListener() {
-        Button loadButton = findViewById(R.id.LoadButton);
-        loadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFromFile(SAVE_FILENAME);
-                saveToFile(TEMP_SAVE_FILENAME);
-                makeToastLoadedText("Loading game");
-                switchToGame("load");
-            }
-        });
-    }
-
-    /**
      * Attempt to sign out
      */
     private void addSignoutButtonListener() {
@@ -238,9 +221,9 @@ public class StartingActivity extends AppCompatActivity {
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
         } else if (s.equals("load")){
-            Button button = (Button) findViewById(R.id.LoadButton);
+            Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
-        }else if (s.equals("Resume")){
+        }else if (s.equals("resume")){
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
         }
