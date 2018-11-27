@@ -12,10 +12,9 @@
 * Choose one game you want to play
 
 # Sliding Tiles
-* If you want to start a new game or resume previous auto save game, Click "New Game" button, then choose the game you want in the dialog
+* If you want to start a new game or resume previous game, Click "Start Game" button, then choose the game you want in the dialog
 * If you want to change difficulty or the undo step, Click "Setting"
 * If you want to save the current game, Click "Save Game" (Caution: This is manual save game, is different from auto save game)
-* If you want to load your manual save game, Click "Load Saved Game"(Caution: If you want to restore auto save game, Click "New Game" - "Resume Previous Game")
 * If you want to play another game, Click "Back" to return to the game selection page
 * If you want to exit the game or log out current account, Click "Sign out"
 * If you want to check your current highest score, Click "Scoreboard"
