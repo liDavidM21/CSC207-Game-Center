@@ -45,10 +45,20 @@ public class GameView extends GridLayout {
     }
 
     /**
+     * Reset scoreList for new game.
+     */
+    public static void resetScoreList() {scoreList.clear();}
+
+    /**
      * Get the stateList.
      * @return stateList
      */
     public ArrayList<int[][]> getStateList(){ return stateList; }
+
+    /**
+     * Reset stateList for new game.
+     */
+    public static void resetStateList() {stateList.clear();}
 
     /**
      * A 2D array(4 * 4) to store cards.
@@ -70,16 +80,25 @@ public class GameView extends GridLayout {
      */
     public boolean hasTouched = false;
 
+    /**
+     * Constructor of class GameView.
+     */
     public GameView(Context context) {
         super(context);
         initGameView();
     }
 
+    /**
+     *Constructor of class GameView.
+     */
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initGameView();
     }
 
+    /**
+     * Constructor of class GameView.
+     */
     public GameView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initGameView();
@@ -94,6 +113,13 @@ public class GameView extends GridLayout {
         setOnTouchListener(new Listener());
     }
 
+    /**
+     * Adjust the card size.
+     * @param w int width.
+     * @param h
+     * @param oldw
+     * @param oldh
+     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 
