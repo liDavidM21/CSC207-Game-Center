@@ -39,6 +39,7 @@ public class GameEngine implements Serializable {
      */
     private static int HEIGHT = 14;
 
+    public static boolean is_over = false;
     public int time;
 
     private Context context;
@@ -194,15 +195,15 @@ public class GameEngine implements Serializable {
                 onGameLost();
             }
         }
-
-        checkEnd();
+        if(!is_over) {
+            checkEnd();
+        }
     }
 
     /**
      * Check whether the game ends in current state.
-     * @return boolean indicate whether the game ends.
      */
-    private boolean checkEnd(){
+    private void checkEnd(){
         int bombNotFound = BOMB_NUMBER;
         int notRevealed = WIDTH * HEIGHT;
         for ( int x = 0 ; x < WIDTH ; x++ ){
@@ -218,11 +219,11 @@ public class GameEngine implements Serializable {
         }
 
         if( bombNotFound == 0 && notRevealed == 0 ){
+            is_over = true;
             Toast.makeText(context,"Game won", Toast.LENGTH_SHORT).show();
-            UserManager.getLoginUser().add_score(new Score(time));
-
+            UserManager.getLoginUser().add_score(new Score(10000-time));
+            time = 0;
         }
-        return false;
     }
 
     /**

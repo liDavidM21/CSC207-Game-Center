@@ -16,6 +16,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GameEngine.is_over = false;
         main = this;
         setContentView(R.layout.activity_main2);
         GameEngine.setIsLost(false);
