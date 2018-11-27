@@ -12,37 +12,6 @@ import fall2018.csc2017.minesweeper.MineSweepActivity;
 
 public class Game_choose extends AppCompatActivity {
 
-    /**
-     * Whether the game is minesweeper.
-     */
-    private static boolean minesweeper = false;
-
-    /**
-     * Whether the game is sliding tiles.
-     */
-    private static boolean sliding_tiles = false;
-
-    /**
-     * Whether the game is 2048.
-     */
-    private static boolean tzfe = false;
-
-    /**
-     * Get the string of current game.
-     * @return current game chosen.
-     */
-    public static String get_current_game() {
-        if (sliding_tiles){
-            return "sliding_tiles";
-        }
-        else if (tzfe){
-            return "2048";
-        }
-        else{
-            return "minesweeper";
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,9 +64,6 @@ public class Game_choose extends AppCompatActivity {
      * Switch to game sliding tiles.
      */
     private void switchToGame1(){
-        minesweeper = false;
-        tzfe = false;
-        sliding_tiles = true;
         Intent tmp = new Intent(this, StartingActivity.class);
         startActivity(tmp);
     }
@@ -106,9 +72,6 @@ public class Game_choose extends AppCompatActivity {
      * Switch to game minesweeper.
      */
     private void switchToGame2(){
-        sliding_tiles = false;
-        tzfe = false;
-        minesweeper = true;
         Intent tmp = new Intent(this, MineSweepActivity.class);
         startActivity(tmp);
     }
@@ -117,9 +80,6 @@ public class Game_choose extends AppCompatActivity {
      * Switch to game 2048.
      */
     private void switchToGame3(){
-        sliding_tiles = false;
-        tzfe = true;
-        minesweeper = false;
         Intent tmp = new Intent(this,game2048Activity.class);
         startActivity(tmp);
     }

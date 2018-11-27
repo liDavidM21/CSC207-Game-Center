@@ -5,6 +5,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import fall2018.csc2017.R;
+
 import static org.junit.Assert.*;
 
 /**
@@ -68,7 +70,9 @@ public class BoardAndTileTest {
         assertEquals(2, boardManager.getBoard().getTile(0, 1).getId());
         boardManager.getBoard().swapTiles(0, 0, 0, 1);
         assertEquals(2, boardManager.getBoard().getTile(0, 0).getId());
+        assertEquals(1, boardManager.getBoard().getTile(0, 0).getBackground());
         assertEquals(1, boardManager.getBoard().getTile(0, 1).getId());
+        assertEquals(0, boardManager.getBoard().getTile(0, 1).getBackground());
     }
 
     /**
@@ -93,6 +97,33 @@ public class BoardAndTileTest {
         assertEquals(true, boardManager.isValidTap(11));
         assertEquals(true, boardManager.isValidTap(14));
         assertEquals(false, boardManager.isValidTap(10));
+    }
+
+    @Test
+    public void testTouchMove(){
+        setUpCorrect();
+        boardManager.touchMove(14);
+        assertTrue(boardManager.puzzleSolved());
+        boardManager.getBoard().swapTiles(3, 3, 3, 2);
+        assertFalse(boardManager.puzzleSolved());
+        boardManager.touchMove(15);
+        assertTrue(boardManager.puzzleSolved());
+    }
+
+    @Test
+    public void testUndo(){
+        setUpCorrect();
+        assertTrue(boardManager.getCanUndo());
+        assertEquals(3, GameActivity.getUndoStep());
+        GameActivity.setUndoStep(5);
+        assertEquals(5, GameActivity.getUndoStep());
+    }
+
+    @Test
+    public void testTile(){
+        setUpCorrect();
+        assertEquals(1, boardManager.getBoard().tiles[0][0].getId());
+        assertEquals(16, boardManager.getBoard().tiles[3][3].getId());
     }
 }
 

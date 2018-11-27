@@ -6,37 +6,37 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * A singleton class Usermanager that is responsible for managing all user activities.
+ * A singleton class UserManager that is responsible for managing all user activities.
  */
-public class Usermanager implements Serializable, Iterable<User> {
+public class UserManager implements Serializable, Iterable<User> {
     /**
-     * The single instance of Usermanager
+     * The single instance of UserManager.
      */
-    private static Usermanager single_instance = null;
+    private static UserManager single_instance = null;
     /**
      * Current Login user.
      */
     private static User loginUser = null;
 
     /**
-     * Make sure only one Usermanager exists.
+     * Make sure only one UserManager exists.
      *
-     * @return: null if no Usermanager exists, or the current Usermanager instance if there is one.
+     * @return: null if no UserManager exists, or the current UserManager instance if there is one.
      */
-    public static Usermanager get_instance() {
+    public static UserManager get_instance() {
         if (single_instance == null) {
-            single_instance = new Usermanager();
+            single_instance = new UserManager();
         }
         return single_instance;
     }
 
     /**
-     * Set the instance of Usermanager.
+     * Set the instance of UserManager.
      *
      * @param um: the instance to set.
      */
-    public static void set_instance(Usermanager um) {
-        Usermanager.single_instance = um;
+    public static void set_instance(UserManager um) {
+        UserManager.single_instance = um;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Usermanager implements Serializable, Iterable<User> {
      * @return: all the user registered.
      */
     public static List<User> getUser() {
-        return Usermanager.get_instance().current_user;
+        return UserManager.get_instance().current_user;
     }
 
     /**

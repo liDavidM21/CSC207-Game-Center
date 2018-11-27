@@ -1,0 +1,23 @@
+# Cloning Game
+* Open AndroidStudio - New - Project from Version Control - Git - URL: https://markus.teach.cs.toronto.edu/git/csc207-2018-09-reg/group_0629
+* Click Yes when asked "Create a new AndroidStudio Project" - Select "Import project from external model" - Add "Phase2/GameCenter" to the Gradle project path 
+* You may see "Unregistered VCS root detected", Click Add root
+* Then Create Android Virtual Device - Select Pixel2 as device - Select OS as Android 8.1 API27
+* Launch the device and Click Run - Run 'app'
+**  Cite: From Paul.Gries's announcement 
+
+# Running Game
+* You first need to sign up your account with email address and set your password
+* Then you can enter the main page of the app
+* Choose one game you want to play
+
+# Sliding Tiles
+* If you want to start a new game or resume previous auto save game, Click "New Game" button, then choose the game you want in the dialog
+* If you want to change difficulty or the undo step, Click "Setting"
+* If you want to save the current game, Click "Save Game" (Caution: This is manual save game, is different from auto save game)
+* If you want to load your manual save game, Click "Load Saved Game"(Caution: If you want to restore auto save game, Click "New Game" - "Resume Previous Game")
+* If you want to play another game, Click "Back" to return to the game selection page
+* If you want to exit the game or log out current account, Click "Sign out"
+
+# 2048
+

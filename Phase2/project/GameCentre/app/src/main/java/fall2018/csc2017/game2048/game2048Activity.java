@@ -26,7 +26,7 @@ import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
-import fall2018.csc2017.slidingtiles.Usermanager;
+import fall2018.csc2017.slidingtiles.UserManager;
 
 /**
  * The initial activity for the game2048.
@@ -63,7 +63,7 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * The current manager.
      */
-    private Usermanager current_manager = Usermanager.get_instance();
+    private UserManager current_manager = UserManager.get_instance();
     private GameManager gm = GameManager.get_instance();
 
     @Override
@@ -73,7 +73,6 @@ public class game2048Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2048_starting);
         addStartButtonListener();
-        addLoadButtonListener();
         addScoreboardButtonListener();
         addSignOutButtonListener();
         addSetPButtonListener();
@@ -181,20 +180,6 @@ public class game2048Activity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Activate the load button.
-     */
-    private void addLoadButtonListener() {
-        Button loadButton = findViewById(R.id.LoadButton);
-        loadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makeToastLoadedText("Loading game");
-                switchToGame("load");
-
-            }
-        });
-    }
 
     /**
      * Attempt to sign out
@@ -326,7 +311,7 @@ public class game2048Activity extends AppCompatActivity {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput("UserManager.ser", MODE_PRIVATE));
-            outputStream.writeObject(Usermanager.get_instance());
+            outputStream.writeObject(UserManager.get_instance());
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());

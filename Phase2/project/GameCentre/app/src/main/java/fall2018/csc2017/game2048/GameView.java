@@ -13,9 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fall2018.csc2017.minesweeper.MainActivity;
 import fall2018.csc2017.slidingtiles.Score;
-import fall2018.csc2017.slidingtiles.Usermanager;
+import fall2018.csc2017.slidingtiles.UserManager;
 
 /**
  * A class to implement the layout.
@@ -303,7 +302,7 @@ public class GameView extends GridLayout {
         }
         //Game is over.
         if (isOver) {
-            Usermanager.getLoginUser().add_score(new Score(MainActivityTwo.getScore()));
+            UserManager.getLoginUser().add_score(new Score(MainActivityTwo.getScore()));
             new AlertDialog.Builder(getContext()).setTitle("Sorry, game is over!").
                     setMessage("Your score is "+ MainActivityTwo.getScore()).
                     setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
