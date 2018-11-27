@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private Usermanager current_manager = Usermanager.get_instance();
+    private UserManager current_manager = UserManager.get_instance();
     ConstraintLayout mylayout;
     AnimationDrawable animationDrawable;
 
@@ -224,7 +224,7 @@ public class LoginActivity extends AppCompatActivity {
             // perform the user login attempt.
             for (User T : current_manager) {
                 if (T.user_email.equals(email)) {
-                    Usermanager.setLoginUser(T);
+                    UserManager.setLoginUser(T);
                 }
             }
             showProgress(true);
@@ -266,7 +266,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * load Usermanager instance from UserManager.ser
+     * load UserManager instance from UserManager.ser
      */
     private void deserialize() {
 
@@ -274,8 +274,8 @@ public class LoginActivity extends AppCompatActivity {
             InputStream inputStream = this.openFileInput("UserManager.ser");
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
-                Usermanager.set_instance((Usermanager) input.readObject());
-                current_manager = Usermanager.get_instance();
+                UserManager.set_instance((UserManager) input.readObject());
+                current_manager = UserManager.get_instance();
                 inputStream.close();
             }
         } catch (FileNotFoundException e) {

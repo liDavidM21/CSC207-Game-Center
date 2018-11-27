@@ -24,12 +24,8 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import fall2018.csc2017.BuildConfig;
 import fall2018.csc2017.R;
 import fall2018.csc2017.Scoreboard.scoreboard;
-import fall2018.csc2017.game2048.MainActivityTwo;
-import fall2018.csc2017.minesweeper.GameSettingMinesweeper;
-import fall2018.csc2017.minesweeper.MainActivity;
 
 /**
  * The initial activity for the sliding puzzle tile game.
@@ -39,7 +35,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static final String SAVE_FILENAME = "save_file_st" + Usermanager.getLoginUser().getUser_email() + ".ser";
+    public static final String SAVE_FILENAME = "save_file_st" + UserManager.getLoginUser().getUser_email() + ".ser";
     /**
      * A temporary save file.
      */
@@ -47,7 +43,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * A auto save file.
      */
-    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto"  + Usermanager.getLoginUser().getUser_email() + ".ser";
+    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto"  + UserManager.getLoginUser().getUser_email() + ".ser";
     /**
      * The board manager.
      */
@@ -61,7 +57,7 @@ public class StartingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
-        Usermanager.get_instance().switch_game("Sliding Tiles");
+        UserManager.get_instance().switch_game("Sliding Tiles");
         super.onCreate(savedInstanceState);
         boardManager = new BoardManager();
         if (showDefault == 1) {
@@ -384,7 +380,7 @@ public class StartingActivity extends AppCompatActivity {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput("UserManager.ser", MODE_PRIVATE));
-            outputStream.writeObject(Usermanager.get_instance());
+            outputStream.writeObject(UserManager.get_instance());
             outputStream.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
