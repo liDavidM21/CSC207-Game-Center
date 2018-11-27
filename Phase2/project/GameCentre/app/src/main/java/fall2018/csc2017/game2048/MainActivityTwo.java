@@ -49,7 +49,7 @@ public class MainActivityTwo extends Activity {
     /**
      * The button for restarting game.
      */
-    Button restart;
+    Button load;
 
     /**
      * The button for saving game.
@@ -102,8 +102,8 @@ public class MainActivityTwo extends Activity {
         maxScore.setText(s);
         createGameOptionDialog();
         gameView = findViewById(R.id.gameView);
-        restart = findViewById(R.id.restart);
-        restart.setOnClickListener(new View.OnClickListener() {
+        load = findViewById(R.id.load);
+        load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loadFromFile(save_file_name);
@@ -291,7 +291,7 @@ public class MainActivityTwo extends Activity {
             System.out.println("No class is found.");
         }
         catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
+            gameView.startGame();
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
