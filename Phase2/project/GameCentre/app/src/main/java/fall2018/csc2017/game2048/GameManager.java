@@ -3,6 +3,7 @@ package fall2018.csc2017.game2048;
 import java.io.Serializable;
 
 public class GameManager implements Serializable {
+
     private static GameManager single_instance = GameManager.get_instance();
 
     public int[][] cards;
