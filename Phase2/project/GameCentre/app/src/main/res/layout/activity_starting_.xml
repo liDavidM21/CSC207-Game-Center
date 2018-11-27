@@ -33,7 +33,7 @@
         android:layout_below="@+id/GameText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-169dp"
-        android:text="New Game" />
+        android:text="Start Game" />
 
     <Button
         android:id="@+id/scoreboardButton"
@@ -42,20 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
         android:layout_alignStart="@+id/SaveButton"
-        android:layout_marginStart="-1dp"
+        android:layout_marginStart="-4dp"
         android:layout_marginTop="-22dp"
         android:text="SCOREBOARD" />
-
-    <Button
-        android:id="@+id/LoadButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/GameText"
-        android:layout_marginTop="58dp"
-        android:layout_marginEnd="-133dp"
-        android:layout_toStartOf="@+id/StartButton"
-        android:text="Load Saved Game" />
 
     <Button
         android:id="@+id/Signout"
@@ -63,9 +52,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="452dp"
-        android:layout_marginEnd="-110dp"
-        android:layout_toStartOf="@+id/LoadButton"
+        android:layout_marginTop="354dp"
+        android:layout_marginEnd="-98dp"
+        android:layout_toStartOf="@+id/StartButton"
         android:text="Signout" />
 
     <Button
@@ -74,8 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/GameText"
-        android:layout_marginStart="-98dp"
-        android:layout_marginTop="-108dp"
+        android:layout_marginStart="-108dp"
+        android:layout_marginTop="-98dp"
         android:layout_toEndOf="@+id/StartButton"
         android:text="Save Game"
         android:visibility="visible" />
