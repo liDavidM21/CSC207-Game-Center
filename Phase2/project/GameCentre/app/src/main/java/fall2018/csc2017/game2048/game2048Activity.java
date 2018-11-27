@@ -73,7 +73,6 @@ public class game2048Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2048_starting);
         addStartButtonListener();
-        addLoadButtonListener();
         addScoreboardButtonListener();
         addSignOutButtonListener();
         addSetPButtonListener();
@@ -181,20 +180,6 @@ public class game2048Activity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Activate the load button.
-     */
-    private void addLoadButtonListener() {
-        Button loadButton = findViewById(R.id.LoadButton);
-        loadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makeToastLoadedText("Loading game");
-                switchToGame("load");
-
-            }
-        });
-    }
 
     /**
      * Attempt to sign out
