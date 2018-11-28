@@ -93,8 +93,8 @@ public class StartingActivity extends AppCompatActivity {
 
     private void createResumeTipDialog() {
         new AlertDialog.Builder(StartingActivity.this)
-                .setMessage("hOI, what do you want to do?")
-                .setTitle("Option")
+                .setMessage("Choose the game mode you want")
+                .setTitle("Reminder")
                 .setIcon(R.drawable.tip)
                 .setPositiveButton("Load", new DialogInterface.OnClickListener() {
                     @Override
@@ -217,8 +217,8 @@ public class StartingActivity extends AppCompatActivity {
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame() {
-        Button button = (Button) findViewById(R.id.StartButton);
-        startAnimation(button);
+            Button button = (Button) findViewById(R.id.StartButton);
+            startAnimation(button);
     }
 
     /**
