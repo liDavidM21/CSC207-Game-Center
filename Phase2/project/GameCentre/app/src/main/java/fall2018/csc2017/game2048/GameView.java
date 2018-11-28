@@ -366,7 +366,7 @@ public class GameView extends GridLayout {
                 hasTouched = true;
             }
 
-            MainActivityTwo.getMainActivity().saveToFile("2048auto.ser");
+            MainActivityTwo.getMainActivity().saveToFile("2048auto" + UserManager.getLoginUser().getUser_email() + ".ser");
 
             for (int y = 0; y < 4; ++y) {
                 for (int x = 0; x < 4; ++x) {
