@@ -278,7 +278,6 @@ public class MainActivityTwo extends Activity {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
             gm.getData(GameView.cards, score);
-            System.out.println(gm.score);
             outputStream.writeObject(gm);
             outputStream.close();
         } catch (IOException e) {

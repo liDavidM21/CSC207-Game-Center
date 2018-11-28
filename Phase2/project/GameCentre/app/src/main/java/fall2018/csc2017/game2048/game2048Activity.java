@@ -37,19 +37,6 @@ import fall2018.csc2017.slidingtiles.UserManager;
  */
 public class game2048Activity extends AppCompatActivity {
 
-    //TODO: Remove all save/load related stuff.
-    /**
-     * The main save file.
-     */
-    public static final String SAVE_FILENAME = "save_file_2048.ser";
-    /**
-     * A temporary save file.
-     */
-    public static final String TEMP_SAVE_FILENAME = "save_file_tmp_2048.ser";
-    /**
-     * A temporary save file.
-     */
-    public static final String AUTO_SAVE_FILENAME = "save_file_auto_2048.ser";
     /**
      * The board manager.
      */
@@ -68,7 +55,6 @@ public class game2048Activity extends AppCompatActivity {
      * The current manager.
      */
     private UserManager current_manager = UserManager.get_instance();
-    private GameManager gm = GameManager.get_instance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,22 +190,6 @@ public class game2048Activity extends AppCompatActivity {
     }
 
     /**
-     * Display that a game was loaded successfully.
-     */
-    private void makeToastLoadedText(String s) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Read the temporary board from disk.
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadFromFile(TEMP_SAVE_FILENAME);
-    }
-
-    /**
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame(String s) {
@@ -256,7 +226,6 @@ public class game2048Activity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 Intent tmp = new Intent(tmp1,MainActivityTwo.class);
-                saveToFile(game2048Activity.TEMP_SAVE_FILENAME);
                 startActivity(tmp);
             }
         });
@@ -268,47 +237,6 @@ public class game2048Activity extends AppCompatActivity {
     private void switchToScoreboard() {
         Intent tmp = new Intent(this, scoreboard.class);
         startActivity(tmp);
-    }
-
-    /**
-     * Load the board manager from fileName.
-     *
-     * @param fileName the name of the file
-     */
-    private void loadFromFile(String fileName) {
-
-        try {
-            InputStream inputStream = this.openFileInput(fileName);
-            if (inputStream != null) {
-                ObjectInputStream input = new ObjectInputStream(inputStream);
-                GameView.cards = (Card[][]) input.readObject();
-                inputStream.close();
-            }
-        }
-        catch(ClassNotFoundException e){
-            System.out.println("No class is found.");
-        }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        }
-    }
-
-    /**
-     * Save the board manager to fileName.
-     *
-     * @param fileName the name of the file
-     */
-    public void saveToFile(String fileName) {
-        try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(
-                    this.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(GameView.cards);
-            outputStream.close();
-        } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
     }
 
     private void serializeUserManager() {
