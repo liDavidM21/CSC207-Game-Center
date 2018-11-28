@@ -12,6 +12,27 @@ import fall2018.csc2017.minesweeper.MineSweepActivity;
 
 public class Game_choose extends AppCompatActivity {
 
+    /**
+     * Current game.
+     */
+    private static String current_game = "";
+
+    /**
+     * Get the current game.
+     * @return current game.
+     */
+    public static String getCurrent_game(){
+        return current_game;
+    }
+
+    /**
+     * Set the current game.
+     * @param game the game to set.
+     */
+    public void setCurrent_game(String game){
+        current_game = game;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +50,7 @@ public class Game_choose extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setCurrent_game("sliding tiles");
                 switchToGame1();
             }
         });
@@ -42,6 +64,7 @@ public class Game_choose extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setCurrent_game("minesweeper");
                 switchToGame2();
             }
         });
@@ -55,6 +78,7 @@ public class Game_choose extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setCurrent_game("game2048");
                 switchToGame3();
             }
         });
