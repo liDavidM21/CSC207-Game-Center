@@ -40,7 +40,7 @@ public class scoreboard extends AppCompatActivity {
         viewPager.setCurrentItem(0);
         Toolbar toolbar = (Toolbar) findViewById(R.id.Toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Scoreboard");
+        getSupportActionBar().setTitle("Scoreboard" + "                                Switch");
     }
 
 

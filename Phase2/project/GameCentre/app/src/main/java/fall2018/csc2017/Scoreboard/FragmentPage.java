@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import fall2018.csc2017.R;
+import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.User;
 import fall2018.csc2017.slidingtiles.UserManager;
 
@@ -34,17 +35,35 @@ public class FragmentPage extends Fragment {
         Bundle bundle = getArguments();
         int pageNumber = bundle.getInt("pageNumber");
         view = inflater.inflate(R.layout.page_fragment_layout, container, false);
+        TextView scoreBoard = (TextView) view.findViewById(R.id.BoardName);
+        if (Game_choose.getCurrent_game().equals("sliding tiles")){
+            scoreBoard.setText("Sliding Tiles" + "\n" + "Global Ranking List");
+        } else if (Game_choose.getCurrent_game().equals("minesweeper")){
+            scoreBoard.setText("Minesweeper" + "\n" + "Global Ranking List");
+        } else {
+            scoreBoard.setText("2048" + "\n" + "Global Ranking List");
+        }
         setUsers();
         sortScores();
         TextView email = (TextView) view.findViewById(R.id.UserEmail);
         TextView score = (TextView) view.findViewById(R.id.Score);
+        String rank;
+        if (pageNumber == 1){
+            rank = "1st";
+        } else if (pageNumber == 2){
+            rank = "2nd";
+        } else if (pageNumber == 3){
+            rank = "3rd";
+        } else {
+            rank = Integer.toString(pageNumber) + "th";
+        }
         System.out.println(UserManager.getLoginUser().getTop_score().size());
         if (users.size() < pageNumber || users.get(pageNumber - 1).return_best_score() == null) {
             email.setText("HOI! No one has score recorded here!");
             score.setText("");
         } else {
-            email.setText(users.get(pageNumber - 1).getUser_email());
-            score.setText(Integer.toString(users.get(pageNumber - 1).return_best_score().final_score));
+            email.setText(rank + "   Username: " + " \n" + users.get(pageNumber - 1).getUser_email());
+            score.setText("Score: " + Integer.toString(users.get(pageNumber - 1).return_best_score().final_score));
         }
 
         return view;
