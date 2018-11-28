@@ -31,7 +31,8 @@
         <activity android:name=".minesweeper.GameSettingMinesweeper" />
         <activity android:name=".slidingtiles.Game_choose" />
         <activity android:name=".game2048.game2048Activity" />
-        <activity android:name=".slidingtiles.LoginActivity"></activity>
+        <activity android:name=".slidingtiles.LoginActivity" />
+        <activity android:name=".slidingtiles.welcomeActivity"></activity>
     </application>
 
 </manifest>

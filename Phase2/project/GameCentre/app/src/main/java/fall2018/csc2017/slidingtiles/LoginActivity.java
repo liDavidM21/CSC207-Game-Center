@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
     private UserManager current_manager = UserManager.get_instance();
+    private boolean newuser;
     ConstraintLayout myLayout;
     AnimationDrawable animationDrawable;
 
@@ -96,8 +97,14 @@ public class LoginActivity extends AppCompatActivity {
      * switch to game menu
      */
     private void game_menu() {
-        Intent tmp = new Intent(this, Game_choose.class);
-        startActivity(tmp);
+        if (newuser) {
+            Intent tmp = new Intent(this, welcomeActivity.class);
+            startActivity(tmp);
+        }
+        else{
+            Intent tmp = new Intent(this, Game_choose.class);
+            startActivity(tmp);
+        }
     }
 
     private void attemptSignUp() {
@@ -157,6 +164,7 @@ public class LoginActivity extends AppCompatActivity {
             User new_user = new User(email, password);
             current_manager.add(new_user);
             current_manager.setLoginUser(new_user);
+            newuser = true;
             serializeUserManager();
             showProgress(true);
             game_menu();
@@ -186,6 +194,7 @@ public class LoginActivity extends AppCompatActivity {
      * errors are presented and no actual login attempt is made.
      */
     private boolean attemptLogin() {
+        newuser = false;
         deserialize();
         // Reset errors.
         mEmailView.setError(null);
