@@ -132,6 +132,7 @@ public class MainActivityTwo extends Activity {
             @Override
             public void onClick(View view) {
                 saveToFile(save_file_name);
+                makeToastSaveText();
             }
         });
 
@@ -327,8 +328,24 @@ public class MainActivityTwo extends Activity {
         }
         catch (FileNotFoundException e) {
             gameView.startGame();
+            makeToastNoFilesText();
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
     }
+
+    /**
+     * Display the start a new game when no saved files found.
+     */
+    private void makeToastNoFilesText() {
+        Toast.makeText(this, "No Files Found, Start a New Game", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Display files has been saved.
+     */
+    private void makeToastSaveText() {
+        Toast.makeText(this, "File has saved", Toast.LENGTH_SHORT).show();
+    }
+
 }
