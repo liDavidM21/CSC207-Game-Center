@@ -32,21 +32,6 @@ import fall2018.csc2017.slidingtiles.UserManager;
  */
 public class MineSweepActivity extends AppCompatActivity {
 
-    /**
-     * The main save file.
-     */
-    public static final String SAVE_FILENAME = "save_file.ser";
-    /**
-     * A temporary save file.
-     */
-    public static final String TEMP_SAVE_FILENAME = "save_file_tmp.ser";
-    /**
-     * A temporary save file.
-     */
-    public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
-    /**
-     * The board manager.
-     */
     private static int showDefault = 1;
     private String current_game = "Mine Sweeper";
     private GameEngine gameengine;
@@ -61,8 +46,6 @@ public class MineSweepActivity extends AppCompatActivity {
             makeToastModeText();
             showDefault++;
         }
-        saveToFile(TEMP_SAVE_FILENAME);
-        saveToFile(AUTO_SAVE_FILENAME);
         setContentView(R.layout.activity_starting_mine);
         addStartButtonListener();
         addSettingButtonListener();
@@ -153,15 +136,6 @@ public class MineSweepActivity extends AppCompatActivity {
     }
 
     /**
-     * Read the temporary board from disk.
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadFromFile(TEMP_SAVE_FILENAME);
-    }
-
-    /**
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame(String s) {
@@ -198,7 +172,6 @@ public class MineSweepActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 Intent tmp = new Intent(tmp1,MainActivity.class);
-                saveToFile(MineSweepActivity.TEMP_SAVE_FILENAME);
                 startActivity(tmp);
             }
         });
@@ -210,7 +183,6 @@ public class MineSweepActivity extends AppCompatActivity {
     private void switchToSetting() {
         final MineSweepActivity tmp1 = this;
         Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
-        saveToFile(MineSweepActivity.TEMP_SAVE_FILENAME);
         startActivity(tmp);
     }
     /**
@@ -222,56 +194,10 @@ public class MineSweepActivity extends AppCompatActivity {
     }
 
     /**
-     * Load the board manager from fileName.
-     *
-     * @param fileName the name of the file
-     */
-    private void loadFromFile(String fileName) {
-
-        try {
-            InputStream inputStream = this.openFileInput(fileName);
-            if (inputStream != null) {
-                ObjectInputStream input = new ObjectInputStream(inputStream);
-                gameengine = (GameEngine) input.readObject();
-                inputStream.close();
-            }
-        } catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        } catch (ClassNotFoundException e) {
-            Log.e("login activity", "File contained unexpected data type: " + e.toString());
-        }
-    }
-
-    /**
      * Display the default mode -- medium.
      */
     private void makeToastModeText() {
         Toast.makeText(this, "DEFAULT MODE: MEDIUM", Toast.LENGTH_SHORT).show();
-    }
-
-
-    /**
-     * Display undo setting configuration: maximum undo steps selected by user.
-     */
-
-    /**
-     * Button for go back to game choosing selection layout.
-    /**
-     * Save the board manager to fileName.
-     *
-     * @param fileName the name of the file
-     */
-    public void saveToFile(String fileName) {
-        try {
-            ObjectOutputStream outputStream = new ObjectOutputStream(
-                    this.openFileOutput(fileName, MODE_PRIVATE));
-            outputStream.writeObject(gameengine);
-            outputStream.close();
-        } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
     }
 
     private void serializeUserManager() {
