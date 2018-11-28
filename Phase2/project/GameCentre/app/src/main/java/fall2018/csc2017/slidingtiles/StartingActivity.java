@@ -101,7 +101,7 @@ public class StartingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         loadFromFile(SAVE_FILENAME);
-                        switchToGame("Resume");
+                        switchToGame();
                     }
                 })
                 .setNeutralButton("Resume", new DialogInterface.OnClickListener() {
@@ -109,7 +109,7 @@ public class StartingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         loadFromFile(AUTO_SAVE_FILENAME);
-                        switchToGame("Resume");
+                        switchToGame();
                         makeToastLoadedText("Resuming game");
                 }
                 })
@@ -118,7 +118,7 @@ public class StartingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         boardManager = new BoardManager();
-                        switchToGame("start");
+                        switchToGame();
                     }
                 })
                 .show();
@@ -216,17 +216,9 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * Switch to the GameActivity view to play the game.
      */
-    private void switchToGame(String s) {
-        if (s.equals("start")) {
+    private void switchToGame() {
             Button button = (Button) findViewById(R.id.StartButton);
             startAnimation(button);
-        } else if (s.equals("load")){
-            Button button = (Button) findViewById(R.id.StartButton);
-            startAnimation(button);
-        }else if (s.equals("resume")){
-            Button button = (Button) findViewById(R.id.StartButton);
-            startAnimation(button);
-        }
     }
 
     /**
