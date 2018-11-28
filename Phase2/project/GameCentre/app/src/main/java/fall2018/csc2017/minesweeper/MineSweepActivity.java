@@ -1,11 +1,5 @@
 package fall2018.csc2017.minesweeper;
 
-
-/**
- * The source code is originated from
- * https://github.com/marcellelek/Minesweeper.git
- * It is used to construct basic game structure and modified by our group member.
- */
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.LoginActivity;
@@ -28,18 +23,24 @@ import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.UserManager;
 
 /**
- * The initial activity for the sliding puzzle tile game.
+ * The initial activity for the minesweeper game.
+ * The source code is originated from
+ * https://github.com/marcellelek/Minesweeper.git
+ * It is used to construct basic game structure and modified by our group member.
  */
 public class MineSweepActivity extends AppCompatActivity {
 
     private static int showDefault = 1;
-    private String current_game = "Mine Sweeper";
+
+    /**
+     * GameEngine of the game.
+     */
     private GameEngine gameengine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
-        UserManager.get_instance().switch_game(current_game);
+        UserManager.get_instance().switch_game("Mine Sweeper");
         super.onCreate(savedInstanceState);
         gameengine = GameEngine.getInstance();
         if (showDefault == 1) {
@@ -57,7 +58,7 @@ public class MineSweepActivity extends AppCompatActivity {
     /**
      * The back button.
      */
-    private void addBackButtonListener(){
+    private void addBackButtonListener() {
         Button backButton = findViewById(R.id.backTwo);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +86,7 @@ public class MineSweepActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 gameengine = GameEngine.getInstance();
-                switchToGame("start");
+                switchToGame();
             }
         });
     }
@@ -130,6 +131,9 @@ public class MineSweepActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sign out user.
+     */
     private void signout() {
         Intent tmp = new Intent(this, LoginActivity.class);
         startActivity(tmp);
@@ -138,14 +142,9 @@ public class MineSweepActivity extends AppCompatActivity {
     /**
      * Switch to the GameActivity view to play the game.
      */
-    private void switchToGame(String s) {
-        if (s == "start") {
-            Button button = (Button) findViewById(R.id.StartButton);
-            startAnimation(button);
-        } else {
-            Button button = (Button) findViewById(R.id.StartButton);
-            startAnimation(button);
-        }
+    private void switchToGame() {
+        Button button = (Button) findViewById(R.id.StartButton);
+        startAnimation(button);
     }
 
     /**
@@ -185,6 +184,7 @@ public class MineSweepActivity extends AppCompatActivity {
         Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
         startActivity(tmp);
     }
+
     /**
      * Switch to Scoreboard interface.
      */

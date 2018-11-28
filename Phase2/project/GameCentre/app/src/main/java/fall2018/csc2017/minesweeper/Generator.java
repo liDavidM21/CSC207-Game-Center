@@ -6,9 +6,17 @@ import java.util.Random;
  * The source code is originated from
  * https://github.com/marcellelek/Minesweeper.git
  * It is used to construct basic game structure and modified by our group member.
+ * Class for generate cells.
  */
 public class Generator {
 
+    /**
+     * Generate a random game minesweeper grid.
+     * @param bombNumber number of bombs.
+     * @param width width of the grid.
+     * @param height height of the grid.
+     * @return grid containing game information.
+     */
     public static int[][] generate( int bombNumber , int width , int height){
         // Random for generating numbers
         Random r = new Random();
@@ -33,6 +41,13 @@ public class Generator {
         return grid;
     }
 
+    /**
+     * Calculate number of bombs next to the cell.
+     * @param grid grid containing game information.
+     * @param width width of the grid.
+     * @param height height of the game.
+     * @return number of bombs.
+     */
     private static int[][] calculateNeighbours( int[][] grid , final int width , final int height){
         for( int x = 0 ; x < width ; x++){
             for( int y = 0 ; y < height ; y++){
@@ -43,6 +58,15 @@ public class Generator {
         return grid;
     }
 
+    /**
+     * Show the neighbours bomb number.
+     * @param grid grid containing game information.
+     * @param width width of the grid.
+     * @param height height of the game.
+     * @param x x position.
+     * @param y y position.
+     * @return number of bombs.
+     */
     private static int getNeighbourNumber( final int grid[][] , final int x , final int y , final int width , final int height){
         if( grid[x][y] == -1 ){
             return -1;
@@ -62,6 +86,15 @@ public class Generator {
         return count;
     }
 
+    /**
+     * Check is there a mine at the cell.
+     * @param grid
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @return
+     */
     private static boolean isMineAt( final int [][] grid, final int x , final int y , final int width , final int height){
         if( x >= 0 && y >= 0 && x < width && y < height ){
             if( grid[x][y] == -1 ){

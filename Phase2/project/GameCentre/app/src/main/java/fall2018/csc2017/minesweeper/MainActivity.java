@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import fall2018.csc2017.R;
 
+/**
+ * Main activity interface of game minesweeper.
+ */
 public class MainActivity extends Activity {
 
     MainActivity main;
@@ -25,7 +28,7 @@ public class MainActivity extends Activity {
         TextView txt = findViewById(R.id.bombNum);
         String str = "#BOMBS: " + Integer.toString(GameEngine.getBombNumber());
         txt.setText(str);
-        addHardButtonListener();
+        addReStartButtonListener();
         CountDownTimer timer = new CountDownTimer(600000, 1000) {
             @Override
             public void onTick(long l) {
@@ -40,10 +43,13 @@ public class MainActivity extends Activity {
         timer.start();
     }
 
-    private void addHardButtonListener() {
+    /**
+     * Create a new game.
+     */
+    private void addReStartButtonListener() {
 
-        final Button hardButton = findViewById(R.id.newGame);
-        hardButton.setOnClickListener(new View.OnClickListener() {
+        final Button newButton = findViewById(R.id.newGame);
+        newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent tmp = new Intent(main, MainActivity.class);

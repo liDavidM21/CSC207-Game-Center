@@ -16,11 +16,17 @@ import fall2018.csc2017.R;
  * The source code is originated from
  * https://github.com/marcellelek/Minesweeper.git
  * It is used to construct basic game structure and modified by our group member.
+ * Subclass of class BaseCell. Represent each cell of game minesweeper.
  */
-
 public class Cell extends BaseCell implements View.OnClickListener , View.OnLongClickListener{
 
 
+    /**
+     * Constructor of class cell.
+     * @param context context of the cell
+     * @param x x position.
+     * @param y y position.
+     */
     public Cell(Context context , int x , int y ){
         super(context);
 
@@ -30,11 +36,17 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
         setOnLongClickListener(this);
     }
 
+    /**
+     * Measure and adjust the display size.
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, widthMeasureSpec);
     }
 
+    /**
+     * On click listener.
+     */
     @Override
     public void onClick(View v) {
 
@@ -45,6 +57,9 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
         }
     }
 
+    /**
+     * Set long click listener.
+     */
     @Override
     public boolean onLongClick(View v) {
         if (!GameEngine.getInstance().getCellAt(getXPos(), getYPos()).isRevealed()) {
@@ -54,6 +69,9 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
     }
 
 
+    /**
+     * Things happens when onclick or on long click.
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -78,30 +96,45 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
         }
     }
 
-
+    /**
+     * Show exploded bomb.
+     */
     private void drawBombExploded(Canvas canvas ){
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.bomb_exploded);
         drawable.setBounds(0,0,getWidth(),getHeight());
         drawable.draw(canvas);
     }
 
+    /**
+     * Show flag.
+     */
     private void drawFlag( Canvas canvas ){
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.flag);
         drawable.setBounds(0,0,getWidth(),getHeight());
         drawable.draw(canvas);
     }
 
+    /**
+     * Show button.
+     */
     private void drawButton(Canvas canvas ){
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.button);
         drawable.setBounds(0,0,getWidth(),getHeight());
         drawable.draw(canvas);
     }
 
+    /**
+     * Show normal bomb.
+     */
     private void drawNormalBomb(Canvas canvas ){
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.bomb_normal);
         drawable.setBounds(0,0,getWidth(),getHeight());
         drawable.draw(canvas);
     }
+
+    /**
+     * Show number of  bombs.
+     */
     private void drawNumber( Canvas canvas ){
         Drawable drawable = null;
 

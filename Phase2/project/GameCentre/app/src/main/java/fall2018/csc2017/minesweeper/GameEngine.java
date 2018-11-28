@@ -15,6 +15,7 @@ import fall2018.csc2017.slidingtiles.UserManager;
  * The source code is originated from
  * https://github.com/marcellelek/Minesweeper.git
  * It is used to construct basic game structure and modified by our group member.
+ * GameEngine for process the logic of game minesweeper.
  */
 public class GameEngine implements Serializable {
     private static GameEngine instance;
@@ -39,9 +40,19 @@ public class GameEngine implements Serializable {
      */
     private static int HEIGHT = 14;
 
+    /**
+     * Whether the game is over or not.
+     */
     public static boolean is_over = false;
+
+    /**
+     * Time spend for the game.
+     */
     public int time;
 
+    /**
+     * Context of gameEngine.
+     */
     private Context context;
 
 
