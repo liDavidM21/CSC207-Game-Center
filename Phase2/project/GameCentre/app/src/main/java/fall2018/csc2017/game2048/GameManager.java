@@ -9,11 +9,33 @@ import java.io.Serializable;
 
 public class GameManager implements Serializable {
 
+    /**
+     * Static instance of game manager as a GameManager.
+     */
     private static GameManager single_instance = GameManager.get_instance();
 
-    public int[][] cards;
+    /**
+     * Int Array to store cards.
+     */
+    private int[][] cards;
+
+    /**
+     * Instance to store score of the game.
+     */
     public int score;
 
+    /**
+     * Constructor of GameManager.
+     */
+    public GameManager() {
+        cards = new int[4][4];
+        score = 0;
+    }
+
+    /**
+     * Return the class instance as GameManager.
+     * @return GameManager.
+     */
     public static GameManager get_instance() {
         if (single_instance == null) {
             single_instance = new GameManager();
@@ -21,11 +43,12 @@ public class GameManager implements Serializable {
         return single_instance;
     }
 
-    public GameManager() {
-        cards = new int[4][4];
-        score = 0;
-    }
 
+    /**
+     * Get data in the cards.
+     * @param cards Card Array cards.
+     * @param score int score.
+     */
     public void getData(Card[][] cards, int score){
         int i = 0;
         int j = 0;
@@ -39,6 +62,11 @@ public class GameManager implements Serializable {
         }
         this.score = score;
     }
+
+    /**
+     * Set data in the cards.
+     * @param cards Card Array cards.
+     */
     public void setData(Card[][] cards){
         int i = 0;
         int j = 0;

@@ -1,10 +1,5 @@
 package fall2018.csc2017.game2048;
 
-/**
- * The source code is originated from
- * https://github.com/JimZhou-001/2048-Android.git
- * It is used to construct basic game structure and modified by our group member.
- */
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.Gravity;
@@ -13,6 +8,9 @@ import android.widget.TextView;
 
 /**
  * Card in game2048.
+ * The source code is originated from
+ * https://github.com/JimZhou-001/2048-Android.git
+ * It is used to construct basic game structure and modified by our group member.
  */
 public class Card extends FrameLayout {
 
@@ -26,6 +24,11 @@ public class Card extends FrameLayout {
      */
     private TextView lable;
 
+    /**
+     * Constructor of card.
+     *
+     * @param context The context of card.
+     */
     public Card(Context context) {
         super(context);
         lable = new TextView(getContext());

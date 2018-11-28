@@ -116,9 +116,9 @@ public class GameView extends GridLayout {
     /**
      * Adjust the card size.
      * @param w int width.
-     * @param h
-     * @param oldw
-     * @param oldh
+     * @param h int height.
+     * @param oldw original width.
+     * @param oldh original height.
      */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -349,10 +349,16 @@ public class GameView extends GridLayout {
         }
     }
 
+    /**
+     * OnTouch Listener to record things happens when onTouch.
+     */
     class Listener implements View.OnTouchListener {
 
         private float startX, startY, offsetX, offsetY;
 
+        /**
+         * OnTouch Listener.
+         */
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
 
