@@ -100,6 +100,9 @@ public class BoardAndTileTest {
         assertEquals(false, boardManager.isValidTap(10));
     }
 
+    /**
+     * Test whether TouchMove works.
+     */
     @Test
     public void testTouchMove(){
         setUpCorrect();
@@ -111,6 +114,9 @@ public class BoardAndTileTest {
         assertTrue(boardManager.puzzleSolved());
     }
 
+    /**
+     * Test whether Undo works.
+     */
     @Test
     public void testUndo(){
         setUpCorrect();
@@ -119,6 +125,9 @@ public class BoardAndTileTest {
         assertEquals(5, GameActivity.getUndoStep());
     }
 
+    /**
+     * Test whether BoardIterator works.
+     */
     @Test
     public void testBoardIterator(){
         setUpCorrect();
