@@ -96,8 +96,14 @@ public class MainActivityTwo extends Activity {
         return score;
     }
 
+    /**
+     * Manual Save to File.
+     */
     private String save_file_name = "2048" + UserManager.getLoginUser().getUser_email() + ".ser";
 
+    /**
+     * Save to File for autoSave.
+     */
     private String auto_save_file_name = "2048auto" + UserManager.getLoginUser().getUser_email() + ".ser";
 
     @Override
@@ -219,11 +225,17 @@ public class MainActivityTwo extends Activity {
         Score.setText(score + "");
     }
 
+    /**
+     * Override Android back button.
+     */
     @Override
     public void onBackPressed() {
         createExitTipDialog();
     }
 
+    /**
+     * Ask user whether want to exit the game or not.
+     */
     private void createExitTipDialog() {
         new AlertDialog.Builder(MainActivityTwo.this)
                 .setMessage("Exit？")
@@ -245,6 +257,9 @@ public class MainActivityTwo extends Activity {
                 .show();
     }
 
+    /**
+     * Let user select whether to resume from auto save or load from saved game or start a new game.
+     */
     private void createGameOptionDialog() {
         new AlertDialog.Builder(MainActivityTwo.this)
                 .setMessage("hOI, what do you want to do?")
@@ -273,6 +288,11 @@ public class MainActivityTwo extends Activity {
                 })
                 .show();
     }
+
+    /**
+     * Save the game.
+     * @param fileName filename for saved game.
+     */
     public void saveToFile(String fileName) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
@@ -284,6 +304,11 @@ public class MainActivityTwo extends Activity {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
+
+    /**
+     * Load from saved games.
+     * @param fileName filename of saved game.
+     */
     private void loadFromFile(String fileName) {
 
         try {

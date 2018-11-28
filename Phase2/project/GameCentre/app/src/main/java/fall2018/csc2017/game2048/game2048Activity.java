@@ -1,14 +1,4 @@
 package fall2018.csc2017.game2048;
-/**
- * https://evgenii.com/blog/spring-button-animation-on-android/
- * https://stackoverflow.com/questions/36894384/android-move-background-continuously-with-animation
- * https://stackoverflow.com/questions/9107900/how-to-upload-image-from-gallery-in-android
- */
-/**
- * The source code is originated from
- * https://github.com/JimZhou-001/2048-Android.git
- * It is used to construct basic game structure and modified by our group member.
- */
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.LoginActivity;
@@ -34,6 +25,14 @@ import fall2018.csc2017.slidingtiles.UserManager;
 
 /**
  * The initial activity for the game2048.
+ * <p>
+ * The source code is originated from
+ * https://github.com/JimZhou-001/2048-Android.git
+ * It is used to construct basic game structure and modified by our group member.
+ * <p>
+ * https://evgenii.com/blog/spring-button-animation-on-android/
+ * https://stackoverflow.com/questions/36894384/android-move-background-continuously-with-animation
+ * https://stackoverflow.com/questions/9107900/how-to-upload-image-from-gallery-in-android
  */
 public class game2048Activity extends AppCompatActivity {
 
@@ -73,7 +72,7 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * Go back to the game choosing menu.
      */
-    private void addBackButtonListener(){
+    private void addBackButtonListener() {
         Button backButton = findViewById(R.id.backTwo);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +151,7 @@ public class game2048Activity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchToGame("start");
+                switchToGame();
             }
         });
     }
@@ -192,14 +191,9 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * Switch to the GameActivity view to play the game.
      */
-    private void switchToGame(String s) {
-        if (s.equals("start")) {
-            Button button = findViewById(R.id.StartButton);
-            startAnimation(button);
-        } else {
-            Button button = (Button) findViewById(R.id.StartButton);
-            startAnimation(button);
-        }
+    private void switchToGame() {
+        Button button = findViewById(R.id.StartButton);
+        startAnimation(button);
     }
 
     /**
