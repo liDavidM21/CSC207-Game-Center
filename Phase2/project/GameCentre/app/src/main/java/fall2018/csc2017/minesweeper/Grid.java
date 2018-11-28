@@ -11,9 +11,13 @@ import android.widget.GridView;
  * The source code is originated from
  * https://github.com/marcellelek/Minesweeper.git
  * It is used to construct basic game structure and modified by our group member.
+ * Grid containing game information.
  */
 public class Grid extends GridView{
 
+    /**
+     * Constructor of class grid.
+     */
     public Grid(Context context , AttributeSet attrs){
         super(context,attrs);
 

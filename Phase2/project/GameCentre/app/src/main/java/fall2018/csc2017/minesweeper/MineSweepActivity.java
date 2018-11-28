@@ -1,11 +1,5 @@
 package fall2018.csc2017.minesweeper;
 
-
-/**
- * The source code is originated from
- * https://github.com/marcellelek/Minesweeper.git
- * It is used to construct basic game structure and modified by our group member.
- */
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.LoginActivity;
@@ -28,7 +23,10 @@ import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.UserManager;
 
 /**
- * The initial activity for the sliding puzzle tile game.
+ * The initial activity for the minesweeper game.
+ * The source code is originated from
+ * https://github.com/marcellelek/Minesweeper.git
+ * It is used to construct basic game structure and modified by our group member.
  */
 public class MineSweepActivity extends AppCompatActivity {
 
@@ -44,17 +42,21 @@ public class MineSweepActivity extends AppCompatActivity {
      * A temporary save file.
      */
     public static final String AUTO_SAVE_FILENAME = "save_file_auto.ser";
+
     /**
-     * The board manager.
+     * Int created for only pop default mode msg once.
      */
     private static int showDefault = 1;
-    private String current_game = "Mine Sweeper";
+
+    /**
+     * GameEngine of the game.
+     */
     private GameEngine gameengine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
-        UserManager.get_instance().switch_game(current_game);
+        UserManager.get_instance().switch_game("mMine Sweeper");
         super.onCreate(savedInstanceState);
         gameengine = GameEngine.getInstance();
         if (showDefault == 1) {
@@ -74,7 +76,7 @@ public class MineSweepActivity extends AppCompatActivity {
     /**
      * The back button.
      */
-    private void addBackButtonListener(){
+    private void addBackButtonListener() {
         Button backButton = findViewById(R.id.backTwo);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +104,7 @@ public class MineSweepActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 gameengine = GameEngine.getInstance();
-                switchToGame("start");
+                switchToGame();
             }
         });
     }
@@ -147,6 +149,9 @@ public class MineSweepActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sign out user.
+     */
     private void signout() {
         Intent tmp = new Intent(this, LoginActivity.class);
         startActivity(tmp);
@@ -158,20 +163,15 @@ public class MineSweepActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadFromFile(TEMP_SAVE_FILENAME);
+        loadFromFile();
     }
 
     /**
      * Switch to the GameActivity view to play the game.
      */
-    private void switchToGame(String s) {
-        if (s == "start") {
-            Button button = (Button) findViewById(R.id.StartButton);
-            startAnimation(button);
-        } else {
-            Button button = (Button) findViewById(R.id.StartButton);
-            startAnimation(button);
-        }
+    private void switchToGame() {
+        Button button = (Button) findViewById(R.id.StartButton);
+        startAnimation(button);
     }
 
     /**
@@ -197,7 +197,7 @@ public class MineSweepActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1,MainActivity.class);
+                Intent tmp = new Intent(tmp1, MainActivity.class);
                 saveToFile(MineSweepActivity.TEMP_SAVE_FILENAME);
                 startActivity(tmp);
             }
@@ -213,6 +213,7 @@ public class MineSweepActivity extends AppCompatActivity {
         saveToFile(MineSweepActivity.TEMP_SAVE_FILENAME);
         startActivity(tmp);
     }
+
     /**
      * Switch to Scoreboard interface.
      */
@@ -223,13 +224,11 @@ public class MineSweepActivity extends AppCompatActivity {
 
     /**
      * Load the board manager from fileName.
-     *
-     * @param fileName the name of the file
      */
-    private void loadFromFile(String fileName) {
+    private void loadFromFile() {
 
         try {
-            InputStream inputStream = this.openFileInput(fileName);
+            InputStream inputStream = this.openFileInput(TEMP_SAVE_FILENAME);
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
                 gameengine = (GameEngine) input.readObject();
@@ -253,12 +252,6 @@ public class MineSweepActivity extends AppCompatActivity {
 
 
     /**
-     * Display undo setting configuration: maximum undo steps selected by user.
-     */
-
-    /**
-     * Button for go back to game choosing selection layout.
-    /**
      * Save the board manager to fileName.
      *
      * @param fileName the name of the file
@@ -274,6 +267,9 @@ public class MineSweepActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Identify user.
+     */
     private void serializeUserManager() {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(

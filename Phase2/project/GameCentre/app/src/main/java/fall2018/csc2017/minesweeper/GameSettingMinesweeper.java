@@ -10,12 +10,16 @@ import android.widget.Toast;
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.StartingActivity;
 
+/**
+ * Setting of game minesweeper.
+ */
 public class GameSettingMinesweeper extends AppCompatActivity {
 
     /**
      * Mode selected/
      */
     private String mode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
