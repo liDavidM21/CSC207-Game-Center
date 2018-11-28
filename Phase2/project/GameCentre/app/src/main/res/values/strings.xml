@@ -16,4 +16,5 @@
     </string>
     <string name="Score">Hi</string>
     <string name="title_activity_signup">Sign in</string>
+    <string name="title_activity_welcome_activity">Welcome_activity</string>
 </resources>

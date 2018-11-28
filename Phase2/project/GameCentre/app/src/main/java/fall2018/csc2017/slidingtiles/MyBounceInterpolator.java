@@ -5,11 +5,11 @@ package fall2018.csc2017.slidingtiles;
  * https://evgenii.com/blog/spring-button-animation-on-android/
  * It is used to create the bouncing animation when we click on the button!
  */
-class MyBounceInterpolator implements android.view.animation.Interpolator {
+public class MyBounceInterpolator implements android.view.animation.Interpolator {
     private double mAmplitude;
     private double mFrequency;
 
-    MyBounceInterpolator(double amplitude, double frequency) {
+    public MyBounceInterpolator(double amplitude, double frequency) {
         mAmplitude = amplitude;
         mFrequency = frequency;
     }

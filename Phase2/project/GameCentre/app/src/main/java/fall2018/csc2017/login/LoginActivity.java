@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -27,6 +27,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
+import fall2018.csc2017.login.welcomeActivity;
+import fall2018.csc2017.slidingtiles.Game_choose;
+import fall2018.csc2017.slidingtiles.User;
+import fall2018.csc2017.slidingtiles.UserManager;
 
 /**
  * A login screen that offers login via email/password.
@@ -41,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
     private UserManager current_manager = UserManager.get_instance();
+    private boolean newuser;
     ConstraintLayout myLayout;
     AnimationDrawable animationDrawable;
 
@@ -96,8 +101,14 @@ public class LoginActivity extends AppCompatActivity {
      * switch to game menu
      */
     private void game_menu() {
-        Intent tmp = new Intent(this, Game_choose.class);
-        startActivity(tmp);
+        if (newuser) {
+            Intent tmp = new Intent(this, welcomeActivity.class);
+            startActivity(tmp);
+        }
+        else{
+            Intent tmp = new Intent(this, Game_choose.class);
+            startActivity(tmp);
+        }
     }
 
     private void attemptSignUp() {
@@ -157,6 +168,7 @@ public class LoginActivity extends AppCompatActivity {
             User new_user = new User(email, password);
             current_manager.add(new_user);
             current_manager.setLoginUser(new_user);
+            newuser = true;
             serializeUserManager();
             showProgress(true);
             game_menu();
@@ -186,6 +198,7 @@ public class LoginActivity extends AppCompatActivity {
      * errors are presented and no actual login attempt is made.
      */
     private boolean attemptLogin() {
+        newuser = false;
         deserialize();
         // Reset errors.
         mEmailView.setError(null);
@@ -223,7 +236,7 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             for (User T : current_manager) {
-                if (T.user_email.equals(email)) {
+                if (T.getUser_email().equals(email)) {
                     UserManager.setLoginUser(T);
                 }
             }
@@ -241,8 +254,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean correct_password(String email, String password) {
         for (User T : current_manager) {
-            if (T.user_email.equals(email)) {
-                if (T.password.equals(password)) {
+            if (T.getUser_email().equals(email)) {
+                if (T.getPassword().equals(password)) {
                     return true;
                 }
             }
@@ -258,7 +271,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isEmailRegistered(String email) {
         for (User T : current_manager) {
-            if (T.user_email.equals(email)) {
+            if (T.getUser_email().equals(email)) {
                 return true;
             }
         }
