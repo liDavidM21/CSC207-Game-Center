@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fall2018.csc2017.R;
+import fall2018.csc2017.login.LoginActivity;
+
 /*
 https://www.youtube.com/watch?v=h_hTuaEpc-8
  */

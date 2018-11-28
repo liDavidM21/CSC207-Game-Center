@@ -39,6 +39,8 @@ public class User implements Serializable, Comparable<User> {
      */
     public String getUser_email(){return user_email;}
 
+    public String getPassword(){return password;}
+
     private List<Score> score_2048;
     private List<Score> score_Sliding_Tiles;
     private List<Score> score_mine_sweeper;

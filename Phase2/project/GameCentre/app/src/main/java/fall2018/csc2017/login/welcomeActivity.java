@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import fall2018.csc2017.R;
+import fall2018.csc2017.slidingtiles.Game_choose;
+import fall2018.csc2017.slidingtiles.MyBounceInterpolator;
 
 /*
 https://www.youtube.com/watch?v=pznCs--BtJA

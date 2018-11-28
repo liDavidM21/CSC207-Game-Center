@@ -26,6 +26,7 @@ import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
 import fall2018.csc2017.Scoreboard.scoreboard;
+import fall2018.csc2017.login.LoginActivity;
 
 /**
  * The initial activity for the sliding puzzle tile game.

@@ -11,15 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Game_choose;
-import fall2018.csc2017.slidingtiles.LoginActivity;
+import fall2018.csc2017.login.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.slidingtiles.UserManager;
 
