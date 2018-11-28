@@ -109,7 +109,7 @@ public class StartingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                         loadFromFile(AUTO_SAVE_FILENAME);
-                        switchToGame("resume");
+                        switchToGame("Resume");
                         makeToastLoadedText("Resuming game");
                 }
                 })
