@@ -282,7 +282,6 @@ public class StartingActivity extends AppCompatActivity {
             if (inputStream != null) {
                 ObjectInputStream input = new ObjectInputStream(inputStream);
                 boardManager = (BoardManager) input.readObject();
-                System.out.println(boardManager.getBoard().tiles.length);
                 Board.setNumCols(boardManager.getBoard().tiles.length);
 
                 Board.setNumRows(boardManager.getBoard().tiles.length);
