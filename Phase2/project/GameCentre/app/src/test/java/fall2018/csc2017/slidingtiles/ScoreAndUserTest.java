@@ -19,25 +19,28 @@ public class ScoreAndUserTest {
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     /**
-     * Test user1.
+     * Make a test user1.
      */
     private User user1 = new User("csc207@utoronto.ca", "123456");
 
     /**
-     * Empty user.
+     * Make an empty user.
      */
     private User empty_user = new User("csc207@utoronto.ca.test", "111111");
 
     /**
-     * Test score.
+     * Make a test score.
      */
     private Score testScore = new Score(11500,  3, timestamp);
 
     /**
-     * Usermanager
+     * Make a user manager.
      */
     private UserManager userManager = new UserManager();
 
+    /**
+     * Test whether can get the information correctly.
+     */
     @Test
     public void testGetInfo(){
         user1.switch_game("Sliding Tiles");
@@ -46,6 +49,9 @@ public class ScoreAndUserTest {
         assertEquals(0, user1.getTopScore().size());
     }
 
+    /**
+     * Test whether scores can be calculated correctly.
+     */
     @Test
     public void testCalculateScore(){
         user1.switch_game("Sliding Tiles");
@@ -57,6 +63,10 @@ public class ScoreAndUserTest {
         assertNull(empty_user.returnBestScore());
         assertEquals(1, user1.compareTo(empty_user));
     }
+
+    /**
+     * Test whether addScore works.
+     */
     @Test
     public void testAddScore(){
         user1.switch_game("Sliding Tiles");
@@ -65,6 +75,9 @@ public class ScoreAndUserTest {
         assertEquals(1, user1.returnBestScore().compareTo(testScore));
     }
 
+    /**
+     * Test whether switch_game works.
+     */
     @Test
     public void testSwitchGame(){
         user1.switch_game("Sliding Tiles");
@@ -76,6 +89,9 @@ public class ScoreAndUserTest {
         assertEquals(0, user1.getTopScore().size());
     }
 
+    /**
+     * Test whether can add user correctly.
+     */
     @Test
     public void testAddUser(){
         UserManager.set_instance(userManager);
