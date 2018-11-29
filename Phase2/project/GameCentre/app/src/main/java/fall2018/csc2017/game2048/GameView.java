@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridLayout;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -344,17 +345,18 @@ public class GameView extends GridLayout {
 
     /**
      * To Do when game over.
-     */
-    public void ifOver(){
-        UserManager.getLoginUser().add_score(new Score(MainActivityTwo.getScore()));
-        new AlertDialog.Builder(getContext()).setTitle("Sorry, game is over!").
-                setMessage("Your score is "+ MainActivityTwo.getScore()).
-                setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startGame();
-                    }
-                }).show();
+        */
+    public void ifOver() {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());UserManager.getLoginUser().addScore(new Score(MainActivityTwo.getScore(), timestamp));
+            new AlertDialog.Builder(getContext()).setTitle("Sorry, game is over!").
+                    setMessage("Your score is "+ MainActivityTwo.getScore()).
+                    setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    startGame();
+                }
+            }).show();
+
     }
 
     /**
@@ -374,7 +376,7 @@ public class GameView extends GridLayout {
                 hasTouched = true;
             }
 
-            MainActivityTwo.getMainActivity().saveToFile("2048auto" + UserManager.getLoginUser().getUser_email() + ".ser");
+            MainActivityTwo.getMainActivity().saveToFile("2048auto" + UserManager.getLoginUser().getUserEmail() + ".ser");
 
             for (int y = 0; y < 4; ++y) {
                 for (int x = 0; x < 4; ++x) {

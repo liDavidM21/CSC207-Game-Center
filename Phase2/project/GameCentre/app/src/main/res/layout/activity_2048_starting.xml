@@ -67,6 +67,7 @@
         android:layout_toStartOf="@+id/scoreboardButton"
         android:background="@drawable/buttonstyle"
         android:text="Back"
+        android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/background_1"
         app:layout_constraintEnd_toStartOf="@+id/background_1"
         app:layout_constraintHorizontal_bias="0.276"
