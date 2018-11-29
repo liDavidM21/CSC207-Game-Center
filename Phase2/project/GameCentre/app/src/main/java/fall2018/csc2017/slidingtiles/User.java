@@ -81,7 +81,7 @@ public class User implements Serializable, Comparable<User> {
         } else {
             Score best_score = topScore.get(0);
             for (Score s : topScore) {
-                if (s.finalScore > best_score.finalScore) {
+                if (s.getFinalScore() > best_score.getFinalScore()) {
                     best_score = s;
                 }
             }
@@ -106,7 +106,7 @@ public class User implements Serializable, Comparable<User> {
         for (int i = 1; i < n; ++i) {
             Score key = topScore.get(i);
             int j = i - 1;
-            while (j >= 0 && topScore.get(j).finalScore < key.finalScore) {
+            while (j >= 0 && topScore.get(j).getFinalScore() < key.getFinalScore()) {
                 topScore.set(j + 1, topScore.get(j));
                 j = j - 1;
             }

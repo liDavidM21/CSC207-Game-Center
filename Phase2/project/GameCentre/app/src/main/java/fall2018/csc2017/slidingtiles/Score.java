@@ -3,6 +3,7 @@ package fall2018.csc2017.slidingtiles;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * Score class that represents the score of player.
@@ -12,7 +13,7 @@ public class Score implements Comparable<Score>, Serializable {
     /**
      * Final score of this game.
      */
-    public int finalScore;
+    private int finalScore;
     /**
      * Number of moves to complete the game
      */
@@ -21,23 +22,50 @@ public class Score implements Comparable<Score>, Serializable {
      * Time it takes to complete the game.
      */
     private int time;
+    /**
+     * Complexity of the game.
+     */
     private int complexity;
+    /**
+     * Real time when you get the score.
+     */
+    private Timestamp timeStamp;
+
+    /**
+     * Get the final score.
+     * @return final score.
+     */
+    public int getFinalScore() {
+        return finalScore;
+    }
+
+    /**
+     * Get the timeStamp of the score.
+     * @return timeStamp of the score.
+     */
+    public Timestamp getTimeStamp() {
+        return timeStamp;
+    }
 
     /**
      * Record the score of the player
      *
      * @param numberOfMove number of move
      * @param time game time.
+     * @param complexity the complexity of the game
+     * @param timeStamp the real time of the score when you get
      */
-    public Score(int numberOfMove, int time, int complexity) {
+    public Score(int numberOfMove, int time, int complexity, Timestamp timeStamp) {
         this.numberOfMove = numberOfMove;
         this.time = time;
         this.complexity = complexity;
+        this.timeStamp = timeStamp;
         calculateFinalScore();
     }
 
-    public Score(int final_score){
-        this.finalScore = final_score;
+    public Score(int finalScore, Timestamp timeStamp) {
+        this.finalScore = finalScore;
+        this.timeStamp = timeStamp;
     }
 
     /**
@@ -52,9 +80,9 @@ public class Score implements Comparable<Score>, Serializable {
 
     @Override
     public int compareTo(@NonNull Score score) {
-        if (this.finalScore < score.finalScore) {
+        if (this.getFinalScore() < score.getFinalScore()) {
             return -1;
-        } else if (this.finalScore > score.finalScore) {
+        } else if (this.getFinalScore() > score.getFinalScore()) {
             return 1;
         } else {
             return 0;
