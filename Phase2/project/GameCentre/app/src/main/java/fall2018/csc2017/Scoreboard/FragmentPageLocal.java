@@ -22,11 +22,14 @@ import fall2018.csc2017.slidingtiles.UserManager;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FragmentPageLocal extends Fragment {
 
     UserManager current_manager = UserManager.get_instance();
     static String text;
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
     @Nullable
     @Override
@@ -66,8 +69,7 @@ public class FragmentPageLocal extends Fragment {
             Timestamp ts = current_user.getTopScore().get(pageNumber - 1).getTimeStamp();
             score.setText("Score: " + Integer.toString(current_user.getTopScore()
                     .get(pageNumber - 1).getFinalScore()) + "\n" + "(Played at " + "\n"
-                    + ts.getYear() + "-" + ts.getMonth() + "-" + ts.getDate() + " " + ts.getHours()
-                    + ":" + ts.getMinutes() + ")");
+                    + sdf.format(ts) + ")");
         }
 
         return view;

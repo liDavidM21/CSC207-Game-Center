@@ -2,16 +2,18 @@ package fall2018.csc2017.slidingtiles;
 
 import org.junit.Test;
 
+import java.sql.Timestamp;
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
 public class ScoreAndUserTest {
 
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
     private User user1 = new User("csc207@utoronto.ca", "123456");
     private User empty_user = new User("csc207@utoronto.ca.test", "111111");
 
-    private Score testScore = new Score(100, 100, 4);
+    private Score testScore = new Score(100, 100, 4, timestamp);
 
     private UserManager userManager = new UserManager();
 
@@ -25,17 +27,17 @@ public class ScoreAndUserTest {
     @Test
     public void testCalculateScore(){
         user1.addScore(testScore);
-        assertEquals(1, user1.returnBestScore().compareTo(new Score(10000)));
-        assertEquals(-1, user1.returnBestScore().compareTo(new Score(12000)));
-        assertEquals(0, user1.returnBestScore().compareTo(new Score(11500)));
+        assertEquals(1, user1.returnBestScore().compareTo(new Score(10000, timestamp)));
+        assertEquals(-1, user1.returnBestScore().compareTo(new Score(12000, timestamp)));
+        assertEquals(0, user1.returnBestScore().compareTo(new Score(11500, timestamp)));
         assertNull(empty_user.returnBestScore());
         assertEquals(1, user1.compareTo(empty_user));
     }
     @Test
     public void testAddScore(){
         user1.addScore(testScore);
-        user1.addScore(new Score(10000, 10000, 0));
-        user1.addScore(new Score(1));
+        user1.addScore(new Score(10000, 10000, 0, timestamp));
+        user1.addScore(new Score(1, timestamp));
         assertEquals(0, user1.returnBestScore().compareTo(testScore));
     }
 
