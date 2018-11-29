@@ -25,6 +25,8 @@ public class BoardAndTileTest {
      * @return a set of tiles that are in order
      */
     private List<Tile> makeTiles() {
+        Board.setNumCols(5);
+        Board.setNumRows(5);
         List<Tile> tiles = new ArrayList<>();
         final int numTiles = Board.NUM_ROWS * Board.NUM_COLS;
         for (int tileNum = 0; tileNum != numTiles; tileNum++) {
@@ -82,11 +84,11 @@ public class BoardAndTileTest {
     @Test
     public void testSwapLastTwo() {
         setUpCorrect();
-        assertEquals(15, boardManager.getBoard().getTile(3, 2).getId());
-        assertEquals(16, boardManager.getBoard().getTile(3, 3).getId());
+        assertEquals(18, boardManager.getBoard().getTile(3, 2).getId());
+        assertEquals(19, boardManager.getBoard().getTile(3, 3).getId());
         boardManager.getBoard().swapTiles(3, 3, 3, 2);
-        assertEquals(16, boardManager.getBoard().getTile(3, 2).getId());
-        assertEquals(15, boardManager.getBoard().getTile(3, 3).getId());
+        assertEquals(19, boardManager.getBoard().getTile(3, 2).getId());
+        assertEquals(18, boardManager.getBoard().getTile(3, 3).getId());
     }
 
     /**
@@ -95,8 +97,8 @@ public class BoardAndTileTest {
     @Test
     public void testIsValidTap() {
         setUpCorrect();
-        assertEquals(true, boardManager.isValidTap(11));
-        assertEquals(true, boardManager.isValidTap(14));
+        assertEquals(true, boardManager.isValidTap(19));
+        assertEquals(true, boardManager.isValidTap(23));
         assertEquals(false, boardManager.isValidTap(10));
     }
 
@@ -106,11 +108,11 @@ public class BoardAndTileTest {
     @Test
     public void testTouchMove(){
         setUpCorrect();
-        boardManager.touchMove(14);
+        boardManager.touchMove(24);
         assertTrue(boardManager.puzzleSolved());
-        boardManager.getBoard().swapTiles(3, 3, 3, 2);
+        boardManager.getBoard().swapTiles(4, 4, 4, 3);
         assertFalse(boardManager.puzzleSolved());
-        boardManager.touchMove(15);
+        boardManager.touchMove(24);
         assertTrue(boardManager.puzzleSolved());
     }
 
@@ -133,7 +135,5 @@ public class BoardAndTileTest {
         setUpCorrect();
         Iterator boardIterator = boardManager.getBoard().iterator();
         assertTrue(boardIterator.hasNext());
-    }
-
-}
+    }}
 
