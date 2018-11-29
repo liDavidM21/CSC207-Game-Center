@@ -233,7 +233,15 @@ public class GameEngine implements Serializable {
             is_over = true;
             Toast.makeText(context,"Game won", Toast.LENGTH_SHORT).show();
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            UserManager.getLoginUser().addScore(new Score(10000-time + 100*getBombNumber(), timestamp));
+            int complexity;
+            if(getBombNumber() == 8){
+                complexity = 3;
+            }else if (getBombNumber() == 14){
+                complexity = 4;
+            }else {
+                complexity = 5;
+            }
+            UserManager.getLoginUser().addScore(new Score(10000-50*time, complexity, timestamp));
             time = 0;
         }
     }

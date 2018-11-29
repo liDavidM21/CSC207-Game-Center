@@ -15,14 +15,6 @@ public class Score implements Comparable<Score>, Serializable {
      */
     private int finalScore;
     /**
-     * Number of moves to complete the game
-     */
-    private int numberOfMove;
-    /**
-     * Time it takes to complete the game.
-     */
-    private int time;
-    /**
      * Complexity of the game.
      */
     private int complexity;
@@ -30,6 +22,14 @@ public class Score implements Comparable<Score>, Serializable {
      * Real time when you get the score.
      */
     private Timestamp timeStamp;
+
+    /**
+     * Get the complexity.
+     * @return complexity of the game.
+     */
+    public int getComplexity() {
+        return complexity;
+    }
 
     /**
      * Get the final score.
@@ -47,35 +47,16 @@ public class Score implements Comparable<Score>, Serializable {
         return timeStamp;
     }
 
-    /**
-     * Record the score of the player
-     *
-     * @param numberOfMove number of move
-     * @param time game time.
-     * @param complexity the complexity of the game
-     * @param timeStamp the real time of the score when you get
-     */
-    public Score(int numberOfMove, int time, int complexity, Timestamp timeStamp) {
-        this.numberOfMove = numberOfMove;
-        this.time = time;
-        this.complexity = complexity;
+
+    public Score(int original_score, int complexity, Timestamp timeStamp){
         this.timeStamp = timeStamp;
-        calculateFinalScore();
+        this.complexity = complexity;
+        this.finalScore = original_score + 5000*(complexity-3);
     }
 
     public Score(int finalScore, Timestamp timeStamp) {
         this.finalScore = finalScore;
         this.timeStamp = timeStamp;
-    }
-
-    /**
-     * Calculate the final score base on the number of moves and time.
-     */
-    private void calculateFinalScore() {
-        finalScore = 10000 - 5 * time - 30 * numberOfMove + 5000 * (complexity - 3);
-        if (finalScore < 0) {
-            finalScore = 0;
-        }
     }
 
     @Override

@@ -31,7 +31,7 @@ public class FragmentPage extends Fragment {
     List<User> users = new ArrayList<>();
     UserManager current_manager = UserManager.get_instance();
     static String text;
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     @Nullable
     @Override
@@ -69,9 +69,19 @@ public class FragmentPage extends Fragment {
         } else {
             email.setText(rank + "   Username: " + " \n" + users.get(pageNumber - 1).getUserEmail());
             Timestamp ts = users.get(pageNumber - 1).returnBestScore().getTimeStamp();
+            String gameComplexity;
+            if (users.get(pageNumber - 1).returnBestScore().getComplexity() == 3){
+                gameComplexity = "Easy Mode";
+            } else if (users.get(pageNumber - 1).returnBestScore().getComplexity() == 4){
+                gameComplexity = "Medium Mode";
+            } else if (users.get(pageNumber - 1).returnBestScore().getComplexity() == 0){
+                gameComplexity = "";
+            } else {
+                gameComplexity = "Hard Mode";
+            }
             score.setText("Score: " + Integer.toString(users.get(pageNumber - 1).
-                    returnBestScore().getFinalScore()) + "\n" + "(Played at " + "\n" +
-                    sdf.format(ts) + ")");
+                    returnBestScore().getFinalScore()) + "\n" + gameComplexity + "\n" +
+                    "(Played at " + "\n" + sdf.format(ts) + ")");
         }
 
         return view;

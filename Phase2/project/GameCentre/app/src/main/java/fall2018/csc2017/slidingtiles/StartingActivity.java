@@ -95,7 +95,7 @@ public class StartingActivity extends AppCompatActivity {
     private void createResumeTipDialog() {
         new AlertDialog.Builder(StartingActivity.this)
                 .setMessage("Choose the game mode you want")
-                .setTitle("Reminder")
+                .setTitle("Option")
                 .setIcon(R.drawable.tip)
                 .setPositiveButton("Load", new DialogInterface.OnClickListener() {
                     @Override
