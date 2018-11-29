@@ -25,8 +25,8 @@ import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Game_choose;
-import fall2018.csc2017.slidingtiles.User;
-import fall2018.csc2017.slidingtiles.UserManager;
+import fall2018.csc2017.UserAndScore.User;
+import fall2018.csc2017.UserAndScore.UserManager;
 
 /**
  * A login screen that offers login via email/password.

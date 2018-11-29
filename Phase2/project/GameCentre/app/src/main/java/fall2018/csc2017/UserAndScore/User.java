@@ -1,4 +1,4 @@
-package fall2018.csc2017.slidingtiles;
+package fall2018.csc2017.UserAndScore;
 
 import android.support.annotation.NonNull;
 
@@ -121,5 +121,6 @@ public class User implements Serializable, Comparable<User> {
         } else if (game.equals("Mine Sweeper")){
             topScore = scoreMineSweeper;
         }
+        System.out.println(topScore);
     }
 }

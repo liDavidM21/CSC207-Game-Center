@@ -18,7 +18,7 @@ import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.login.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
-import fall2018.csc2017.slidingtiles.UserManager;
+import fall2018.csc2017.UserAndScore.UserManager;
 
 /**
  * The initial activity for the game2048.

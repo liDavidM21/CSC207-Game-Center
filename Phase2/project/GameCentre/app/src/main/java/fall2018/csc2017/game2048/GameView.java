@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fall2018.csc2017.slidingtiles.Score;
-import fall2018.csc2017.slidingtiles.UserManager;
+import fall2018.csc2017.UserAndScore.Score;
+import fall2018.csc2017.UserAndScore.UserManager;
 
 /**
  * A class to implement the layout.
