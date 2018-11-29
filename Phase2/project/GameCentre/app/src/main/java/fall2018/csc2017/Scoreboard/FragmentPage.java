@@ -18,15 +18,20 @@ import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.User;
 import fall2018.csc2017.slidingtiles.UserManager;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class FragmentPage extends Fragment {
 
     List<User> users = new ArrayList<>();
     UserManager current_manager = UserManager.get_instance();
     static String text;
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
     @Nullable
     @Override
@@ -63,8 +68,10 @@ public class FragmentPage extends Fragment {
             score.setText("");
         } else {
             email.setText(rank + "   Username: " + " \n" + users.get(pageNumber - 1).getUserEmail());
+            Timestamp ts = users.get(pageNumber - 1).returnBestScore().getTimeStamp();
             score.setText("Score: " + Integer.toString(users.get(pageNumber - 1).
-                    returnBestScore().finalScore));
+                    returnBestScore().getFinalScore()) + "\n" + "(Played at " + "\n" +
+                    sdf.format(ts) + ")");
         }
 
         return view;

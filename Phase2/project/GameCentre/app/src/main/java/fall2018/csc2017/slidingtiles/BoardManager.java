@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import fall2018.csc2017.R;
+import java.sql.Timestamp;
+
 
 /**
  * Manage a board, including swapping tiles, checking for a win, and managing taps.
@@ -112,7 +114,8 @@ class BoardManager implements Serializable {
         }
         if (solved) {
             if(UserManager.getLoginUser() != null) {
-                UserManager.getLoginUser().addScore(new Score(move, getTime(), Board.NUM_COLS));
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                UserManager.getLoginUser().addScore(new Score(move, getTime(), Board.NUM_COLS, timestamp));
             }
             move = 0;
             setTime(0);

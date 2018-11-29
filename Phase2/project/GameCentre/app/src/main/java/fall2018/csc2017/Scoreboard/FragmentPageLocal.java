@@ -19,6 +19,8 @@ import fall2018.csc2017.slidingtiles.Score;
 import fall2018.csc2017.slidingtiles.User;
 import fall2018.csc2017.slidingtiles.UserManager;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class FragmentPageLocal extends Fragment {
@@ -61,8 +63,11 @@ public class FragmentPageLocal extends Fragment {
             score.setText("");
         } else {
             email.setText(rank + "   Username: " + "\n" + current_user.getUserEmail());
+            Timestamp ts = current_user.getTopScore().get(pageNumber - 1).getTimeStamp();
             score.setText("Score: " + Integer.toString(current_user.getTopScore()
-                    .get(pageNumber - 1).finalScore));
+                    .get(pageNumber - 1).getFinalScore()) + "\n" + "(Played at " + "\n"
+                    + ts.getYear() + "-" + ts.getMonth() + "-" + ts.getDate() + " " + ts.getHours()
+                    + ":" + ts.getMinutes() + ")");
         }
 
         return view;

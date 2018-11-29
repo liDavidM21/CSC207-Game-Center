@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridLayout;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -337,7 +338,8 @@ public class GameView extends GridLayout {
         }
         //Game is over.
         if (isOver) {
-            UserManager.getLoginUser().addScore(new Score(MainActivityTwo.getScore()));
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            UserManager.getLoginUser().addScore(new Score(MainActivityTwo.getScore(), timestamp));
             new AlertDialog.Builder(getContext()).setTitle("Sorry, game is over!").
                     setMessage("Your score is "+ MainActivityTwo.getScore()).
                     setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
