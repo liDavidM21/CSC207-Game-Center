@@ -139,7 +139,6 @@ public class GameEngine implements Serializable {
 
         // create the grid and store it
         int[][] GeneratedGrid = Generator.generate(BOMB_NUMBER,WIDTH, HEIGHT);
-        PrintGrid.print(GeneratedGrid,WIDTH,HEIGHT);
         MinesweeperGrid = new Cell[getWIDTH()][getHEIGHT()];
         setGrid(context,GeneratedGrid);
     }
