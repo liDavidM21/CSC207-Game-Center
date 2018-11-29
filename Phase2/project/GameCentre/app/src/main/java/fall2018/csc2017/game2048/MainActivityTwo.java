@@ -23,7 +23,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
-import fall2018.csc2017.slidingtiles.UserManager;
+import fall2018.csc2017.UserAndScore.UserManager;
 
 /**
  * A class to implement the game 2048.

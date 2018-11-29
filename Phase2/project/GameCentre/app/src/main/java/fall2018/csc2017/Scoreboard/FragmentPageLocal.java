@@ -15,15 +15,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.Game_choose;
-import fall2018.csc2017.slidingtiles.Score;
-import fall2018.csc2017.slidingtiles.User;
-import fall2018.csc2017.slidingtiles.UserManager;
+import fall2018.csc2017.UserAndScore.Score;
+import fall2018.csc2017.UserAndScore.User;
+import fall2018.csc2017.UserAndScore.UserManager;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class FragmentPageLocal extends Fragment {
 

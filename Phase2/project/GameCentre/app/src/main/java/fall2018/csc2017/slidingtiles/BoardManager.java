@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import fall2018.csc2017.R;
+import fall2018.csc2017.UserAndScore.Score;
+import fall2018.csc2017.UserAndScore.UserManager;
+
 import java.sql.Timestamp;
 
 

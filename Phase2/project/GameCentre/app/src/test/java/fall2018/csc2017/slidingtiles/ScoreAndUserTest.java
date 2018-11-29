@@ -5,6 +5,10 @@ import org.junit.Test;
 import java.sql.Timestamp;
 import java.util.Iterator;
 
+import fall2018.csc2017.UserAndScore.Score;
+import fall2018.csc2017.UserAndScore.User;
+import fall2018.csc2017.UserAndScore.UserManager;
+
 import static org.junit.Assert.*;
 
 public class ScoreAndUserTest {
@@ -20,7 +24,7 @@ public class ScoreAndUserTest {
     @Test
     public void testGetInfo(){
         assertEquals("csc207@utoronto.ca", user1.getUserEmail());
-        assertEquals("123456", user1.password);
+        assertEquals("123456", user1.getPassword());
         assertEquals(0, user1.getTopScore().size());
     }
 

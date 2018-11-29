@@ -8,8 +8,8 @@ import android.widget.Toast;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import fall2018.csc2017.slidingtiles.Score;
-import fall2018.csc2017.slidingtiles.UserManager;
+import fall2018.csc2017.UserAndScore.Score;
+import fall2018.csc2017.UserAndScore.UserManager;
 
 
 /**
