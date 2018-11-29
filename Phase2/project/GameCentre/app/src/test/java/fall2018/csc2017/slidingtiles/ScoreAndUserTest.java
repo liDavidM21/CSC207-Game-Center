@@ -9,13 +9,29 @@ import static org.junit.Assert.*;
 
 public class ScoreAndUserTest {
 
+    /**
+     * Current time.
+     */
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+    /**
+     * Test user1.
+     */
     private User user1 = new User("csc207@utoronto.ca", "123456");
 
+    /**
+     * Empty user.
+     */
     private User empty_user = new User("csc207@utoronto.ca.test", "111111");
 
+    /**
+     * Test score.
+     */
     private Score testScore = new Score(11500,  3, timestamp);
 
+    /**
+     * Usermanager
+     */
     private UserManager userManager = new UserManager();
 
     @Test
