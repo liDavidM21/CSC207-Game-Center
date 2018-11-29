@@ -12,49 +12,49 @@ public class Score implements Comparable<Score>, Serializable {
     /**
      * Final score of this game.
      */
-    public int final_score;
+    public int finalScore;
     /**
      * Number of moves to complete the game
      */
-    private int number_of_move;
+    private int numberOfMove;
     /**
      * Time it takes to complete the game.
      */
     private int time;
-    private int complexcity;
+    private int complexity;
 
     /**
      * Record the score of the player
      *
-     * @param number_of_move
-     * @param time
+     * @param numberOfMove number of move
+     * @param time game time.
      */
-    public Score(int number_of_move, int time, int complexcity) {
-        this.number_of_move = number_of_move;
+    public Score(int numberOfMove, int time, int complexity) {
+        this.numberOfMove = numberOfMove;
         this.time = time;
-        this.complexcity = complexcity;
-        calculate_final_score();
+        this.complexity = complexity;
+        calculateFinalScore();
     }
 
     public Score(int final_score){
-        this.final_score = final_score;
+        this.finalScore = final_score;
     }
 
     /**
      * Calculate the final score base on the number of moves and time.
      */
-    private void calculate_final_score() {
-        final_score = 10000 - 5 * time - 30 * number_of_move + 5000*(complexcity-3);
-        if (final_score < 0) {
-            final_score = 0;
+    private void calculateFinalScore() {
+        finalScore = 10000 - 5 * time - 30 * numberOfMove + 5000 * (complexity - 3);
+        if (finalScore < 0) {
+            finalScore = 0;
         }
     }
 
     @Override
     public int compareTo(@NonNull Score score) {
-        if (this.final_score < score.final_score) {
+        if (this.finalScore < score.finalScore) {
             return -1;
-        } else if (this.final_score > score.final_score) {
+        } else if (this.finalScore > score.finalScore) {
             return 1;
         } else {
             return 0;

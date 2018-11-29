@@ -23,7 +23,23 @@ class BoardManager implements Serializable {
     /**
      * Playing time.
      */
-    public int time;
+    private int time;
+
+    /**
+     * Get the time of the game.
+     * @return time of the game.
+     */
+    public int getTime() {
+        return time;
+    }
+
+    /**
+     * Set the time of the game.
+     * @param time the time of the game.
+     */
+    public void setTime(int time) {
+        this.time = time;
+    }
 
     /**
      * Whether the player can undo.
@@ -96,10 +112,10 @@ class BoardManager implements Serializable {
         }
         if (solved) {
             if(UserManager.getLoginUser() != null) {
-                UserManager.getLoginUser().add_score(new Score(move, time, Board.NUM_COLS));
+                UserManager.getLoginUser().addScore(new Score(move, getTime(), Board.NUM_COLS));
             }
             move = 0;
-            time = 0;
+            setTime(0);
             canUndo = false;
         }
         return solved;

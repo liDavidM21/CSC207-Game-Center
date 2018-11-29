@@ -22,6 +22,7 @@
 # Communicate Tool
 
 * WeChat
+*
 * Group meetings
 
 # Team contract
@@ -34,4 +35,7 @@
 # Type name as a signature: Yuxin Yang, Lantao Cui, Jinda Huang, Yujie Wu, Wenshuo Li
 
 # Work Distribution
-All the members chat with each other on every group meeting
+We separate the work into several parts, each person does one of it, for example, Yuxin Yang does
+the sliding tiles solvable and autosave part, Lantao Cui does the UI part, Jinda Huang does
+the undo part, Yujie Wu does the Unit test part, Wenshuo Li does the scoreboard part, and everyone
+participates in the design (game, interface, etc.) part.

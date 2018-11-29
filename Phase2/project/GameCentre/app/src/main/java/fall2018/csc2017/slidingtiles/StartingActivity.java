@@ -36,7 +36,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static final String SAVE_FILENAME = "save_file_st" + UserManager.getLoginUser().getUser_email() + ".ser";
+    public static final String SAVE_FILENAME = "save_file_st" + UserManager.getLoginUser().getUserEmail() + ".ser";
     /**
      * A temporary save file.
      */
@@ -44,7 +44,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * A auto save file.
      */
-    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto"  + UserManager.getLoginUser().getUser_email() + ".ser";
+    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto"  + UserManager.getLoginUser().getUserEmail() + ".ser";
     /**
      * The board manager.
      */

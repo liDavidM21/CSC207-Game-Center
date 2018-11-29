@@ -12,7 +12,7 @@ public class UserManager implements Serializable, Iterable<User> {
     /**
      * The single instance of UserManager.
      */
-    private static UserManager single_instance = null;
+    private static UserManager singleInstance = null;
     /**
      * Current Login user.
      */
@@ -21,13 +21,13 @@ public class UserManager implements Serializable, Iterable<User> {
     /**
      * Make sure only one UserManager exists.
      *
-     * @return: null if no UserManager exists, or the current UserManager instance if there is one.
+     * @return null if no UserManager exists, or the current UserManager instance if there is one.
      */
     public static UserManager get_instance() {
-        if (single_instance == null) {
-            single_instance = new UserManager();
+        if (singleInstance == null) {
+            singleInstance = new UserManager();
         }
-        return single_instance;
+        return singleInstance;
     }
 
     /**
@@ -36,7 +36,7 @@ public class UserManager implements Serializable, Iterable<User> {
      * @param um: the instance to set.
      */
     public static void set_instance(UserManager um) {
-        UserManager.single_instance = um;
+        UserManager.singleInstance = um;
     }
 
     /**
@@ -45,7 +45,7 @@ public class UserManager implements Serializable, Iterable<User> {
      * @return: all the user registered.
      */
     public static List<User> getUser() {
-        return UserManager.get_instance().current_user;
+        return UserManager.get_instance().currentUser;
     }
 
     /**
@@ -69,35 +69,35 @@ public class UserManager implements Serializable, Iterable<User> {
     /**
      * List of all registered users.
      */
-    private List<User> current_user = new ArrayList<>();
+    private List<User> currentUser = new ArrayList<>();
 
     public Iterator<User> iterator() {
         return new UserIterator();
     }
 
     private class UserIterator implements Iterator<User> {
-        private int cur_index = 0;
+        private int curIndex = 0;
 
         @Override
         public boolean hasNext() {
-            return cur_index < current_user.size();
+            return curIndex < currentUser.size();
         }
 
         @Override
         public User next() {
 
-            User result = current_user.get(cur_index);
-            cur_index++;
+            User result = currentUser.get(curIndex);
+            curIndex++;
             return result;
         }
     }
 
     public void add(User new_user) {
-        current_user.add(new_user);
+        currentUser.add(new_user);
     }
 
     public void switch_game(String game){
-        for(User u: current_user){
+        for(User u: currentUser){
             u.switch_game(game);
         }
     }

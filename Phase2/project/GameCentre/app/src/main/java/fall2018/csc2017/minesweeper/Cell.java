@@ -52,9 +52,6 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
 
         if (!GameEngine.isLost())
         GameEngine.getInstance().click( getXPos(), getYPos() );
-        else{
-
-        }
     }
 
     /**

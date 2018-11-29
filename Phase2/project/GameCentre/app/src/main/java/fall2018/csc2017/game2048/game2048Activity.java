@@ -45,7 +45,7 @@ public class game2048Activity extends AppCompatActivity {
     /**
      * The string of the current game.
      */
-    String current_game = "2048";
+    String currentGame = "2048";
 
     /**
      * The current manager.
@@ -55,7 +55,7 @@ public class game2048Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
-        current_manager.switch_game(current_game);
+        current_manager.switch_game(currentGame);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2048_starting);
         addStartButtonListener();
