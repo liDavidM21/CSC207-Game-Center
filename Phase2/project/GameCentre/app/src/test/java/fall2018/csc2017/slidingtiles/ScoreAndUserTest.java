@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 public class ScoreAndUserTest {
 
     private User user1 = new User("csc207@utoronto.ca", "123456");
+    private User empty_user = new User("csc207@utoronto.ca.test", "111111");
 
     private Score testScore = new Score(100, 100, 4);
 
@@ -27,12 +28,15 @@ public class ScoreAndUserTest {
         assertEquals(1, user1.returnBestScore().compareTo(new Score(10000)));
         assertEquals(-1, user1.returnBestScore().compareTo(new Score(12000)));
         assertEquals(0, user1.returnBestScore().compareTo(new Score(11500)));
+        assertNull(empty_user.returnBestScore());
+        assertEquals(1, user1.compareTo(empty_user));
     }
     @Test
     public void testAddScore(){
         user1.addScore(testScore);
-        user1.addScore(new Score(100, 100, 5));
-        assertEquals(1, user1.returnBestScore().compareTo(testScore));
+        user1.addScore(new Score(10000, 10000, 0));
+        user1.addScore(new Score(1));
+        assertEquals(0, user1.returnBestScore().compareTo(testScore));
     }
 
     @Test
