@@ -337,7 +337,7 @@ public class GameView extends GridLayout {
         }
         //Game is over.
         if (isOver) {
-            UserManager.getLoginUser().add_score(new Score(MainActivityTwo.getScore()));
+            UserManager.getLoginUser().addScore(new Score(MainActivityTwo.getScore()));
             new AlertDialog.Builder(getContext()).setTitle("Sorry, game is over!").
                     setMessage("Your score is "+ MainActivityTwo.getScore()).
                     setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
@@ -366,7 +366,7 @@ public class GameView extends GridLayout {
                 hasTouched = true;
             }
 
-            MainActivityTwo.getMainActivity().saveToFile("2048auto" + UserManager.getLoginUser().getUser_email() + ".ser");
+            MainActivityTwo.getMainActivity().saveToFile("2048auto" + UserManager.getLoginUser().getUserEmail() + ".ser");
 
             for (int y = 0; y < 4; ++y) {
                 for (int x = 0; x < 4; ++x) {

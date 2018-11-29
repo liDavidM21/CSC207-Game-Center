@@ -4,9 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.AnimationDrawable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,7 +13,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,7 +24,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
-import fall2018.csc2017.login.welcomeActivity;
 import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.slidingtiles.User;
 import fall2018.csc2017.slidingtiles.UserManager;
@@ -230,7 +225,7 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             for (User T : current_manager) {
-                if (T.getUser_email().equals(email)) {
+                if (T.getUserEmail().equals(email)) {
                     UserManager.setLoginUser(T);
                 }
             }
@@ -248,7 +243,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean correct_password(String email, String password) {
         for (User T : current_manager) {
-            if (T.getUser_email().equals(email)) {
+            if (T.getUserEmail().equals(email)) {
                 if (T.getPassword().equals(password)) {
                     return true;
                 }
@@ -265,7 +260,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isEmailRegistered(String email) {
         for (User T : current_manager) {
-            if (T.getUser_email().equals(email)) {
+            if (T.getUserEmail().equals(email)) {
                 return true;
             }
         }

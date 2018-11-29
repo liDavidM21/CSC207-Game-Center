@@ -22,7 +22,7 @@ public class Card extends FrameLayout {
     /**
      * Each individual card.
      */
-    private TextView lable;
+    private TextView label;
 
     /**
      * Constructor of card.
@@ -31,12 +31,12 @@ public class Card extends FrameLayout {
      */
     public Card(Context context) {
         super(context);
-        lable = new TextView(getContext());
-        lable.setTextSize(32);
-        lable.setGravity(Gravity.CENTER);
+        label = new TextView(getContext());
+        label.setTextSize(32);
+        label.setGravity(Gravity.CENTER);
         LayoutParams lp = new LayoutParams(-1, -1);
         lp.setMargins(10, 10, 0, 0);
-        addView(lable, lp);
+        addView(label, lp);
         setNum(0);
     }
 
@@ -59,99 +59,99 @@ public class Card extends FrameLayout {
         this.num = num;
         if (num > 0) {
             String s = Integer.toString(num);
-            lable.setText(s);
+            label.setText(s);
         } else {
-            lable.setText("");
+            label.setText("");
         }
 
         switch (num) {
             case 0:
-                lable.setBackgroundColor(0xffccc0b2);
+                label.setBackgroundColor(0xffccc0b2);
                 break;
 
             case 2:
-                lable.setBackgroundColor(0xffffe4e1);
-                lable.setTextColor(0xffcd853f);
-                lable.setTextSize(50);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xffffe4e1);
+                label.setTextColor(0xffcd853f);
+                label.setTextSize(50);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
 
             case 4:
-                lable.setBackgroundColor(0xffff8c00);
-                lable.setTextColor(0xfffffaf0);
-                lable.setTextSize(50);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xffff8c00);
+                label.setTextColor(0xfffffaf0);
+                label.setTextSize(50);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
 
             case 8:
-                lable.setBackgroundColor(0xfffa8072);
-                lable.setTextColor(0xffffe4b5);
-                lable.setTextSize(50);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xfffa8072);
+                label.setTextColor(0xffffe4b5);
+                label.setTextSize(50);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
 
             case 16:
-                lable.setBackgroundColor(0xff66cdaa);
-                lable.setTextColor(0xffe0ffff);
-                lable.setTextSize(50);
+                label.setBackgroundColor(0xff66cdaa);
+                label.setTextColor(0xffe0ffff);
+                label.setTextSize(50);
                 break;
 
             case 32:
-                lable.setBackgroundColor(0xffff6347);
-                lable.setTextColor(0xffffe4c4);
-                lable.setTextSize(50);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xffff6347);
+                label.setTextColor(0xffffe4c4);
+                label.setTextSize(50);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
 
             case 64:
-                lable.setBackgroundColor(0xffcd5c5c);
-                lable.setTextColor(0xffff8c00);
-                lable.setTextSize(50);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xffcd5c5c);
+                label.setTextColor(0xffff8c00);
+                label.setTextSize(50);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 128:
-                lable.setBackgroundColor(0xff8b4513);
-                lable.setTextSize(50);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xff8b4513);
+                label.setTextSize(50);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 256:
-                lable.setBackgroundColor(0xff1e90ff);
-                lable.setTextColor(0xfffa8072);
-                lable.setTextSize(50);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xff1e90ff);
+                label.setTextColor(0xfffa8072);
+                label.setTextSize(50);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 512:
-                lable.setBackgroundColor(0xff191970);
-                lable.setTextColor(0xff008b8b);
-                lable.setTextSize(50);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xff191970);
+                label.setTextColor(0xff008b8b);
+                label.setTextSize(50);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 1024:
-                lable.setBackgroundColor(0xffffff00);
-                lable.setTextColor(0xff99cc00);
-                lable.setTextSize(40);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xffffff00);
+                label.setTextColor(0xff99cc00);
+                label.setTextSize(40);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 2048:
-                lable.setBackgroundColor(0xffcd5c5c);
-                lable.setTextColor(0xff8b4513);
-                lable.setTextSize(40);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xffcd5c5c);
+                label.setTextColor(0xff8b4513);
+                label.setTextSize(40);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 4096:
-                lable.setBackgroundColor(0xffff9933);
-                lable.setTextColor(0xff663300);
-                lable.setTextSize(40);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xffff9933);
+                label.setTextColor(0xff663300);
+                label.setTextSize(40);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             case 8192:
-                lable.setBackgroundColor(0xff99ccff);
-                lable.setTextColor(0xff003366);
-                lable.setTextSize(40);
-                lable.setTypeface(Typeface.DEFAULT_BOLD);
+                label.setBackgroundColor(0xff99ccff);
+                label.setTextColor(0xff003366);
+                label.setTextSize(40);
+                label.setTypeface(Typeface.DEFAULT_BOLD);
                 break;
             default:
-                lable.setBackgroundColor(0xffedc22d);
+                label.setBackgroundColor(0xffedc22d);
                 break;
         }
 
