@@ -151,7 +151,7 @@ public class GameView extends GridLayout {
     /**
      * Add card(2 or 4) randomly, the probability is different.
      */
-    private static void addRandomNum() {
+    public static void addRandomNum() {
         emptyPoints.clear();
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
@@ -186,7 +186,7 @@ public class GameView extends GridLayout {
     /**
      * Swipe left.
      */
-    private void swipeLeft() {
+    public void swipeLeft() {
         boolean b = false;
         for(int y=0;y<4;++y) {
             //Each column.(There is no need to compare the last column)
@@ -217,14 +217,15 @@ public class GameView extends GridLayout {
         //Add a random card once the gameView changes.
         if (b) {
             addRandomNum();
-            checkGameOver();//Check if the game is over after adding new cards.
+            if (checkGameOver()){
+                ifOver();}//Check if the game is over after adding new cards.
         }
     }
 
     /**
      * Swipe Right.
      */
-    private void swipeRight() {
+    public void swipeRight() {
         boolean b = false;
         for(int y=0;y<4;++y) {
             for(int x=3;x>0;--x) {
@@ -248,14 +249,15 @@ public class GameView extends GridLayout {
         }
         if (b) {
             addRandomNum();
-            checkGameOver();
+            if (checkGameOver()){
+                ifOver();}
         }
     }
 
     /**
      * Swipe Up.
      */
-    private void swipeUp() {
+    public void swipeUp() {
         boolean b = false;
         for(int x=0;x<4;++x) {
             for(int y=0;y<3;++y) {
@@ -279,14 +281,15 @@ public class GameView extends GridLayout {
         }
         if (b) {
             addRandomNum();
-            checkGameOver();
+            if (checkGameOver()){
+                ifOver();}
         }
     }
 
     /**
      * Swipe Down.
      */
-    private void swipeDown() {
+    public void swipeDown() {
         boolean b = false;
         for(int x=0;x<4;++x) {
             for(int y=3;y>0;--y) {
@@ -310,14 +313,15 @@ public class GameView extends GridLayout {
         }
         if (b) {
             addRandomNum();
-            checkGameOver();
+            if (checkGameOver()){
+                ifOver();}
         }
     }
 
     /**
      * Check if the game is over.
      */
-    private void checkGameOver() {
+    public boolean checkGameOver() {
         boolean isOver = true;
         ALL:
         for(int y=0;y<4;++y) {
@@ -335,18 +339,22 @@ public class GameView extends GridLayout {
                 }
             }
         }
-        //Game is over.
-        if (isOver) {
-            UserManager.getLoginUser().add_score(new Score(MainActivityTwo.getScore()));
-            new AlertDialog.Builder(getContext()).setTitle("Sorry, game is over!").
-                    setMessage("Your score is "+ MainActivityTwo.getScore()).
-                    setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    startGame();
-                }
-            }).show();
-        }
+        return isOver;
+    }
+
+    /**
+     * To Do when game over.
+     */
+    public void ifOver(){
+        UserManager.getLoginUser().add_score(new Score(MainActivityTwo.getScore()));
+        new AlertDialog.Builder(getContext()).setTitle("Sorry, game is over!").
+                setMessage("Your score is "+ MainActivityTwo.getScore()).
+                setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startGame();
+                    }
+                }).show();
     }
 
     /**
