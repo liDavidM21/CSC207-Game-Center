@@ -105,7 +105,7 @@ public class StartingActivity extends AppCompatActivity {
                         switchToGame();
                     }
                 })
-                .setNeutralButton("Resume", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Resume", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -114,7 +114,7 @@ public class StartingActivity extends AppCompatActivity {
                         makeToastLoadedText("Resuming game");
                 }
                 })
-                .setNegativeButton("New Game", new DialogInterface.OnClickListener() {
+                .setNeutralButton("New Game", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();

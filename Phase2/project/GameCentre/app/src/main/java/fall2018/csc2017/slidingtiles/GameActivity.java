@@ -95,7 +95,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
-        if (!puzzleHasSolve()){
+        while (!puzzleHasSolve()){
             boardManager = new BoardManager();
             saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
             loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
