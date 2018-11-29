@@ -34,7 +34,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-98dp"
         android:background="@drawable/buttonstyle"
-        android:text="Start Game" />
+        android:text="Start Game"
+        android:textSize="15sp"/>
 
     <Button
         android:id="@+id/scoreboardButton"
@@ -45,7 +46,8 @@
         android:layout_marginStart="-5dp"
         android:layout_marginTop="121dp"
         android:background="@drawable/buttonstyle"
-        android:text="SCOREBOARD" />
+        android:text="SCOREBOARD"
+        android:textSize="15sp"/>
 
     <Button
         android:id="@+id/Signout"
@@ -56,7 +58,8 @@
         android:layout_marginTop="561dp"
         android:layout_marginEnd="-23dp"
         android:layout_toStartOf="@+id/StartButton"
-        android:text="Signout" />
+        android:text="Signout"
+        android:textSize="19sp"/>
 
     <Button
         android:id="@+id/SaveButton"
@@ -68,7 +71,8 @@
         android:layout_toEndOf="@+id/StartButton"
         android:background="@drawable/buttonstyle"
         android:text="Save Game"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:textSize="16sp"/>
 
     <Button
         android:id="@+id/SETTING"
@@ -81,7 +85,8 @@
         android:layout_marginTop="129dp"
         android:layout_marginEnd="149dp"
         android:background="@drawable/buttonstyle"
-        android:text="Setting" />
+        android:text="Setting"
+        android:textSize="16sp"/>
 
     <Button
         android:id="@+id/backTwo"
@@ -92,7 +97,8 @@
         android:layout_marginTop="561dp"
         android:layout_marginEnd="-245dp"
         android:layout_toStartOf="@+id/scoreboardButton"
-        android:text="Back" />
+        android:text="Back"
+        android:textSize="19sp"/>
 
     <ImageView
         android:id="@+id/imageView"
