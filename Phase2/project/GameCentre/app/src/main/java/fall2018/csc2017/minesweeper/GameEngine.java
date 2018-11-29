@@ -232,7 +232,7 @@ public class GameEngine implements Serializable {
         if( bombNotFound == 0 && notRevealed == 0 ){
             is_over = true;
             Toast.makeText(context,"Game won", Toast.LENGTH_SHORT).show();
-            UserManager.getLoginUser().add_score(new Score(10000-time + 100*getBombNumber()));
+            UserManager.getLoginUser().addScore(new Score(10000-time + 100*getBombNumber()));
             time = 0;
         }
     }
