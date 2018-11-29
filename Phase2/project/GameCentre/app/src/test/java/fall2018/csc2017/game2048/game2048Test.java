@@ -44,8 +44,8 @@ public class game2048Test {
                 cards1[i][j].setNum(2);
             }
         }
-        GameManager.get_instance().getData(cards, 0);
-        GameManager.get_instance().setData(cards1);
+        GameManager.getInstance().getData(cards, 0);
+        GameManager.getInstance().setData(cards1);
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 assertTrue(cards[i][j].equals(cards1[i][j]));
