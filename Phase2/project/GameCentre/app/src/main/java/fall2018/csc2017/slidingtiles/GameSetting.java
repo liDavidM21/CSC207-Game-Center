@@ -171,4 +171,12 @@ public class GameSetting extends AppCompatActivity {
         Intent tmp = new Intent(this, StartingActivity.class);
         startActivity(tmp);
     }
+
+    /**
+     * Override Android back button.
+     */
+    @Override
+    public void onBackPressed() {
+        switchToGame();
+    }
 }
