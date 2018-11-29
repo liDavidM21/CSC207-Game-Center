@@ -6,7 +6,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 import fall2018.csc2017.slidingtiles.Score;
 import fall2018.csc2017.slidingtiles.UserManager;
@@ -233,8 +232,7 @@ public class GameEngine implements Serializable {
         if( bombNotFound == 0 && notRevealed == 0 ){
             is_over = true;
             Toast.makeText(context,"Game won", Toast.LENGTH_SHORT).show();
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            UserManager.getLoginUser().addScore(new Score(10000-time + 100*getBombNumber(), timestamp));
+            UserManager.getLoginUser().addScore(new Score(10000-time + 100*getBombNumber()));
             time = 0;
         }
     }
