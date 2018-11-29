@@ -42,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {
     private View mLoginFormView;
     private UserManager current_manager = UserManager.get_instance();
     private boolean newuser;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

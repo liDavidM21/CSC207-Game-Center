@@ -54,7 +54,6 @@ public class User implements Serializable, Comparable<User> {
     public User(String user_email, String password) {
         this.userEmail = user_email;
         this.password = password;
-        this.topScore = new ArrayList<>();
         this.score2048 = new ArrayList<>();
         this.scoreSlidingTiles = new ArrayList<>();
         this.scoreMineSweeper = new ArrayList<>();
