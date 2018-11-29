@@ -12,7 +12,7 @@ public class GameManager implements Serializable {
     /**
      * Static instance of game manager as a GameManager.
      */
-    private static GameManager single_instance = GameManager.get_instance();
+    private static GameManager singleInstance = GameManager.getInstance();
 
     /**
      * Int Array to store cards.
@@ -36,11 +36,11 @@ public class GameManager implements Serializable {
      * Return the class instance as GameManager.
      * @return GameManager.
      */
-    public static GameManager get_instance() {
-        if (single_instance == null) {
-            single_instance = new GameManager();
+    public static GameManager getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new GameManager();
         }
-        return single_instance;
+        return singleInstance;
     }
 
 

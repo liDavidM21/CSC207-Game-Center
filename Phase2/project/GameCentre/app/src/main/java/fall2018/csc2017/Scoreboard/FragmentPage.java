@@ -57,13 +57,14 @@ public class FragmentPage extends Fragment {
         } else {
             rank = Integer.toString(pageNumber) + "th";
         }
-        System.out.println(UserManager.getLoginUser().getTop_score().size());
-        if (users.size() < pageNumber || users.get(pageNumber - 1).return_best_score() == null) {
+        System.out.println(UserManager.getLoginUser().getTopScore().size());
+        if (users.size() < pageNumber || users.get(pageNumber - 1).returnBestScore() == null) {
             email.setText("HOI! No one has score recorded here!");
             score.setText("");
         } else {
-            email.setText(rank + "   Username: " + " \n" + users.get(pageNumber - 1).getUser_email());
-            score.setText("Score: " + Integer.toString(users.get(pageNumber - 1).return_best_score().final_score));
+            email.setText(rank + "   Username: " + " \n" + users.get(pageNumber - 1).getUserEmail());
+            score.setText("Score: " + Integer.toString(users.get(pageNumber - 1).
+                    returnBestScore().finalScore));
         }
 
         return view;

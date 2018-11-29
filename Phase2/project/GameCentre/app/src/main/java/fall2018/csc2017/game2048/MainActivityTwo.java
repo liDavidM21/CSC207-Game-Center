@@ -64,7 +64,7 @@ public class MainActivityTwo extends Activity {
      * The GameView gameView.
      */
     private GameView gameView;
-    private GameManager gm = GameManager.get_instance();
+    private GameManager gm = GameManager.getInstance();
     /**
      * The maximum step the player can use undo.(default 3)
      */
@@ -99,12 +99,12 @@ public class MainActivityTwo extends Activity {
     /**
      * Manual Save to File.
      */
-    private String save_file_name = "2048" + UserManager.getLoginUser().getUser_email() + ".ser";
+    private String saveFileName = "2048" + UserManager.getLoginUser().getUserEmail() + ".ser";
 
     /**
      * Save to File for autoSave.
      */
-    private String auto_save_file_name = "2048auto" + UserManager.getLoginUser().getUser_email() + ".ser";
+    private String autoSaveFileName = "2048auto" + UserManager.getLoginUser().getUserEmail() + ".ser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,8 +120,8 @@ public class MainActivityTwo extends Activity {
         load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadFromFile(save_file_name);
-                saveToFile(save_file_name);
+                loadFromFile(saveFileName);
+                saveToFile(saveFileName);
                 GameView.resetScoreList();
                 GameView.resetStateList();
             }
@@ -131,7 +131,7 @@ public class MainActivityTwo extends Activity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveToFile(save_file_name);
+                saveToFile(saveFileName);
                 makeToastSaveText();
             }
         });
@@ -277,14 +277,14 @@ public class MainActivityTwo extends Activity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-                        loadFromFile(save_file_name);
+                        loadFromFile(saveFileName);
                     }
                 })
                 .setNeutralButton("Resume",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-                        loadFromFile(auto_save_file_name);
+                        loadFromFile(autoSaveFileName);
                     }
                 })
                 .show();

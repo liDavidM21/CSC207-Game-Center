@@ -7,27 +7,34 @@
 **  Cite: From Paul.Gries's announcement 
 
 # Running Game
-* You first need to sign up your account with email address and set your password
-* Then you can enter the main page of the app
-* Choose one game you want to play
+* First time entering the game: You need to create an account using a valid email and a valid password. A valid email is a string with "@" in it. A valid password is a string with at least 4 characters. After entering your email and password, click sign-up to create an account. You will be redirected to welcome screen. Click "Start your journey now" to enter game choosing screen.
+* If you already have an account, enter your email and password, then click login. You will be redirected to game choosing screen.
+
+# Game Choosing
+* You can choose one of the three available games to play in game choosing screen: sliding tiles, mine sweeper and 2048. Click on the first image to play sliding tiles. Click on the second image to play mine sweeper. Click on the third image to play 2048.
 
 # Sliding Tiles
-* If you want to start a new game or resume previous game, Click "Start Game" button, then choose the game you want in the dialog
-* If you want to change difficulty or the undo step, Click "Setting"
-* If you want to save the current game, Click "Save Game" (Caution: This is manual save game, is different from auto save game)
-* If you want to play another game, Click "Back" to return to the game selection page
-* If you want to exit the game or log out current account, Click "Sign out"
+* This is a puzzle game that the goal is to successfully orders the tiles, with the blank tile at the bottom right. For more detail please visit https://en.wikipedia.org/wiki/Sliding_puzzle
+* To start, click the start game button. If you want to start a new game, click the new game button. If you want to load your saved game, click the load button. If you want to load your auto save game, click the resume.
+* Usually sliding tile games can produce unsolvable board, but our game won't.
+* To change the difficulty of the game, or the undo step, Click "Setting"
+* To save the current game, Click "Save Game" (This is manual save, it's different from auto save, which will save the game everytime the tiles has changed.)
+* If you want to play a different game, Click "Back" to return to the game selection page
+* If you want to log out from current account, Click "Sign out"
 * If you want to check your current highest score, Click "Scoreboard"
 
 # 2048
-* If you want to start a new game or resume previous auto save game or load manual game, Click "New Game" button, then choose the game you want in the dialog
+* I assume you know how to play this game. If not, then check this out https://en.wikipedia.org/wiki/2048_(video_game).
+* If you want to start a new game or resume previous auto save game or load manual game, Click "New Game" button, then choose what you want in the dialog
 * If you want to change the undo step, Click "+" and "-"
-* If you want to save the current game, you can Click "Save" button on the game page
+* If you want to save the game, click the save button on the bottom right when you are playing the game. To load the game you saved, click the load button on the buttom left when you are playing the game.
 * If you want to exit the game or log out current account, Click "Sign out"
 * If you want to play another game, Click "Back" to return to the game selection page
 
 # Minesweeper
+* I assume you know how to play this game. If not, then check this out https://en.wikipedia.org/wiki/Minesweeper_(video_game).
 * If you want to start a new game, Click "New Game" button.
+* After you won a game, if the game doesn't promote text "You win", you need to click the screen once to win the game.
 * If you want to change difficulty, Click "Setting"
 * If you want to check your current highest score, Click "Scoreboard"
 * If you want to exit the game or log out current account, Click "Sign out"

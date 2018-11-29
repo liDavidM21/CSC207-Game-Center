@@ -11,7 +11,7 @@ public class User implements Serializable, Comparable<User> {
     /**
      * The email of the user.
      */
-    String user_email;
+    String userEmail;
 
     /**
      * The password of the user
@@ -21,29 +21,29 @@ public class User implements Serializable, Comparable<User> {
     /**
      * List of top score the user have
      */
-    private List<Score> top_score;
+    private List<Score> topScore;
 
     /**
      * Get the top score the user have.
      *
-     * @return the top_score.
+     * @return the topScore.
      */
-    public List<Score> getTop_score() {
-        return top_score;
+    public List<Score> getTopScore() {
+        return topScore;
     }
 
     /**
      * Get the user's email.
      *
-     * @return the user_email.
+     * @return the userEmail.
      */
-    public String getUser_email(){return user_email;}
+    public String getUserEmail(){return userEmail;}
 
     public String getPassword(){return password;}
 
-    private List<Score> score_2048;
-    private List<Score> score_Sliding_Tiles;
-    private List<Score> score_mine_sweeper;
+    private List<Score> score2048;
+    private List<Score> scoreSlidingTiles;
+    private List<Score> scoreMineSweeper;
 
     /**
      * User class constructor. Given email and password.
@@ -52,12 +52,12 @@ public class User implements Serializable, Comparable<User> {
      * @param password:   the given password
      */
     public User(String user_email, String password) {
-        this.user_email = user_email;
+        this.userEmail = user_email;
         this.password = password;
-        this.top_score = new ArrayList<>();
-        this.score_2048 = new ArrayList<>();
-        this.score_Sliding_Tiles = new ArrayList<>();
-        this.score_mine_sweeper = new ArrayList<>();
+        this.topScore = new ArrayList<>();
+        this.score2048 = new ArrayList<>();
+        this.scoreSlidingTiles = new ArrayList<>();
+        this.scoreMineSweeper = new ArrayList<>();
     }
 
     /**
@@ -65,8 +65,8 @@ public class User implements Serializable, Comparable<User> {
      *
      * @param s: score to add
      */
-    public void add_score(Score s) {
-        top_score.add(s);
+    public void addScore(Score s) {
+        topScore.add(s);
         sort_score();
     }
 
@@ -75,13 +75,13 @@ public class User implements Serializable, Comparable<User> {
      *
      * @return Score: best score of the user, null if no game is complete.
      */
-    public Score return_best_score() {
-        if (top_score.isEmpty()) {
+    public Score returnBestScore() {
+        if (topScore.isEmpty()) {
             return null;
         } else {
-            Score best_score = top_score.get(0);
-            for (Score s : top_score) {
-                if (s.final_score > best_score.final_score) {
+            Score best_score = topScore.get(0);
+            for (Score s : topScore) {
+                if (s.finalScore > best_score.finalScore) {
                     best_score = s;
                 }
             }
@@ -91,36 +91,36 @@ public class User implements Serializable, Comparable<User> {
 
     @Override
     public int compareTo(@NonNull User user) {
-        if (this.top_score.isEmpty() && user.top_score.isEmpty()) {
+        if (this.topScore.isEmpty() && user.topScore.isEmpty()) {
             return 0;
-        } else if (user.top_score.isEmpty()) {
+        } else if (user.topScore.isEmpty()) {
             return 1;
-        } else if (this.top_score.isEmpty()) {
+        } else if (this.topScore.isEmpty()) {
             return -1;
         }
-        return this.return_best_score().compareTo(user.return_best_score());
+        return this.returnBestScore().compareTo(user.returnBestScore());
     }
 
     public void sort_score() {
-        int n = top_score.size();
+        int n = topScore.size();
         for (int i = 1; i < n; ++i) {
-            Score key = top_score.get(i);
+            Score key = topScore.get(i);
             int j = i - 1;
-            while (j >= 0 && top_score.get(j).final_score < key.final_score) {
-                top_score.set(j + 1, top_score.get(j));
+            while (j >= 0 && topScore.get(j).finalScore < key.finalScore) {
+                topScore.set(j + 1, topScore.get(j));
                 j = j - 1;
             }
-            top_score.set(j + 1, key);
+            topScore.set(j + 1, key);
         }
     }
 
     public void switch_game(String game) {
         if (game.equals("2048")) {
-            top_score = score_2048;
+            topScore = score2048;
         } else if (game.equals("Sliding Tiles")) {
-            top_score = score_Sliding_Tiles;
+            topScore = scoreSlidingTiles;
         } else if (game.equals("Mine Sweeper")){
-            top_score = score_mine_sweeper;
+            topScore = scoreMineSweeper;
         }
     }
 }

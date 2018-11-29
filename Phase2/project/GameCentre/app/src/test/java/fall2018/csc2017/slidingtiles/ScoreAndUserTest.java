@@ -9,60 +9,46 @@ import static org.junit.Assert.*;
 public class ScoreAndUserTest {
 
     private User user1 = new User("csc207@utoronto.ca", "123456");
+    private User empty_user = new User("csc207@utoronto.ca.test", "111111");
 
     private Score testScore = new Score(100, 100, 4);
 
     private UserManager userManager = new UserManager();
 
-    /**
-     * Test whether GetInfo works.
-     */
     @Test
     public void testGetInfo(){
-        assertEquals("csc207@utoronto.ca", user1.getUser_email());
+        assertEquals("csc207@utoronto.ca", user1.getUserEmail());
         assertEquals("123456", user1.password);
-        assertEquals(0, user1.getTop_score().size());
+        assertEquals(0, user1.getTopScore().size());
     }
 
-    /**
-     * Test whether CalculateScore works.
-     */
     @Test
     public void testCalculateScore(){
-        user1.add_score(testScore);
-        assertEquals(1, user1.return_best_score().compareTo(new Score(10000)));
-        assertEquals(-1, user1.return_best_score().compareTo(new Score(12000)));
-        assertEquals(0, user1.return_best_score().compareTo(new Score(11500)));
+        user1.addScore(testScore);
+        assertEquals(1, user1.returnBestScore().compareTo(new Score(10000)));
+        assertEquals(-1, user1.returnBestScore().compareTo(new Score(12000)));
+        assertEquals(0, user1.returnBestScore().compareTo(new Score(11500)));
+        assertNull(empty_user.returnBestScore());
+        assertEquals(1, user1.compareTo(empty_user));
     }
-
-    /**
-     * Test whether AddScore works.
-     */
     @Test
     public void testAddScore(){
-        user1.add_score(testScore);
-        user1.add_score(new Score(100, 100, 5));
-        assertEquals(1, user1.return_best_score().compareTo(testScore));
-        Score newScore = new Score(300, 500, 3);
-        assertEquals(-1, newScore.compareTo(user1.return_best_score()));
+        user1.addScore(testScore);
+        user1.addScore(new Score(10000, 10000, 0));
+        user1.addScore(new Score(1));
+        assertEquals(0, user1.returnBestScore().compareTo(testScore));
     }
 
-    /**
-     * Test whether SwitchGame works.
-     */
     @Test
     public void testSwitchGame(){
-        user1.add_score(testScore);
-        assertEquals(1, user1.getTop_score().size());
+        user1.addScore(testScore);
+        assertEquals(1, user1.getTopScore().size());
         user1.switch_game("2048");
-        assertEquals(0, user1.getTop_score().size());
+        assertEquals(0, user1.getTopScore().size());
         user1.switch_game("Sliding Tiles");
-        assertEquals(0, user1.getTop_score().size());
+        assertEquals(0, user1.getTopScore().size());
     }
 
-    /**
-     * Test whether AddUser works.
-     */
     @Test
     public void testAddUser(){
         UserManager.set_instance(userManager);

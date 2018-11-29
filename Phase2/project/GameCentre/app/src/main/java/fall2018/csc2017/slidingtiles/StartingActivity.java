@@ -36,7 +36,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * The main save file.
      */
-    public static final String SAVE_FILENAME = "save_file_st" + UserManager.getLoginUser().getUser_email() + ".ser";
+    public static final String SAVE_FILENAME = "save_file_st" + UserManager.getLoginUser().getUserEmail() + ".ser";
     /**
      * A temporary save file.
      */
@@ -44,7 +44,7 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * A auto save file.
      */
-    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto"  + UserManager.getLoginUser().getUser_email() + ".ser";
+    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto"  + UserManager.getLoginUser().getUserEmail() + ".ser";
     /**
      * The board manager.
      */
@@ -105,7 +105,7 @@ public class StartingActivity extends AppCompatActivity {
                         switchToGame();
                     }
                 })
-                .setNeutralButton("Resume", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Resume", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -114,7 +114,7 @@ public class StartingActivity extends AppCompatActivity {
                         makeToastLoadedText("Resuming game");
                 }
                 })
-                .setNegativeButton("New Game", new DialogInterface.OnClickListener() {
+                .setNeutralButton("New Game", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();

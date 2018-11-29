@@ -95,7 +95,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
-        if (!puzzleHasSolve()){
+        while (!puzzleHasSolve()){
             boardManager = new BoardManager();
             saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
             loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
@@ -130,7 +130,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
         CountDownTimer timer = new CountDownTimer(600000, 1000) {
             @Override
             public void onTick(long l) {
-                boardManager.time += 1;
+                boardManager.setTime(boardManager.getTime() + 1);
             }
 
             @Override
