@@ -52,6 +52,9 @@ public class Score implements Comparable<Score>, Serializable {
         this.timeStamp = timeStamp;
         this.complexity = complexity;
         this.finalScore = original_score + 5000*(complexity-3);
+        if(this.finalScore < 0){
+            this.finalScore = 0;
+        }
     }
 
     public Score(int finalScore, Timestamp timeStamp) {
