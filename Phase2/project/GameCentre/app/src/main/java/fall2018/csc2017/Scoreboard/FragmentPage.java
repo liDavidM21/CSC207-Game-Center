@@ -13,24 +13,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import fall2018.csc2017.R;
-import fall2018.csc2017.slidingtiles.Game_choose;
-import fall2018.csc2017.UserAndScore.User;
-import fall2018.csc2017.UserAndScore.UserManager;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.text.SimpleDateFormat;
+
+import fall2018.csc2017.R;
+import fall2018.csc2017.UserAndScore.User;
+import fall2018.csc2017.UserAndScore.UserManager;
+import fall2018.csc2017.slidingtiles.GameChoose;
 
 
 public class FragmentPage extends Fragment {
 
-    List<User> users = new ArrayList<>();
-    UserManager current_manager = UserManager.get_instance();
-    static String text;
+    /**
+     * The time format for the time when the game was played.
+     */
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    static String text;
+    /**
+     * List of users.
+     */
+    List<User> users = new ArrayList<>();
+    /**
+     * Current user manager.
+     */
+    UserManager current_manager = UserManager.get_instance();
 
     @Nullable
     @Override
@@ -40,9 +50,9 @@ public class FragmentPage extends Fragment {
         int pageNumber = bundle.getInt("pageNumber");
         view = inflater.inflate(R.layout.page_fragment_layout, container, false);
         TextView scoreBoard = (TextView) view.findViewById(R.id.BoardName);
-        if (Game_choose.getCurrent_game().equals("sliding tiles")){
+        if (GameChoose.getCurrentGame().equals("sliding tiles")) {
             scoreBoard.setText("Sliding Tiles" + "\n" + "Global Ranking List");
-        } else if (Game_choose.getCurrent_game().equals("minesweeper")){
+        } else if (GameChoose.getCurrentGame().equals("minesweeper")) {
             scoreBoard.setText("Minesweeper" + "\n" + "Global Ranking List");
         } else {
             scoreBoard.setText("2048" + "\n" + "Global Ranking List");
@@ -52,11 +62,11 @@ public class FragmentPage extends Fragment {
         TextView email = (TextView) view.findViewById(R.id.UserEmail);
         TextView score = (TextView) view.findViewById(R.id.Score);
         String rank;
-        if (pageNumber == 1){
+        if (pageNumber == 1) {
             rank = "1st";
-        } else if (pageNumber == 2){
+        } else if (pageNumber == 2) {
             rank = "2nd";
-        } else if (pageNumber == 3){
+        } else if (pageNumber == 3) {
             rank = "3rd";
         } else {
             rank = Integer.toString(pageNumber) + "th";
@@ -69,11 +79,11 @@ public class FragmentPage extends Fragment {
             email.setText(rank + "   Username: " + " \n" + users.get(pageNumber - 1).getUserEmail());
             Timestamp ts = users.get(pageNumber - 1).returnBestScore().getTimeStamp();
             String gameComplexity;
-            if (users.get(pageNumber - 1).returnBestScore().getComplexity() == 3){
+            if (users.get(pageNumber - 1).returnBestScore().getComplexity() == 3) {
                 gameComplexity = "Easy Mode";
-            } else if (users.get(pageNumber - 1).returnBestScore().getComplexity() == 4){
+            } else if (users.get(pageNumber - 1).returnBestScore().getComplexity() == 4) {
                 gameComplexity = "Medium Mode";
-            } else if (users.get(pageNumber - 1).returnBestScore().getComplexity() == 0){
+            } else if (users.get(pageNumber - 1).returnBestScore().getComplexity() == 0) {
                 gameComplexity = "";
             } else {
                 gameComplexity = "Hard Mode";

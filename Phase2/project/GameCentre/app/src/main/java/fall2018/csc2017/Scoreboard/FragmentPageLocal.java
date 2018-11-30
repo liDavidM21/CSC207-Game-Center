@@ -13,21 +13,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import fall2018.csc2017.R;
-import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.UserAndScore.Score;
 import fall2018.csc2017.UserAndScore.User;
 import fall2018.csc2017.UserAndScore.UserManager;
-
-import java.sql.Timestamp;
-import java.util.List;
-import java.text.SimpleDateFormat;
+import fall2018.csc2017.slidingtiles.GameChoose;
 
 public class FragmentPageLocal extends Fragment {
 
-    UserManager current_manager = UserManager.get_instance();
-    static String text;
+    /**
+     * The time format for the time when the game was played.
+     */
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    static String text;
+    /**
+     * Current user manager.
+     */
+    UserManager current_manager = UserManager.get_instance();
 
     @Nullable
     @Override
@@ -43,18 +50,18 @@ public class FragmentPageLocal extends Fragment {
         TextView email = (TextView) view.findViewById(R.id.UserEmail);
         TextView score = (TextView) view.findViewById(R.id.Score);
         String rank;
-        if (pageNumber == 1){
+        if (pageNumber == 1) {
             rank = "1st";
-        } else if (pageNumber == 2){
+        } else if (pageNumber == 2) {
             rank = "2nd";
-        } else if (pageNumber == 3){
+        } else if (pageNumber == 3) {
             rank = "3rd";
         } else {
             rank = Integer.toString(pageNumber) + "th";
         }
-        if (Game_choose.getCurrent_game().equals("sliding tiles")){
+        if (GameChoose.getCurrentGame().equals("sliding tiles")) {
             scoreBoard.setText("Sliding Tiles" + "\n" + "Local Ranking List");
-        } else if (Game_choose.getCurrent_game().equals("minesweeper")){
+        } else if (GameChoose.getCurrentGame().equals("minesweeper")) {
             scoreBoard.setText("Minesweeper" + "\n" + "Local Ranking List");
         } else {
             scoreBoard.setText("2048" + "\n" + "Local Ranking List");
@@ -66,17 +73,17 @@ public class FragmentPageLocal extends Fragment {
             email.setText(rank + "   Username: " + "\n" + current_user.getUserEmail());
             Timestamp ts = current_user.getTopScore().get(pageNumber - 1).getTimeStamp();
             String gameComplexity;
-            if (current_user.getTopScore().get(pageNumber - 1).getComplexity() == 3){
+            if (current_user.getTopScore().get(pageNumber - 1).getComplexity() == 3) {
                 gameComplexity = "Easy Mode";
-            } else if (current_user.getTopScore().get(pageNumber - 1).getComplexity() == 4){
+            } else if (current_user.getTopScore().get(pageNumber - 1).getComplexity() == 4) {
                 gameComplexity = "Medium Mode";
-            } else if (current_user.getTopScore().get(pageNumber - 1).getComplexity() == 0){
+            } else if (current_user.getTopScore().get(pageNumber - 1).getComplexity() == 0) {
                 gameComplexity = "";
             } else {
                 gameComplexity = "Hard Mode";
             }
             score.setText("Score: " + Integer.toString(current_user.getTopScore()
-                    .get(pageNumber - 1).getFinalScore()) + "\n" + gameComplexity  + "\n" + "(Played at " + "\n"
+                    .get(pageNumber - 1).getFinalScore()) + "\n" + gameComplexity + "\n" + "(Played at " + "\n"
                     + sdf.format(ts) + ")");
         }
 

@@ -3,8 +3,6 @@ package fall2018.csc2017.minesweeper;
 import android.content.Context;
 import android.view.View;
 
-import fall2018.csc2017.minesweeper.GameEngine;
-
 /**
  * The source code is originated from
  * https://github.com/marcellelek/Minesweeper.git
@@ -41,7 +39,7 @@ public abstract class BaseCell extends View {
     /**
      * X, Y coordinate of a cell.
      */
-    private int x , y;
+    private int x, y;
 
     /**
      * Position of a cell.
@@ -50,14 +48,16 @@ public abstract class BaseCell extends View {
 
     /**
      * Constructor of class base cell.
+     *
      * @param context context of the cell.
      */
-    public BaseCell(Context context ){
+    public BaseCell(Context context) {
         super(context);
     }
 
     /**
      * Get the value of the base cell
+     *
      * @return int value.
      */
     public int getValue() {
@@ -66,6 +66,7 @@ public abstract class BaseCell extends View {
 
     /**
      * Set the value of the base cell.
+     *
      * @param value value of the base cell as int.
      */
     public void setValue(int value) {
@@ -74,7 +75,7 @@ public abstract class BaseCell extends View {
         isClicked = false;
         isFlagged = false;
 
-        if( value == -1 ){
+        if (value == -1) {
             isBomb = true;
         }
 
@@ -83,6 +84,7 @@ public abstract class BaseCell extends View {
 
     /**
      * Check the base cell is bomb or not.
+     *
      * @return True if is bomb, otherwise false.
      */
     public boolean isBomb() {
@@ -91,6 +93,7 @@ public abstract class BaseCell extends View {
 
     /**
      * Check the base cell is revealed or not.
+     *
      * @return True if is revealed, otherwise false.
      */
     public boolean isRevealed() {
@@ -107,6 +110,7 @@ public abstract class BaseCell extends View {
 
     /**
      * Check the base cell is clicked or not.
+     *
      * @return True if is clicked, otherwise false.
      */
     public boolean isClicked() {
@@ -124,6 +128,7 @@ public abstract class BaseCell extends View {
 
     /**
      * Check the base cell is flagged or not.
+     *
      * @return True if is flagged, otherwise false.
      */
     public boolean isFlagged() {
@@ -139,6 +144,7 @@ public abstract class BaseCell extends View {
 
     /**
      * Get x coordinate of the base cell.
+     *
      * @return x position.
      */
     public int getXPos() {
@@ -147,6 +153,7 @@ public abstract class BaseCell extends View {
 
     /**
      * Get y coordinate of the base cell.
+     *
      * @return y position.
      */
     public int getYPos() {
@@ -155,6 +162,7 @@ public abstract class BaseCell extends View {
 
     /**
      * Get position of the base cell on the grid.
+     *
      * @return int position.
      */
     public int getPosition() {
@@ -163,14 +171,15 @@ public abstract class BaseCell extends View {
 
     /**
      * Set position of base cell on the grid.
+     *
      * @param x x position.
      * @param y y position.
      */
-    public void setPosition( int x , int y ){
+    public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
 
-        this.position = y * GameEngine.getWIDTH() + x;
+        this.position = y * GridManagerMinesweeper.getWIDTH() + x;
 
         invalidate();
     }

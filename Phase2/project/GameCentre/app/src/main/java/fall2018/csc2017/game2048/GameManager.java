@@ -1,6 +1,7 @@
 package fall2018.csc2017.game2048;
 
 import java.io.Serializable;
+
 /**
  * The source code is originated from
  * https://github.com/JimZhou-001/2048-Android.git
@@ -13,16 +14,14 @@ public class GameManager implements Serializable {
      * Static instance of game manager as a GameManager.
      */
     private static GameManager singleInstance = GameManager.getInstance();
-
-    /**
-     * Int Array to store cards.
-     */
-    private int[][] cards;
-
     /**
      * Instance to store score of the game.
      */
     public int score;
+    /**
+     * Int Array to store cards.
+     */
+    private int[][] cards;
 
     /**
      * Constructor of GameManager.
@@ -34,6 +33,7 @@ public class GameManager implements Serializable {
 
     /**
      * Return the class instance as GameManager.
+     *
      * @return GameManager.
      */
     public static GameManager getInstance() {
@@ -46,10 +46,11 @@ public class GameManager implements Serializable {
 
     /**
      * Get data in the cards.
+     *
      * @param cards Card Array cards.
      * @param score int score.
      */
-    public void getData(Card[][] cards, int score){
+    public void getData(Card[][] cards, int score) {
         int i = 0;
         int j = 0;
         for (Card[] cl : cards) {
@@ -65,17 +66,18 @@ public class GameManager implements Serializable {
 
     /**
      * Set data in the cards.
+     *
      * @param cards Card Array cards.
      */
-    public void setData(Card[][] cards){
+    public void setData(Card[][] cards) {
         int i = 0;
         int j = 0;
-        for(Card[] cl: cards){
-            for(Card c: cl){
+        for (Card[] cl : cards) {
+            for (Card c : cl) {
                 cards[i][j].setNum(this.cards[i][j]);
-                j+=1;
+                j += 1;
             }
-            i+=1;
+            i += 1;
             j = 0;
         }
     }

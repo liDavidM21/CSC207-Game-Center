@@ -1,14 +1,14 @@
 package fall2018.csc2017.slidingtiles;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import fall2018.csc2017.R;
 import fall2018.csc2017.UserAndScore.Score;
 import fall2018.csc2017.UserAndScore.UserManager;
-
-import java.sql.Timestamp;
 
 
 /**
@@ -17,6 +17,10 @@ import java.sql.Timestamp;
 class BoardManager implements Serializable {
 
     /**
+     * Whether the player can undo.
+     */
+    private static boolean canUndo = true;
+    /**
      * The board being managed.
      */
     private Board board;
@@ -24,39 +28,10 @@ class BoardManager implements Serializable {
      * The number of move the player made in this game, and the time it takes to complete.
      */
     private int move;
-
     /**
      * Playing time.
      */
     private int time;
-
-    /**
-     * Get the time of the game.
-     * @return time of the game.
-     */
-    public int getTime() {
-        return time;
-    }
-
-    /**
-     * Set the time of the game.
-     * @param time the time of the game.
-     */
-    public void setTime(int time) {
-        this.time = time;
-    }
-
-    /**
-     * Whether the player can undo.
-     */
-    private static boolean canUndo = true;
-
-    /**
-     * Return if the player can undo.
-     * @return canUndo
-     */
-    public static boolean getCanUndo(){return canUndo;}
-
     /**
      * List of tiles.
      */
@@ -70,14 +45,6 @@ class BoardManager implements Serializable {
     BoardManager(Board board) {
         this.board = board;
     }
-
-    /**
-     * Return the current board.
-     */
-    Board getBoard() {
-        return board;
-    }
-
 
     /**
      * Manage a new shuffled board.
@@ -99,6 +66,40 @@ class BoardManager implements Serializable {
     }
 
     /**
+     * Return if the player can undo.
+     *
+     * @return canUndo
+     */
+    public static boolean getCanUndo() {
+        return canUndo;
+    }
+
+    /**
+     * Get the time of the game.
+     *
+     * @return time of the game.
+     */
+    public int getTime() {
+        return time;
+    }
+
+    /**
+     * Set the time of the game.
+     *
+     * @param time the time of the game.
+     */
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    /**
+     * Return the current board.
+     */
+    Board getBoard() {
+        return board;
+    }
+
+    /**
      * Return whether the tiles are in row-major order.
      *
      * @return whether the tiles are in row-major order
@@ -116,9 +117,9 @@ class BoardManager implements Serializable {
             }
         }
         if (solved) {
-            if(UserManager.getLoginUser() != null) {
+            if (UserManager.getLoginUser() != null) {
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                UserManager.getLoginUser().addScore(new Score(10000- 50 * move - 50 * getTime(),
+                UserManager.getLoginUser().addScore(new Score(10000 - 50 * move - 50 * getTime(),
                         Board.NUM_COLS, timestamp));
             }
             move = 0;

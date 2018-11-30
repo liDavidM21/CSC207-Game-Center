@@ -22,25 +22,6 @@ public class User implements Serializable, Comparable<User> {
      * List of top score the user have
      */
     private List<Score> topScore;
-
-    /**
-     * Get the top score the user have.
-     *
-     * @return the topScore.
-     */
-    public List<Score> getTopScore() {
-        return topScore;
-    }
-
-    /**
-     * Get the user's email.
-     *
-     * @return the userEmail.
-     */
-    public String getUserEmail(){return userEmail;}
-
-    public String getPassword(){return password;}
-
     private List<Score> score2048;
     private List<Score> scoreSlidingTiles;
     private List<Score> scoreMineSweeper;
@@ -57,6 +38,28 @@ public class User implements Serializable, Comparable<User> {
         this.score2048 = new ArrayList<>();
         this.scoreSlidingTiles = new ArrayList<>();
         this.scoreMineSweeper = new ArrayList<>();
+    }
+
+    /**
+     * Get the top score the user have.
+     *
+     * @return the topScore.
+     */
+    public List<Score> getTopScore() {
+        return topScore;
+    }
+
+    /**
+     * Get the user's email.
+     *
+     * @return the userEmail.
+     */
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     /**
@@ -118,7 +121,7 @@ public class User implements Serializable, Comparable<User> {
             topScore = score2048;
         } else if (game.equals("Sliding Tiles")) {
             topScore = scoreSlidingTiles;
-        } else if (game.equals("Mine Sweeper")){
+        } else if (game.equals("Mine Sweeper")) {
             topScore = scoreMineSweeper;
         }
     }

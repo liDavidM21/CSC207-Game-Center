@@ -5,12 +5,13 @@ swipe view using fragment. Class involved are FragmentPage, FragmentPageLocal, S
 SwipeAdapterLocal, scoreboard.
  */
 
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+
 import fall2018.csc2017.R;
 
 public class scoreboard extends AppCompatActivity {

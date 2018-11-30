@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
-import fall2018.csc2017.slidingtiles.Game_choose;
+import fall2018.csc2017.slidingtiles.GameChoose;
 import fall2018.csc2017.login.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
 import fall2018.csc2017.UserAndScore.UserManager;
@@ -31,7 +31,7 @@ import fall2018.csc2017.UserAndScore.UserManager;
  * https://stackoverflow.com/questions/36894384/android-move-background-continuously-with-animation
  * https://stackoverflow.com/questions/9107900/how-to-upload-image-from-gallery-in-android
  */
-public class game2048Activity extends AppCompatActivity {
+public class game2048StartingActivity extends AppCompatActivity {
 
     /**
      * The board manager.
@@ -84,7 +84,7 @@ public class game2048Activity extends AppCompatActivity {
      * Used by ExitButtonListener.
      */
     private void switchToSelecting() {
-        Intent tmp = new Intent(this, Game_choose.class);
+        Intent tmp = new Intent(this, GameChoose.class);
         startActivity(tmp);
     }
 
@@ -100,7 +100,7 @@ public class game2048Activity extends AppCompatActivity {
                 numUndo += 1;
                 String str = "Undo " + Integer.toString(numUndo) + " Steps";
                 txt.setText(str);
-                MainActivityTwo.setUndoStep(numUndo);
+                GameActivity2048.setUndoStep(numUndo);
                 makeToastUndoText();
             }
         });
@@ -123,7 +123,7 @@ public class game2048Activity extends AppCompatActivity {
                     str = "Undo " + Integer.toString(numUndo) + " Step";
                 }
                 txt.setText(str);
-                MainActivityTwo.setUndoStep(numUndo);
+                GameActivity2048.setUndoStep(numUndo);
                 makeToastUndoText();
             }
         });
@@ -204,7 +204,7 @@ public class game2048Activity extends AppCompatActivity {
         MyBounceInterpolator interpolator = new MyBounceInterpolator(0.1, 20);
         myAnim.setInterpolator(interpolator);
         button.startAnimation(myAnim);
-        final game2048Activity tmp1 = this;
+        final game2048StartingActivity tmp1 = this;
         myAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -216,7 +216,7 @@ public class game2048Activity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1,MainActivityTwo.class);
+                Intent tmp = new Intent(tmp1,GameActivity2048.class);
                 startActivity(tmp);
             }
         });

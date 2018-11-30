@@ -1,16 +1,16 @@
 package fall2018.csc2017.slidingtiles;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
 import fall2018.csc2017.R;
-import fall2018.csc2017.game2048.game2048Activity;
+import fall2018.csc2017.game2048.game2048StartingActivity;
 import fall2018.csc2017.minesweeper.MineSweepActivity;
 
-public class Game_choose extends AppCompatActivity {
+public class GameChoose extends AppCompatActivity {
 
     /**
      * Current game.
@@ -19,17 +19,19 @@ public class Game_choose extends AppCompatActivity {
 
     /**
      * Get the current game.
+     *
      * @return current game.
      */
-    public static String getCurrent_game(){
+    public static String getCurrentGame() {
         return current_game;
     }
 
     /**
      * Set the current game.
+     *
      * @param game the game to set.
      */
-    public void setCurrent_game(String game){
+    public void setCurrentGame(String game) {
         current_game = game;
     }
 
@@ -45,12 +47,12 @@ public class Game_choose extends AppCompatActivity {
     /**
      * Button for game sliding tiles.
      */
-    private void addGame1button(){
+    private void addGame1button() {
         ImageButton button = findViewById(R.id.slidingtiles);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setCurrent_game("sliding tiles");
+                setCurrentGame("sliding tiles");
                 switchToGame1();
             }
         });
@@ -59,12 +61,12 @@ public class Game_choose extends AppCompatActivity {
     /**
      * Button for game minesweeper.
      */
-    private void addGame2button(){
+    private void addGame2button() {
         ImageButton button = findViewById(R.id.minesweeperim);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setCurrent_game("minesweeper");
+                setCurrentGame("minesweeper");
                 switchToGame2();
             }
         });
@@ -73,12 +75,12 @@ public class Game_choose extends AppCompatActivity {
     /**
      * Button for game 2048.
      */
-    private void addGame3button(){
+    private void addGame3button() {
         ImageButton button = findViewById(R.id.twozerofoureight);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setCurrent_game("game2048");
+                setCurrentGame("game2048");
                 switchToGame3();
             }
         });
@@ -87,7 +89,7 @@ public class Game_choose extends AppCompatActivity {
     /**
      * Switch to game sliding tiles.
      */
-    private void switchToGame1(){
+    private void switchToGame1() {
         Intent tmp = new Intent(this, StartingActivity.class);
         startActivity(tmp);
     }
@@ -95,7 +97,7 @@ public class Game_choose extends AppCompatActivity {
     /**
      * Switch to game minesweeper.
      */
-    private void switchToGame2(){
+    private void switchToGame2() {
         Intent tmp = new Intent(this, MineSweepActivity.class);
         startActivity(tmp);
     }
@@ -103,8 +105,8 @@ public class Game_choose extends AppCompatActivity {
     /**
      * Switch to game 2048.
      */
-    private void switchToGame3(){
-        Intent tmp = new Intent(this,game2048Activity.class);
+    private void switchToGame3() {
+        Intent tmp = new Intent(this, game2048StartingActivity.class);
         startActivity(tmp);
     }
 }

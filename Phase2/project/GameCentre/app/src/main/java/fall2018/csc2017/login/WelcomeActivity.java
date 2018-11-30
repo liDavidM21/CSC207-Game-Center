@@ -9,14 +9,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import fall2018.csc2017.R;
-import fall2018.csc2017.slidingtiles.Game_choose;
+import fall2018.csc2017.slidingtiles.GameChoose;
 import fall2018.csc2017.slidingtiles.MyBounceInterpolator;
 
 /*
 https://www.youtube.com/watch?v=pznCs--BtJA
  */
 
-public class welcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
     LinearLayout l1,l2;
     Button btnsub;
     Animation uptodown,downtoup;
@@ -53,7 +53,7 @@ public class welcomeActivity extends AppCompatActivity {
         MyBounceInterpolator interpolator = new MyBounceInterpolator(0.1, 5);
         myAnim.setInterpolator(interpolator);
         button.startAnimation(myAnim);
-        final welcomeActivity tmp1 = this;
+        final WelcomeActivity tmp1 = this;
         myAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -65,7 +65,7 @@ public class welcomeActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1, Game_choose.class);
+                Intent tmp = new Intent(tmp1, GameChoose.class);
                 startActivity(tmp);
             }
         });
