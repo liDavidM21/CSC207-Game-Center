@@ -23,14 +23,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Current score："
-                android:textColor="#2f00ff"
+                android:textColor="#ffee00"
                 android:gravity="center" />
 
             <TextView
                 android:id="@+id/Score"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textColor="#FF0000"
+                android:textColor="#ffffff"
                 android:gravity="center_vertical" />
 
         </LinearLayout>
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="The highest score："
-                android:textColor="#2F00FF"
+                android:textColor="#ffee00"
                 android:gravity="center" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:textColor="#FF0000"
+                android:textColor="#ffffff"
                 android:gravity="center_vertical" />
 
         </LinearLayout>
