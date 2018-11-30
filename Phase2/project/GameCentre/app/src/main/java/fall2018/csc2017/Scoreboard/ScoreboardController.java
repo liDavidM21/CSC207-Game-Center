@@ -10,7 +10,7 @@ import fall2018.csc2017.UserAndScore.UserManager;
 import fall2018.csc2017.slidingtiles.GameChoose;
 
 /**
- * The controller of the Scoreboard which control the run of the socreboard to determine which game is currently playing
+ * The controller of the Scoreboard which control the run of the global scoreboard
  */
 public class ScoreboardController {
 
@@ -67,7 +67,7 @@ public class ScoreboardController {
      * @param users The users' names
      * @param pageNumber The page number which put the score
      * @param rank The rank of the score should be put
-     * @return
+     * @return Return the text display on the page.
      */
     private String getEmailText(List<User> users, int pageNumber, String rank){
         if (users.size() < pageNumber || users.get(pageNumber - 1).returnBestScore() == null) {

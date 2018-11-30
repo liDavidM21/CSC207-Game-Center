@@ -8,7 +8,9 @@ import fall2018.csc2017.UserAndScore.Score;
 import fall2018.csc2017.UserAndScore.User;
 import fall2018.csc2017.UserAndScore.UserManager;
 import fall2018.csc2017.slidingtiles.GameChoose;
-
+/**
+ * The controller of the Scoreboard which control the run of the local socreboar.
+ */
 public class ScoreboardControllerLocal {
 
     private User current_user;
@@ -21,6 +23,10 @@ public class ScoreboardControllerLocal {
 
     }
 
+    /**
+     * Get the current playing user
+     * @return The player name
+     */
     private String getGameName(){
         if (GameChoose.getCurrentGame().equals("sliding tiles")){
             return "Sliding Tiles" + "\n" + "Global Ranking List";
@@ -31,6 +37,11 @@ public class ScoreboardControllerLocal {
         }
     }
 
+    /**
+     * Determine where could this score put
+     * @param pageNumber The page which display the score
+     * @return The rank of this score
+     */
     private String getPosition(int pageNumber){
         if (pageNumber == 1){
             return "1st";
@@ -43,6 +54,12 @@ public class ScoreboardControllerLocal {
         }
     }
 
+    /**
+     *  Display the email(username) on the page
+     * @param pageNumber The page number which put the score
+     * @param rank The rank of the score should be put
+     * @return Return the text of teh score on the page.
+     */
     private String getEmailText( int pageNumber, String rank){
         if (current_user.getTopScore().size() < pageNumber) {
             return "HOI! You need to play once to let me know your score!";
@@ -51,6 +68,12 @@ public class ScoreboardControllerLocal {
             return rank + "   Username: " + "\n" + current_user.getUserEmail();
         }
     }
+
+    /**
+     *  Display the format of the score
+     * @param pageNumber The page which the score will display
+     * @return Return the text of the score on the page
+     */
 
     private String getScoreText(int pageNumber) {
         if (current_user.getTopScore().size() < pageNumber) {
@@ -74,6 +97,10 @@ public class ScoreboardControllerLocal {
         }
     }
 
+    /**
+     * Update the view on the scoreboard
+     * @param pageNumber The number of the page which we need to show it on
+     */
     public void updateView(int pageNumber){
         current_page.displayScoreboardText(getGameName());
         current_page.displayEmailText(getEmailText(pageNumber, getPosition(pageNumber)));
