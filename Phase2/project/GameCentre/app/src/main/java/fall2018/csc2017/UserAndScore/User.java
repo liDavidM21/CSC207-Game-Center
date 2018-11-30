@@ -121,6 +121,5 @@ public class User implements Serializable, Comparable<User> {
         } else if (game.equals("Mine Sweeper")){
             topScore = scoreMineSweeper;
         }
-        System.out.println(topScore);
     }
 }

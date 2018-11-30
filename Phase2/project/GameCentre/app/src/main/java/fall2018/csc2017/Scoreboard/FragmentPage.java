@@ -61,7 +61,6 @@ public class FragmentPage extends Fragment {
         } else {
             rank = Integer.toString(pageNumber) + "th";
         }
-        System.out.println(UserManager.getLoginUser().getTopScore().size());
         if (users.size() < pageNumber || users.get(pageNumber - 1).returnBestScore() == null) {
             email.setText("HOI! No one has score recorded here!");
             score.setText("");
