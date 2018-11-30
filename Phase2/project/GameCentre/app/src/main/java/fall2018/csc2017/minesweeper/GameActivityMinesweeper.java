@@ -9,7 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+
 import fall2018.csc2017.R;
+import fall2018.csc2017.UserAndScore.UserManager;
 
 /**
  * Main activity interface of game minesweeper.
@@ -60,6 +66,26 @@ public class GameActivityMinesweeper extends Activity {
                 finish();
             }
         });
+    }
+
+    /**
+     * Dispatch onPause() to fragments.
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        serializeUserManager();
+    }
+
+    private void serializeUserManager() {
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(
+                    this.openFileOutput("UserManager.ser", MODE_PRIVATE));
+            outputStream.writeObject(UserManager.get_instance());
+            outputStream.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
     }
 
 }

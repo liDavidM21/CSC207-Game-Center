@@ -25,6 +25,7 @@ import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
 import fall2018.csc2017.UserAndScore.UserManager;
+import fall2018.csc2017.slidingtiles.StartingActivity;
 
 /**
  * A class to implement the game 2048.
@@ -254,6 +255,15 @@ public class GameActivity2048 extends Activity {
     }
 
     /**
+     * Dispatch onPause() to fragments.
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveToFile(saveFileName);
+    }
+
+    /**
      * Let user select whether to resume from auto save or load from saved game or start a new game.
      */
     private void createGameOptionDialog() {
@@ -291,6 +301,7 @@ public class GameActivity2048 extends Activity {
      * @param fileName filename for saved game.
      */
     public void saveToFile(String fileName) {
+        serializeUserManager();
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(
                     this.openFileOutput(fileName, MODE_PRIVATE));
@@ -343,4 +354,14 @@ public class GameActivity2048 extends Activity {
         Toast.makeText(this, "File has saved", Toast.LENGTH_SHORT).show();
     }
 
+    private void serializeUserManager() {
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(
+                    this.openFileOutput("UserManager.ser", MODE_PRIVATE));
+            outputStream.writeObject(UserManager.get_instance());
+            outputStream.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
 }
