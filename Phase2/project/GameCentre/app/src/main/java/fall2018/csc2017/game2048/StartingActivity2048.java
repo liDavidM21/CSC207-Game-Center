@@ -31,7 +31,7 @@ import fall2018.csc2017.UserAndScore.UserManager;
  * https://stackoverflow.com/questions/36894384/android-move-background-continuously-with-animation
  * https://stackoverflow.com/questions/9107900/how-to-upload-image-from-gallery-in-android
  */
-public class game2048StartingActivity extends AppCompatActivity {
+public class StartingActivity2048 extends AppCompatActivity {
 
     /**
      * The board manager.
@@ -204,7 +204,7 @@ public class game2048StartingActivity extends AppCompatActivity {
         MyBounceInterpolator interpolator = new MyBounceInterpolator(0.1, 20);
         myAnim.setInterpolator(interpolator);
         button.startAnimation(myAnim);
-        final game2048StartingActivity tmp1 = this;
+        final StartingActivity2048 tmp1 = this;
         myAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

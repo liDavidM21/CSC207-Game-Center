@@ -202,6 +202,7 @@ public class GameActivity2048 extends Activity {
                         }
                     }
                 }
+                GameActivity2048.getMainActivity().saveToFile("2048auto" + UserManager.getLoginUser().getUserEmail() + ".ser");
             }
         });
     }
