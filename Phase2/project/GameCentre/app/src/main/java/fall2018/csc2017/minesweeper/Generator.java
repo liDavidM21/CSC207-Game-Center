@@ -65,7 +65,7 @@ public class Generator {
      *
      * @param grid   grid containing game information.
      * @param width  width of the grid.
-     * @param height height of the game.
+     * @param height height of the grid.
      * @param x      x position.
      * @param y      y position.
      * @return number of bombs.
@@ -92,12 +92,12 @@ public class Generator {
     /**
      * Check is there a mine at the cell.
      *
-     * @param grid
-     * @param x
-     * @param y
-     * @param width
-     * @param height
-     * @return
+     * @param grid   grid containing game information.
+     * @param x      x position.
+     * @param y      y position.
+     * @param width  width of the grid.
+     * @param height height of the grid.
+     * @return Whether there is a mine at this position.
      */
     private static boolean isMineAt(final int[][] grid, final int x, final int y, final int width, final int height) {
         if (x >= 0 && y >= 0 && x < width && y < height) {

@@ -120,7 +120,7 @@
         android:layout_below="@+id/GameText"
         android:layout_centerHorizontal="true"
         android:background="@drawable/buttonstyle"
-        android:text="New Game"
+        android:text="Start Game"
         android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/background_1"

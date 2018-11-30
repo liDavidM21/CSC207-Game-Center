@@ -34,7 +34,7 @@
         android:layout_marginStart="127dp"
         android:layout_marginTop="-204dp"
         android:background="@drawable/buttonstyle"
-        android:text="New Game"
+        android:text="Start Game"
         android:textSize="19sp"/>
 
     <Button
