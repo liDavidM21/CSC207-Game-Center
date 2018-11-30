@@ -22,7 +22,6 @@
 # Communicate Tool
 
 * WeChat
-*
 * Group meetings
 
 # Team contract
@@ -36,6 +35,6 @@
 
 # Work Distribution
 We separate the work into several parts, each person does one of it, for example, Yuxin Yang does
-the sliding tiles solvable and autosave part, Lantao Cui does the UI part, Jinda Huang does
+the sliding tiles solvable and auto saved part, Lantao Cui does the UI part, Jinda Huang does
 the undo part, Yujie Wu does the Unit test part, Wenshuo Li does the scoreboard part, and everyone
 participates in the design (game, interface, etc.) part.
