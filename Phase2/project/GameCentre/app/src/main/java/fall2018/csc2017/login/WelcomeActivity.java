@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
 import fall2018.csc2017.R;
 import fall2018.csc2017.slidingtiles.GameChoose;
 import fall2018.csc2017.slidingtiles.MyBounceInterpolator;
@@ -16,10 +17,11 @@ import fall2018.csc2017.slidingtiles.MyBounceInterpolator;
 https://www.youtube.com/watch?v=pznCs--BtJA
  */
 
-public class WelcomeActivity extends AppCompatActivity {
-    LinearLayout l1,l2;
+public class  WelcomeActivity extends AppCompatActivity {
+    LinearLayout l1, l2;
     Button btnsub;
-    Animation uptodown,downtoup;
+    Animation uptodown, downtoup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,8 @@ public class WelcomeActivity extends AppCompatActivity {
         l2.setAnimation(downtoup);
         addenterbuttonlistener();
     }
-    private void addenterbuttonlistener(){
+
+    private void addenterbuttonlistener() {
         Button startButton = findViewById(R.id.buttonsub);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +45,8 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
     }
-    private void switchtogame(){
+
+    private void switchtogame() {
         Button button = (Button) findViewById(R.id.buttonsub);
         startAnimation(button);
     }

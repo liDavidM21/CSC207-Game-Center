@@ -7,6 +7,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import fall2018.csc2017.R;
 import fall2018.csc2017.login.LoginActivity;
 
@@ -34,21 +35,20 @@ public class SplashActivity extends AppCompatActivity {
         iv2.startAnimation(myanim);
         tv.startAnimation(myanim);
         final Intent tmp = new Intent(this, LoginActivity.class);
-        Thread timer = new Thread(){
-            public void run(){
+        Thread timer = new Thread() {
+            public void run() {
                 try {
                     sleep(5000);
-                }catch (InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
-                finally {
+                } finally {
                     startActivity(tmp);
                     finish();
                 }
 
             }
         };
-            timer.start();
+        timer.start();
 
     }
 }

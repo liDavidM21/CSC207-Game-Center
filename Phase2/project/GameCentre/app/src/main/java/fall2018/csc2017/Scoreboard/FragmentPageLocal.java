@@ -50,13 +50,15 @@ public class FragmentPageLocal extends Fragment {
 
     }
 
-    public void displayScoreboardText(String text){
+    public void displayScoreboardText(String text) {
         scoreboardString = text;
     }
-    public void displayEmailText(String text){
+
+    public void displayEmailText(String text) {
         emailString = text;
     }
-    public void displayScoreText(String text){
+
+    public void displayScoreText(String text) {
         scoreString = text;
     }
 

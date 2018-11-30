@@ -217,7 +217,7 @@ public class StartingActivity2048 extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1,GameActivity2048.class);
+                Intent tmp = new Intent(tmp1, GameActivity2048.class);
                 startActivity(tmp);
             }
         });

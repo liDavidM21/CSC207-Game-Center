@@ -85,9 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         mProgressView = findViewById(R.id.login_progress);
     }
 
-    /**
-     * switch to game menu
-     */
+    //Switch to Game menu
     private void game_menu() {
         if (newuser) {
             Intent tmp = new Intent(this, WelcomeActivity.class);
@@ -161,9 +159,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Store the new user information!
-     */
+    //Store new user information
     private void serializeUserManager() {
         /**
          * Save the information inside the UserManager.
@@ -178,11 +174,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
+    //     Attempts to sign in or register the account specified by the login form.
+    //     If there are form errors (invalid email, missing fields, etc.), the
+    //     errors are presented and no actual login attempt is made.
     private boolean attemptLogin() {
         newuser = false;
         deserialize();
