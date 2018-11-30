@@ -155,6 +155,7 @@ public class GridManagerMinesweeper implements Serializable {
         int[][] GeneratedGrid = Generator.generate(BOMB_NUMBER, WIDTH, HEIGHT);
         MinesweeperGrid = new Cell[getWIDTH()][getHEIGHT()];
         setGrid(context, GeneratedGrid);
+        time = 0;
     }
 
     /**
@@ -257,7 +258,7 @@ public class GridManagerMinesweeper implements Serializable {
             } else {
                 complexity = 5;
             }
-            UserManager.getLoginUser().addScore(new Score(10000 - 50 * time, complexity, timestamp));
+            UserManager.getLoginUser().addScore(new Score(10000 - 20 * time, complexity, timestamp));
             time = 0;
         }
     }
