@@ -25,7 +25,6 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         Fragment pageFragment = new FragmentPage();
         ScoreboardController controller = new ScoreboardController(UserManager.get_instance(), (FragmentPage) pageFragment);
-        System.out.println(UserManager.getUser());
         sortScores(UserManager.getUser());
         Bundle bundle = new Bundle();
         bundle.putInt("pageNumber", position + 1);

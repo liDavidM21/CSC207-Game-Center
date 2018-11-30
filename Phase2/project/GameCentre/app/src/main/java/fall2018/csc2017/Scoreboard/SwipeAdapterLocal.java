@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import fall2018.csc2017.UserAndScore.UserManager;
+
 public class SwipeAdapterLocal extends FragmentStatePagerAdapter {
 
     public SwipeAdapterLocal(FragmentManager fm) {
@@ -19,8 +21,10 @@ public class SwipeAdapterLocal extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment pageFragment = new FragmentPageLocal();
+        ScoreboardControllerLocal controllerLocal = new ScoreboardControllerLocal(UserManager.getLoginUser(), (FragmentPageLocal) pageFragment);
         Bundle bundle = new Bundle();
         bundle.putInt("pageNumber", position + 1);
+        controllerLocal.updateView(bundle.getInt("pageNumber"));
         pageFragment.setArguments(bundle);
 
         return pageFragment;
