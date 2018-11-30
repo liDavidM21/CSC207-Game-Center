@@ -16,6 +16,10 @@ import android.widget.TextView;
 import fall2018.csc2017.R;
 import fall2018.csc2017.UserAndScore.UserManager;
 
+/**
+ * Class scoreboard which can display and show the local and global highest score
+ */
+
 public class scoreboard extends AppCompatActivity {
 
     Switch current_switch;

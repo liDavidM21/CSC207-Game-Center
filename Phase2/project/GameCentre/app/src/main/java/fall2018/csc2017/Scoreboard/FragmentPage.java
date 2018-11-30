@@ -55,13 +55,26 @@ public class FragmentPage extends Fragment {
     }
 
 
-
+    /**
+     * Display the score on the scoreboard
+     * @param text The text of the scoreboard
+     */
     public void displayScoreboardText(String text){
         scoreboardString = text;
     }
+
+    /**
+     * Display the user info on the scoreboard
+     * @param text the user info
+     */
     public void displayEmailText(String text){
         emailString = text;
     }
+
+    /**
+     * Display the score on the scoreboard
+     * @param text score
+     */
     public void displayScoreText(String text){
         scoreString = text;
     }

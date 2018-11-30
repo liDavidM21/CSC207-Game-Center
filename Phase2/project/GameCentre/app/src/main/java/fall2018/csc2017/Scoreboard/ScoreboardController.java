@@ -8,6 +8,10 @@ import java.util.List;
 import fall2018.csc2017.UserAndScore.User;
 import fall2018.csc2017.UserAndScore.UserManager;
 import fall2018.csc2017.slidingtiles.GameChoose;
+
+/**
+ * The controller of the Scoreboard which control the run of the socreboard to determine which game is currently playing
+ */
 public class ScoreboardController {
 
     private UserManager current_manager;
@@ -19,6 +23,10 @@ public class ScoreboardController {
 
     }
 
+    /**
+     * Determine which game is currently playing
+     * @return Game name
+     */
     private String getGameName(){
         if (GameChoose.getCurrentGame().equals("sliding tiles")){
             return "Sliding Tiles" + "\n" + "Global Ranking List";
@@ -28,10 +36,20 @@ public class ScoreboardController {
             return "2048" + "\n" + "Global Ranking List";
         }
     }
+
+    /**
+     * Get the current playing user
+     * @return The player name
+     */
     private List<User> getUsers() {
          return current_manager.getUser();
     }
 
+    /**
+     * Determine where could this score put
+     * @param pageNumber The page which display the score
+     * @return The rank of this score
+     */
     private String getPosition(int pageNumber){
         if (pageNumber == 1){
             return "1st";
@@ -44,6 +62,13 @@ public class ScoreboardController {
         }
     }
 
+    /**
+     *  Display the email(username) on the page
+     * @param users The users' names
+     * @param pageNumber The page number which put the score
+     * @param rank The rank of the score should be put
+     * @return
+     */
     private String getEmailText(List<User> users, int pageNumber, String rank){
         if (users.size() < pageNumber || users.get(pageNumber - 1).returnBestScore() == null) {
             return "HOI! No one has score recorded here!";
@@ -52,6 +77,13 @@ public class ScoreboardController {
             return rank + "   Username: " + " \n" + users.get(pageNumber - 1).getUserEmail();
         }
     }
+
+    /**
+     *  Display the format of the score
+     * @param users The current user name
+     * @param pageNumber The page which the score will display
+     * @return Return the text of the score on the page
+     */
 
     private String getScoreText(List<User> users, int pageNumber){
         if (users.size() < pageNumber || users.get(pageNumber - 1).returnBestScore() == null){
@@ -76,6 +108,10 @@ public class ScoreboardController {
         }
     }
 
+    /**
+     * Update the view on the scoreboard
+     * @param pageNumber The number of the page which we need to show it on
+     */
     public void updateView(int pageNumber){
         current_page.displayScoreboardText(getGameName());
         current_page.displayEmailText(getEmailText(getUsers(), pageNumber, getPosition(pageNumber)));
