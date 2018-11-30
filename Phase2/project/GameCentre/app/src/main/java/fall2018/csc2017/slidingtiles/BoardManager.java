@@ -119,7 +119,7 @@ class BoardManager implements Serializable {
         if (solved) {
             if (UserManager.getLoginUser() != null) {
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                UserManager.getLoginUser().addScore(new Score(10000 - 50 * move - 50 * getTime(),
+                UserManager.getLoginUser().addScore(new Score(10000 - 20 * move - 50 * getTime(),
                         Board.NUM_COLS, timestamp));
             }
             move = 0;

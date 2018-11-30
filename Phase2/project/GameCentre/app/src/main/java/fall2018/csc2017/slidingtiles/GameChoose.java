@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 import fall2018.csc2017.R;
 import fall2018.csc2017.game2048.StartingActivity2048;
-import fall2018.csc2017.minesweeper.MineSweepActivity;
+import fall2018.csc2017.minesweeper.StartingActivityMinesweeper;
 
 public class GameChoose extends AppCompatActivity {
 
@@ -98,7 +98,7 @@ public class GameChoose extends AppCompatActivity {
      * Switch to game minesweeper.
      */
     private void switchToGame2() {
-        Intent tmp = new Intent(this, MineSweepActivity.class);
+        Intent tmp = new Intent(this, StartingActivityMinesweeper.class);
         startActivity(tmp);
     }
 
