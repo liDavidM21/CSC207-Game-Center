@@ -2,12 +2,11 @@ package fall2018.csc2017.slidingtiles;
 
 import android.support.annotation.NonNull;
 
-import java.util.Observable;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * The sliding tiles board.
@@ -23,6 +22,26 @@ public class Board extends Observable implements Serializable, Iterable<Tile>, C
      * The number of rows.
      */
     static int NUM_COLS = 4;
+    /**
+     * The tiles on the board in row-major order.
+     */
+    public Tile[][] tiles = new Tile[NUM_ROWS][NUM_COLS];
+
+    /**
+     * A new board of tiles in row-major order.
+     * Precondition: len(tiles) == NUM_ROWS * NUM_COLS
+     *
+     * @param tiles the tiles for the board
+     */
+    Board(List<Tile> tiles) {
+        Iterator<Tile> iter = tiles.iterator();
+
+        for (int row = 0; row != Board.NUM_ROWS; row++) {
+            for (int col = 0; col != Board.NUM_COLS; col++) {
+                this.tiles[row][col] = iter.next();
+            }
+        }
+    }
 
     /**
      * @param r The num of rows wanted to set
@@ -44,43 +63,6 @@ public class Board extends Observable implements Serializable, Iterable<Tile>, C
     @NonNull
     public Iterator<Tile> iterator() {
         return new BoardClassIterator();
-    }
-
-    private class BoardClassIterator implements Iterator<Tile> {
-        private int cur_index = 0;
-
-        @Override
-        public boolean hasNext() {
-            return cur_index < NUM_ROWS * NUM_COLS;
-        }
-
-        @Override
-        public Tile next() {
-            Tile result = tiles[cur_index / 4][cur_index % 4];
-            cur_index++;
-            return result;
-        }
-    }
-
-    /**
-     * The tiles on the board in row-major order.
-     */
-    public Tile[][] tiles = new Tile[NUM_ROWS][NUM_COLS];
-
-    /**
-     * A new board of tiles in row-major order.
-     * Precondition: len(tiles) == NUM_ROWS * NUM_COLS
-     *
-     * @param tiles the tiles for the board
-     */
-    Board(List<Tile> tiles) {
-        Iterator<Tile> iter = tiles.iterator();
-
-        for (int row = 0; row != Board.NUM_ROWS; row++) {
-            for (int col = 0; col != Board.NUM_COLS; col++) {
-                this.tiles[row][col] = iter.next();
-            }
-        }
     }
 
     /**
@@ -127,5 +109,21 @@ public class Board extends Observable implements Serializable, Iterable<Tile>, C
         return "Board{" +
                 "tiles=" + Arrays.toString(tiles) +
                 '}';
+    }
+
+    private class BoardClassIterator implements Iterator<Tile> {
+        private int cur_index = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cur_index < NUM_ROWS * NUM_COLS;
+        }
+
+        @Override
+        public Tile next() {
+            Tile result = tiles[cur_index / 4][cur_index % 4];
+            cur_index++;
+            return result;
+        }
     }
 }

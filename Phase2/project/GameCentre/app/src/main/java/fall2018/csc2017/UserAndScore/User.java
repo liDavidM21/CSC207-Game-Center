@@ -22,6 +22,23 @@ public class User implements Serializable, Comparable<User> {
      * List of top score the user have
      */
     private List<Score> topScore;
+    private List<Score> score2048;
+    private List<Score> scoreSlidingTiles;
+    private List<Score> scoreMineSweeper;
+
+    /**
+     * User class constructor. Given email and password.
+     *
+     * @param user_email: the given email
+     * @param password:   the given password
+     */
+    public User(String user_email, String password) {
+        this.userEmail = user_email;
+        this.password = password;
+        this.score2048 = new ArrayList<>();
+        this.scoreSlidingTiles = new ArrayList<>();
+        this.scoreMineSweeper = new ArrayList<>();
+    }
 
     /**
      * Get the top score the user have.
@@ -37,26 +54,12 @@ public class User implements Serializable, Comparable<User> {
      *
      * @return the userEmail.
      */
-    public String getUserEmail(){return userEmail;}
+    public String getUserEmail() {
+        return userEmail;
+    }
 
-    public String getPassword(){return password;}
-
-    public List<Score> score2048;
-    public List<Score> scoreSlidingTiles;
-    public List<Score> scoreMineSweeper;
-
-    /**
-     * User class constructor. Given email and password.
-     *
-     * @param user_email: the given email
-     * @param password:   the given password
-     */
-    public User(String user_email, String password) {
-        this.userEmail = user_email;
-        this.password = password;
-        this.score2048 = new ArrayList<>();
-        this.scoreSlidingTiles = new ArrayList<>();
-        this.scoreMineSweeper = new ArrayList<>();
+    public String getPassword() {
+        return password;
     }
 
     /**
@@ -118,7 +121,7 @@ public class User implements Serializable, Comparable<User> {
             topScore = score2048;
         } else if (game.equals("Sliding Tiles")) {
             topScore = scoreSlidingTiles;
-        } else if (game.equals("Mine Sweeper")){
+        } else if (game.equals("Mine Sweeper")) {
             topScore = scoreMineSweeper;
         }
     }

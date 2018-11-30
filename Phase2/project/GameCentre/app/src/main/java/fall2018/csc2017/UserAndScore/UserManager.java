@@ -21,6 +21,10 @@ public class UserManager implements Serializable, Iterable<User> {
      * Current Login user.
      */
     private static User loginUser = null;
+    /**
+     * List of all registered users.
+     */
+    private List<User> currentUser = new ArrayList<>();
 
     /**
      * Make sure only one UserManager exists.
@@ -53,15 +57,6 @@ public class UserManager implements Serializable, Iterable<User> {
     }
 
     /**
-     * Set login user
-     *
-     * @param user: the login user.
-     */
-    public static void setLoginUser(User user) {
-        loginUser = user;
-    }
-
-    /**
      * Get login user
      *
      * @return: return the current login user
@@ -71,12 +66,26 @@ public class UserManager implements Serializable, Iterable<User> {
     }
 
     /**
-     * List of all registered users.
+     * Set login user
+     *
+     * @param user: the login user.
      */
-    private List<User> currentUser = new ArrayList<>();
+    public static void setLoginUser(User user) {
+        loginUser = user;
+    }
 
     public Iterator<User> iterator() {
         return new UserIterator();
+    }
+
+    public void add(User new_user) {
+        currentUser.add(new_user);
+    }
+
+    public void switch_game(String game) {
+        for (User u : currentUser) {
+            u.switch_game(game);
+        }
     }
 
     private class UserIterator implements Iterator<User> {
@@ -93,16 +102,6 @@ public class UserManager implements Serializable, Iterable<User> {
             User result = currentUser.get(curIndex);
             curIndex++;
             return result;
-        }
-    }
-
-    public void add(User new_user) {
-        currentUser.add(new_user);
-    }
-
-    public void switch_game(String game){
-        for(User u: currentUser){
-            u.switch_game(game);
         }
     }
 

@@ -1,8 +1,8 @@
 package fall2018.csc2017.minesweeper;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -14,11 +14,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
-import fall2018.csc2017.slidingtiles.Game_choose;
-import fall2018.csc2017.login.LoginActivity;
 import fall2018.csc2017.Scoreboard.scoreboard;
-import fall2018.csc2017.slidingtiles.MyBounceInterpolator;
 import fall2018.csc2017.UserAndScore.UserManager;
+import fall2018.csc2017.login.LoginActivity;
+import fall2018.csc2017.slidingtiles.GameChoose;
+import fall2018.csc2017.slidingtiles.MyBounceInterpolator;
 
 /**
  * The initial activity for the minesweeper game.
@@ -31,16 +31,16 @@ public class MineSweepActivity extends AppCompatActivity {
     private static int showDefault = 1;
 
     /**
-     * GameEngine of the game.
+     * GridManagerMinesweeper of the game.
      */
-    private GameEngine gameengine;
+    private GridManagerMinesweeper gameengine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         serializeUserManager();
         UserManager.get_instance().switch_game("Mine Sweeper");
         super.onCreate(savedInstanceState);
-        gameengine = GameEngine.getInstance();
+        gameengine = GridManagerMinesweeper.getInstance();
         if (showDefault == 1) {
             makeToastModeText();
             showDefault++;
@@ -71,7 +71,7 @@ public class MineSweepActivity extends AppCompatActivity {
      * Used by ExitButtonListener.
      */
     private void switchToSelecting() {
-        Intent tmp = new Intent(this, Game_choose.class);
+        Intent tmp = new Intent(this, GameChoose.class);
         startActivity(tmp);
     }
 
@@ -83,7 +83,7 @@ public class MineSweepActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameengine = GameEngine.getInstance();
+                gameengine = GridManagerMinesweeper.getInstance();
                 switchToGame();
             }
         });
@@ -170,7 +170,7 @@ public class MineSweepActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent tmp = new Intent(tmp1,MainActivity.class);
+                Intent tmp = new Intent(tmp1, GameActivityMinesweeper.class);
                 startActivity(tmp);
             }
         });

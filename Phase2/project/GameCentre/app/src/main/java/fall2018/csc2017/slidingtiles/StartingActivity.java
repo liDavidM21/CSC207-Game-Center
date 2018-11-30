@@ -9,8 +9,8 @@ package fall2018.csc2017.slidingtiles;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -45,16 +45,15 @@ public class StartingActivity extends AppCompatActivity {
     /**
      * A auto save file.
      */
-    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto"  + UserManager.getLoginUser().getUserEmail() + ".ser";
-    /**
-     * The board manager.
-     */
-    private BoardManager boardManager;
+    public static final String AUTO_SAVE_FILENAME = "save_file_st_auto" + UserManager.getLoginUser().getUserEmail() + ".ser";
     /**
      * Int created for only pop default mode msg once.
      */
     private static int showDefault = 1;
-
+    /**
+     * The board manager.
+     */
+    private BoardManager boardManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +112,7 @@ public class StartingActivity extends AppCompatActivity {
                         loadFromFile(AUTO_SAVE_FILENAME);
                         switchToGame();
                         makeToastLoadedText("Resuming game");
-                }
+                    }
                 })
                 .setNeutralButton("New Game", new DialogInterface.OnClickListener() {
                     @Override
@@ -219,8 +218,8 @@ public class StartingActivity extends AppCompatActivity {
      * Switch to the GameActivity view to play the game.
      */
     private void switchToGame() {
-            Button button = (Button) findViewById(R.id.StartButton);
-            startAnimation(button);
+        Button button = (Button) findViewById(R.id.StartButton);
+        startAnimation(button);
     }
 
     /**
@@ -246,9 +245,9 @@ public class StartingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                    Intent tmp = new Intent(tmp1, GameActivity.class);
-                    saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-                    startActivity(tmp);
+                Intent tmp = new Intent(tmp1, GameActivity.class);
+                saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+                startActivity(tmp);
             }
         });
     }
@@ -258,11 +257,11 @@ public class StartingActivity extends AppCompatActivity {
      */
     private void switchToSetting() {
         final StartingActivity tmp1 = this;
-            Intent tmp = new Intent(tmp1, GameSetting.class);
-            saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
-            makeToastUndoText();
-            startActivity(tmp);
-        }
+        Intent tmp = new Intent(tmp1, GameSetting.class);
+        saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
+        makeToastUndoText();
+        startActivity(tmp);
+    }
 
     /**
      * Switch to Scoreboard interface.
@@ -332,7 +331,7 @@ public class StartingActivity extends AppCompatActivity {
      * Used by ExitButtonListener.
      */
     private void switchToSelecting() {
-        Intent tmp = new Intent(this, Game_choose.class);
+        Intent tmp = new Intent(this, GameChoose.class);
         startActivity(tmp);
     }
 

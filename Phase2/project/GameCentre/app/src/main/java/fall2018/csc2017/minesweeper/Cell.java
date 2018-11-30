@@ -1,15 +1,12 @@
 package fall2018.csc2017.minesweeper;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-import fall2018.csc2017.minesweeper.MainActivity;
 import fall2018.csc2017.R;
 
 /**
@@ -18,19 +15,20 @@ import fall2018.csc2017.R;
  * It is used to construct basic game structure and modified by our group member.
  * Subclass of class BaseCell. Represent each cell of game minesweeper.
  */
-public class Cell extends BaseCell implements View.OnClickListener , View.OnLongClickListener{
+public class Cell extends BaseCell implements View.OnClickListener, View.OnLongClickListener {
 
 
     /**
      * Constructor of class cell.
+     *
      * @param context context of the cell
-     * @param x x position.
-     * @param y y position.
+     * @param x       x position.
+     * @param y       y position.
      */
-    public Cell(Context context , int x , int y ){
+    public Cell(Context context, int x, int y) {
         super(context);
 
-        setPosition(x,y);
+        setPosition(x, y);
 
         setOnClickListener(this);
         setOnLongClickListener(this);
@@ -50,8 +48,8 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
     @Override
     public void onClick(View v) {
 
-        if (!GameEngine.isLost())
-        GameEngine.getInstance().click( getXPos(), getYPos() );
+        if (!GridManagerMinesweeper.isLost())
+            GridManagerMinesweeper.getInstance().click(getXPos(), getYPos());
     }
 
     /**
@@ -59,8 +57,8 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
      */
     @Override
     public boolean onLongClick(View v) {
-        if (!GameEngine.getInstance().getCellAt(getXPos(), getYPos()).isRevealed()) {
-            GameEngine.getInstance().flag(getXPos(), getYPos());
+        if (!GridManagerMinesweeper.getInstance().getCellAt(getXPos(), getYPos()).isRevealed()) {
+            GridManagerMinesweeper.getInstance().flag(getXPos(), getYPos());
         }
         return true;
     }
@@ -72,22 +70,22 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.d("Minesweeper" , "Cell::onDraw");
+        Log.d("Minesweeper", "Cell::onDraw");
         drawButton(canvas);
 
-        if( isFlagged()){
+        if (isFlagged()) {
             drawFlag(canvas);
-            //GameEngine.setBombNumber(GameEngine.getBombNumber()-1);
-        }else if( isRevealed() && isBomb() && !isClicked() ){
+            //GridManagerMinesweeper.setBombNumber(GridManagerMinesweeper.getBombNumber()-1);
+        } else if (isRevealed() && isBomb() && !isClicked()) {
             drawNormalBomb(canvas);
-        }else {
-            if( isClicked() ){
-                if( getValue() == -1 ){
+        } else {
+            if (isClicked()) {
+                if (getValue() == -1) {
                     drawBombExploded(canvas);
-                }else {
+                } else {
                     drawNumber(canvas);
                 }
-            }else{
+            } else {
                 drawButton(canvas);
             }
         }
@@ -96,46 +94,46 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
     /**
      * Show exploded bomb.
      */
-    private void drawBombExploded(Canvas canvas ){
+    private void drawBombExploded(Canvas canvas) {
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.bomb_exploded);
-        drawable.setBounds(0,0,getWidth(),getHeight());
+        drawable.setBounds(0, 0, getWidth(), getHeight());
         drawable.draw(canvas);
     }
 
     /**
      * Show flag.
      */
-    private void drawFlag( Canvas canvas ){
+    private void drawFlag(Canvas canvas) {
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.flag);
-        drawable.setBounds(0,0,getWidth(),getHeight());
+        drawable.setBounds(0, 0, getWidth(), getHeight());
         drawable.draw(canvas);
     }
 
     /**
      * Show button.
      */
-    private void drawButton(Canvas canvas ){
+    private void drawButton(Canvas canvas) {
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.button);
-        drawable.setBounds(0,0,getWidth(),getHeight());
+        drawable.setBounds(0, 0, getWidth(), getHeight());
         drawable.draw(canvas);
     }
 
     /**
      * Show normal bomb.
      */
-    private void drawNormalBomb(Canvas canvas ){
+    private void drawNormalBomb(Canvas canvas) {
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.bomb_normal);
-        drawable.setBounds(0,0,getWidth(),getHeight());
+        drawable.setBounds(0, 0, getWidth(), getHeight());
         drawable.draw(canvas);
     }
 
     /**
      * Show number of  bombs.
      */
-    private void drawNumber( Canvas canvas ){
+    private void drawNumber(Canvas canvas) {
         Drawable drawable = null;
 
-        switch (getValue() ){
+        switch (getValue()) {
             case 0:
                 drawable = ContextCompat.getDrawable(getContext(), R.drawable.number_0);
                 break;
@@ -165,7 +163,7 @@ public class Cell extends BaseCell implements View.OnClickListener , View.OnLong
                 break;
         }
 
-        drawable.setBounds(0,0,getWidth(),getHeight());
+        drawable.setBounds(0, 0, getWidth(), getHeight());
         drawable.draw(canvas);
     }
 

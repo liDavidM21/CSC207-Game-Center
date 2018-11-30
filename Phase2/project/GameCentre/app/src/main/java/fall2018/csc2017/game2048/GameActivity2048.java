@@ -5,6 +5,7 @@ package fall2018.csc2017.game2048;
  * https://github.com/JimZhou-001/2048-Android.git
  * It is used to construct basic game structure and modified by our group member.
  */
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -29,55 +30,55 @@ import fall2018.csc2017.slidingtiles.StartingActivity;
 /**
  * A class to implement the game 2048.
  */
-public class MainActivityTwo extends Activity {
+public class GameActivity2048 extends Activity {
 
     /**
      * A mainActivity.
      */
-    private static MainActivityTwo mainActivity = null;
-
-    /**
-     * TextView of score.
-     */
-    private TextView Score;
-
+    private static GameActivity2048 mainActivity = null;
     /**
      * Current score.
      */
     private static int score = 0;
-
     /**
-     * TextView of the max score.
+     * The maximum step the player can use undo.(default 3)
      */
-    private TextView maxScore;
-
+    private static int undoStep = 3;
     /**
      * The button for restarting game.
      */
     Button load;
-
     /**
      * The button for saving game.
      */
     Button save;
-
+    /**
+     * TextView of score.
+     */
+    private TextView Score;
+    /**
+     * TextView of the max score.
+     */
+    private TextView maxScore;
     /**
      * The GameView gameView.
      */
     private GameView gameView;
     private GameManager gm = GameManager.getInstance();
     /**
-     * The maximum step the player can use undo.(default 3)
+     * Manual Save to File.
      */
-    private static int undoStep = 3;
+    private String saveFileName = "2048" + UserManager.getLoginUser().getUserEmail() + ".ser";
+    /**
+     * Save to File for autoSave.
+     */
+    private String autoSaveFileName = "2048auto" + UserManager.getLoginUser().getUserEmail() + ".ser";
 
     /**
-     * Set the maximum step to i
-     *
-     * @param i the maximum step
+     * Constructor of class GameActivity2048.
      */
-    public static void setUndoStep(int i) {
-        undoStep = i;
+    public GameActivity2048() {
+        mainActivity = this;
     }
 
     /**
@@ -90,7 +91,17 @@ public class MainActivityTwo extends Activity {
     }
 
     /**
+     * Set the maximum step to i
+     *
+     * @param i the maximum step
+     */
+    public static void setUndoStep(int i) {
+        undoStep = i;
+    }
+
+    /**
      * Get current score.
+     *
      * @return int current score.
      */
     public static int getScore() {
@@ -98,14 +109,13 @@ public class MainActivityTwo extends Activity {
     }
 
     /**
-     * Manual Save to File.
+     * Get the main activity.
+     *
+     * @return GameActivityMinesweeper.
      */
-    private String saveFileName = "2048" + UserManager.getLoginUser().getUserEmail() + ".ser";
-
-    /**
-     * Save to File for autoSave.
-     */
-    private String autoSaveFileName = "2048auto" + UserManager.getLoginUser().getUserEmail() + ".ser";
+    public static GameActivity2048 getMainActivity() {
+        return mainActivity;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +138,7 @@ public class MainActivityTwo extends Activity {
             }
         });
         addUndoButtonListener();
-        save = (Button)findViewById(R.id.save);
+        save = (Button) findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,22 +147,6 @@ public class MainActivityTwo extends Activity {
             }
         });
 
-    }
-
-    /**
-     * Constructor of class MainActivityTwo.
-     */
-    public MainActivityTwo() {
-        mainActivity = this;
-    }
-
-    /**
-     * Get the main activity.
-     *
-     * @return MainActivity.
-     */
-    public static MainActivityTwo getMainActivity() {
-        return mainActivity;
     }
 
     /**
@@ -209,6 +203,7 @@ public class MainActivityTwo extends Activity {
                         }
                     }
                 }
+                GameActivity2048.getMainActivity().saveToFile("2048auto" + UserManager.getLoginUser().getUserEmail() + ".ser");
             }
         });
     }
@@ -239,7 +234,7 @@ public class MainActivityTwo extends Activity {
      * Ask user whether want to exit the game or not.
      */
     private void createExitTipDialog() {
-        new AlertDialog.Builder(MainActivityTwo.this)
+        new AlertDialog.Builder(GameActivity2048.this)
                 .setMessage("Exit？")
                 .setTitle("Reminder")
                 .setIcon(R.drawable.tip)
@@ -272,7 +267,7 @@ public class MainActivityTwo extends Activity {
      * Let user select whether to resume from auto save or load from saved game or start a new game.
      */
     private void createGameOptionDialog() {
-        new AlertDialog.Builder(MainActivityTwo.this)
+        new AlertDialog.Builder(GameActivity2048.this)
                 .setMessage("hOI, what do you want to do?")
                 .setTitle("Option")
                 .setIcon(R.drawable.tip)
@@ -290,7 +285,7 @@ public class MainActivityTwo extends Activity {
                         loadFromFile(saveFileName);
                     }
                 })
-                .setNeutralButton("Resume",new DialogInterface.OnClickListener() {
+                .setNeutralButton("Resume", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -302,6 +297,7 @@ public class MainActivityTwo extends Activity {
 
     /**
      * Save the game.
+     *
      * @param fileName filename for saved game.
      */
     public void saveToFile(String fileName) {
@@ -319,6 +315,7 @@ public class MainActivityTwo extends Activity {
 
     /**
      * Load from saved games.
+     *
      * @param fileName filename of saved game.
      */
     private void loadFromFile(String fileName) {
@@ -333,11 +330,9 @@ public class MainActivityTwo extends Activity {
                 showScore();
                 inputStream.close();
             }
-        }
-        catch(ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             System.out.println("No class is found.");
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             gameView.startGame();
             makeToastNoFilesText();
         } catch (IOException e) {

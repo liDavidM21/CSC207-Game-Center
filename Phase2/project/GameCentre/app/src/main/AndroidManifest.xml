@@ -21,18 +21,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".minesweeper.MainActivity" />
+        <activity android:name=".minesweeper.GameActivityMinesweeper" />
         <activity android:name=".minesweeper.MineSweepActivity" />
         <activity android:name=".slidingtiles.StartingActivity" />
         <activity android:name=".slidingtiles.GameActivity" />
         <activity android:name=".slidingtiles.GameSetting" />
         <activity android:name=".Scoreboard.scoreboard" />
-        <activity android:name=".game2048.MainActivityTwo" />
+        <activity android:name=".game2048.GameActivity2048" />
         <activity android:name=".minesweeper.GameSettingMinesweeper" />
-        <activity android:name=".slidingtiles.Game_choose" />
-        <activity android:name=".game2048.game2048Activity" />
+        <activity android:name=".slidingtiles.GameChoose" />
+        <activity android:name=".game2048.StartingActivity2048" />
         <activity android:name=".login.LoginActivity" />
-        <activity android:name=".login.welcomeActivity"></activity>
+        <activity android:name=".login.WelcomeActivity"></activity>
     </application>
 
 </manifest>

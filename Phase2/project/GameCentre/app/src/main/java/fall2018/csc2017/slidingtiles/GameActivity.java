@@ -1,16 +1,14 @@
 package fall2018.csc2017.slidingtiles;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.Toast;
-import fall2018.csc2017.R;
-import fall2018.csc2017.UserAndScore.UserManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,6 +18,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import fall2018.csc2017.R;
+import fall2018.csc2017.UserAndScore.UserManager;
 
 /**
  * The algorithm of preventing unsolvable sliding tiles cite from https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
@@ -31,23 +32,24 @@ import java.util.Observer;
 public class GameActivity extends AppCompatActivity implements Observer {
 
     /**
-     * The board manager.
+     * The list of the position of blank tile in each state.
      */
-    private BoardManager boardManager;
-
+    public static ArrayList<Integer> positionList = new ArrayList<>();
     /**
      * The maximum step the player can use undo.(default 3)
      */
     private static int undoStep = 3;
-
+    private static int columnWidth, columnHeight;
     /**
-     * Set the maximum step to i
-     *
-     * @param i the maximum step
+     * The board manager.
      */
-    public static void setUndoStep(int i) {
-        undoStep = i;
-    }
+    private BoardManager boardManager;
+    /**
+     * The buttons to display.
+     */
+    private ArrayList<Button> tileButtons;
+    // Grid View and calculated column height and width based on device size
+    private GestureDetectGridView gridView;
 
     /**
      * Get the maximum step of undo.
@@ -60,14 +62,13 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
     /**
-     * The buttons to display.
+     * Set the maximum step to i
+     *
+     * @param i the maximum step
      */
-    private ArrayList<Button> tileButtons;
-
-    /**
-     * The list of the position of blank tile in each state.
-     */
-    public static ArrayList<Integer> positionList = new ArrayList<>();
+    public static void setUndoStep(int i) {
+        undoStep = i;
+    }
 
     /**
      * Add the new state's position of blank tile to the positionList.
@@ -77,10 +78,6 @@ public class GameActivity extends AppCompatActivity implements Observer {
     public static void addPosition(int i) {
         positionList.add(i);
     }
-
-    // Grid View and calculated column height and width based on device size
-    private GestureDetectGridView gridView;
-    private static int columnWidth, columnHeight;
 
     /**
      * Set up the background image for each button based on the master list
@@ -96,7 +93,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
-        while (!puzzleHasSolve()){
+        while (!puzzleHasSolve()) {
             boardManager = new BoardManager();
             saveToFile(StartingActivity.TEMP_SAVE_FILENAME);
             loadFromFile(StartingActivity.TEMP_SAVE_FILENAME);
@@ -163,7 +160,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
                 }
                 if (positionList.size() == 0) {
                     makeToastUndo();
-                } else if (BoardManager.getCanUndo()){
+                } else if (BoardManager.getCanUndo()) {
                     int swapPosition = positionList.remove(positionList.size() - 1);
                     int swapRow = swapPosition / Board.NUM_ROWS;
                     int swapCol = swapPosition % Board.NUM_COLS;
@@ -281,44 +278,41 @@ public class GameActivity extends AppCompatActivity implements Observer {
     }
 
     /**
-    * Prevent unsolved sliding tiles
+     * Prevent unsolved sliding tiles
      */
-    private boolean puzzleHasSolve(){
+    private boolean puzzleHasSolve() {
         ArrayList<Tile> tempList = new ArrayList<>();
         int total = 0;
         int blankPos = 0;
         boolean findBlank = false;
         for (int i = 0; i < Board.NUM_COLS; i++) {
             for (int j = 0; j < Board.NUM_COLS; j++) {
-                Tile temp = boardManager.getBoard().getTile(i,j);
+                Tile temp = boardManager.getBoard().getTile(i, j);
                 tempList.add(temp);
             }
         }
-        while (tempList.size() != 0){
+        while (tempList.size() != 0) {
             Tile firstTile = tempList.get(0);
             tempList.remove(0);
-            if (firstTile.getId() != Board.NUM_COLS * Board.NUM_ROWS){
-                if (!findBlank){
-                    blankPos ++;
+            if (firstTile.getId() != Board.NUM_COLS * Board.NUM_ROWS) {
+                if (!findBlank) {
+                    blankPos++;
                 }
-                for (Tile tile : tempList){
-                    if (tile.compareTo(firstTile) > 0 ){
+                for (Tile tile : tempList) {
+                    if (tile.compareTo(firstTile) > 0) {
                         total++;
                     }
                 }
-            }
-            else{
+            } else {
                 findBlank = true;
             }
         }
         boolean condition = false;
-        if ((Board.NUM_ROWS % 2 == 1) && (total % 2 == 0)){
+        if ((Board.NUM_ROWS % 2 == 1) && (total % 2 == 0)) {
             condition = true;
-        }
-        else if ((Board.NUM_ROWS %2 == 0) && ((0 <= blankPos && blankPos <= 3)||(8 <= blankPos && blankPos <= 11))&& (total % 2 == 1)){
+        } else if ((Board.NUM_ROWS % 2 == 0) && ((0 <= blankPos && blankPos <= 3) || (8 <= blankPos && blankPos <= 11)) && (total % 2 == 1)) {
             condition = true;
-        }
-        else if ((Board.NUM_ROWS %2 == 0) && ((4 <= blankPos && blankPos <= 7)||(12 <= blankPos && blankPos <= 15))&& (total % 2 == 0)){
+        } else if ((Board.NUM_ROWS % 2 == 0) && ((4 <= blankPos && blankPos <= 7) || (12 <= blankPos && blankPos <= 15)) && (total % 2 == 0)) {
             condition = true;
         }
         return condition;

@@ -7,24 +7,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import fall2018.csc2017.R;
 
 public class GameSetting extends AppCompatActivity {
 
     /**
+     * Initialize the default UndoStep.
+     */
+    public static int numUndo = 3;
+    /**
      * The board manager.
      */
     private BoardManager boardManager;
-
     /**
      * Mode selected/
      */
     private String mode;
-
-    /**
-     * Initialize the default UndoStep.
-     */
-    public static int numUndo = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

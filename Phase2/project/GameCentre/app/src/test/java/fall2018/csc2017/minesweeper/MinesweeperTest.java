@@ -7,28 +7,28 @@ import static org.junit.Assert.*;
 public class MinesweeperTest {
 
 
-    GameEngine gameEngine = new GameEngine();
+    GridManagerMinesweeper gridManagerMinesweeper = new GridManagerMinesweeper();
 
     @Test
     public void testSetterAndGetter() {
-        assertEquals(10, gameEngine.getWIDTH());
-        assertEquals(14, gameEngine.getHEIGHT());
-        assertEquals(14, gameEngine.getBombNumber());
-        assertFalse(gameEngine.isLost());
-        gameEngine.setWIDTH(12);
-        gameEngine.setHEIGHT(16);
-        gameEngine.setBombNumber(20);
-        gameEngine.setIsLost(true);
-        assertEquals(12, gameEngine.getWIDTH());
-        assertEquals(16, gameEngine.getHEIGHT());
-        assertEquals(20, gameEngine.getBombNumber());
-        assertTrue(gameEngine.isLost());
+        assertEquals(10, gridManagerMinesweeper.getWIDTH());
+        assertEquals(14, gridManagerMinesweeper.getHEIGHT());
+        assertEquals(14, gridManagerMinesweeper.getBombNumber());
+        assertFalse(gridManagerMinesweeper.isLost());
+        gridManagerMinesweeper.setWIDTH(12);
+        gridManagerMinesweeper.setHEIGHT(16);
+        gridManagerMinesweeper.setBombNumber(20);
+        gridManagerMinesweeper.setIsLost(true);
+        assertEquals(12, gridManagerMinesweeper.getWIDTH());
+        assertEquals(16, gridManagerMinesweeper.getHEIGHT());
+        assertEquals(20, gridManagerMinesweeper.getBombNumber());
+        assertTrue(gridManagerMinesweeper.isLost());
     }
 
 
     @Test
     public void testGetCellAt(){
-        assertEquals(gameEngine.getCellAt(100), gameEngine.getCellAt(0, 10));
+        assertEquals(gridManagerMinesweeper.getCellAt(100), gridManagerMinesweeper.getCellAt(0, 10));
     }
 
     @Test

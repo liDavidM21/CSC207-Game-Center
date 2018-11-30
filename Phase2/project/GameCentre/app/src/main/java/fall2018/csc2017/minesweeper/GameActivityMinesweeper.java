@@ -13,32 +13,34 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+
 import fall2018.csc2017.R;
 import fall2018.csc2017.UserAndScore.UserManager;
 
 /**
  * Main activity interface of game minesweeper.
  */
-public class MainActivity extends Activity {
+public class GameActivityMinesweeper extends Activity {
 
-    MainActivity main;
+    GameActivityMinesweeper main;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GameEngine.is_over = false;
+        GridManagerMinesweeper.is_over = false;
         main = this;
         setContentView(R.layout.activity_main2);
-        GameEngine.setIsLost(false);
-        Log.e("MainActivityTwo","onCreate");
-        GameEngine.getInstance().createGrid(this);
+        GridManagerMinesweeper.setIsLost(false);
+        Log.e("GameActivity2048", "onCreate");
+        GridManagerMinesweeper.getInstance().createGrid(this);
         TextView txt = findViewById(R.id.bombNum);
-        String str = "#BOMBS: " + Integer.toString(GameEngine.getBombNumber());
+        String str = "#BOMBS: " + Integer.toString(GridManagerMinesweeper.getBombNumber());
         txt.setText(str);
         addReStartButtonListener();
         CountDownTimer timer = new CountDownTimer(600000, 1000) {
             @Override
             public void onTick(long l) {
-                GameEngine.getInstance().time += 1;
+                GridManagerMinesweeper.getInstance().time += 1;
             }
 
             @Override
@@ -58,14 +60,14 @@ public class MainActivity extends Activity {
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent tmp = new Intent(main, MainActivity.class);
+                Intent tmp = new Intent(main, GameActivityMinesweeper.class);
                 startActivity(tmp);
 
                 finish();
             }
         });
     }
-    
+
     /**
      * Dispatch onPause() to fragments.
      */

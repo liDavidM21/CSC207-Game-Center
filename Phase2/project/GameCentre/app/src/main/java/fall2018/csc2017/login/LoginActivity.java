@@ -4,9 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -24,9 +24,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import fall2018.csc2017.R;
-import fall2018.csc2017.slidingtiles.Game_choose;
 import fall2018.csc2017.UserAndScore.User;
 import fall2018.csc2017.UserAndScore.UserManager;
+import fall2018.csc2017.slidingtiles.GameChoose;
 
 /**
  * A login screen that offers login via email/password.
@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private View mLoginFormView;
     private UserManager current_manager = UserManager.get_instance();
     private boolean newuser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL){
+                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
                     attemptLogin();
                     return true;
                 }
@@ -89,11 +90,10 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void game_menu() {
         if (newuser) {
-            Intent tmp = new Intent(this, welcomeActivity.class);
+            Intent tmp = new Intent(this, WelcomeActivity.class);
             startActivity(tmp);
-        }
-        else{
-            Intent tmp = new Intent(this, Game_choose.class);
+        } else {
+            Intent tmp = new Intent(this, GameChoose.class);
             startActivity(tmp);
         }
     }
@@ -133,8 +133,7 @@ public class LoginActivity extends AppCompatActivity {
             focusView = mEmailView;
             cancel = true;
             System.out.println(cancel);
-        }
-        else if (password.length() <= 4) {
+        } else if (password.length() <= 4) {
             /**
              * Check if the password is valid.
              */
@@ -163,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     *Store the new user information!
+     * Store the new user information!
      */
     private void serializeUserManager() {
         /**

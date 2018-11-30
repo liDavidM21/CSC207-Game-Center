@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import fall2018.csc2017.R;
-import fall2018.csc2017.slidingtiles.StartingActivity;
 
 /**
  * Setting of game minesweeper.
@@ -51,9 +50,9 @@ public class GameSettingMinesweeper extends AppCompatActivity {
         easyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameEngine.setBombNumber(8);
-                GameEngine.setWIDTH(8);
-                GameEngine.setHEIGHT(10);
+                GridManagerMinesweeper.setBombNumber(8);
+                GridManagerMinesweeper.setWIDTH(8);
+                GridManagerMinesweeper.setHEIGHT(10);
                 mode = "EASY";
                 makeToastModeText();
 
@@ -69,9 +68,9 @@ public class GameSettingMinesweeper extends AppCompatActivity {
         mediumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameEngine.setBombNumber(14);
-                GameEngine.setWIDTH(10);
-                GameEngine.setHEIGHT(14);
+                GridManagerMinesweeper.setBombNumber(14);
+                GridManagerMinesweeper.setWIDTH(10);
+                GridManagerMinesweeper.setHEIGHT(14);
                 mode = "MEDIUM";
                 makeToastModeText();
             }
@@ -86,9 +85,9 @@ public class GameSettingMinesweeper extends AppCompatActivity {
         hardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameEngine.setBombNumber(20);
-                GameEngine.setWIDTH(12);
-                GameEngine.setHEIGHT(16);
+                GridManagerMinesweeper.setBombNumber(20);
+                GridManagerMinesweeper.setWIDTH(12);
+                GridManagerMinesweeper.setHEIGHT(16);
                 mode = "HARD";
                 makeToastModeText();
             }

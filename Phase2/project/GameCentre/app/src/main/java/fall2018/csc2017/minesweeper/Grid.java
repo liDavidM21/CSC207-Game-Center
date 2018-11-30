@@ -13,17 +13,17 @@ import android.widget.GridView;
  * It is used to construct basic game structure and modified by our group member.
  * Grid containing game information.
  */
-public class Grid extends GridView{
+public class Grid extends GridView {
 
     /**
      * Constructor of class grid.
      */
-    public Grid(Context context , AttributeSet attrs){
-        super(context,attrs);
+    public Grid(Context context, AttributeSet attrs) {
+        super(context, attrs);
 
-        GameEngine.getInstance().createGrid(context);
+        GridManagerMinesweeper.getInstance().createGrid(context);
 
-        setNumColumns(GameEngine.getWIDTH());
+        setNumColumns(GridManagerMinesweeper.getWIDTH());
         setAdapter(new GridAdapter());
     }
 
@@ -33,11 +33,11 @@ public class Grid extends GridView{
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    private class GridAdapter extends BaseAdapter{
+    private class GridAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return GameEngine.getWIDTH() * GameEngine.getHEIGHT();
+            return GridManagerMinesweeper.getWIDTH() * GridManagerMinesweeper.getHEIGHT();
         }
 
         @Override
@@ -52,7 +52,7 @@ public class Grid extends GridView{
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return GameEngine.getInstance().getCellAt(position);
+            return GridManagerMinesweeper.getInstance().getCellAt(position);
         }
     }
 }

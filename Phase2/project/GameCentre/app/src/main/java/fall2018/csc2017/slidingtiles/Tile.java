@@ -2,10 +2,10 @@ package fall2018.csc2017.slidingtiles;
 
 
 import android.support.annotation.NonNull;
-import fall2018.csc2017.R;
-
 
 import java.io.Serializable;
+
+import fall2018.csc2017.R;
 
 
 /**
@@ -22,24 +22,6 @@ public class Tile implements Comparable<Tile>, Serializable {
      * The unique id.
      */
     private int id;
-
-    /**
-     * Return the background id.
-     *
-     * @return the background id
-     */
-    public int getBackground() {
-        return background;
-    }
-
-    /**
-     * Return the tile id.
-     *
-     * @return the tile id
-     */
-    public int getId() {
-        return id;
-    }
 
     /**
      * A Tile with id and background. The background may not have a corresponding image.
@@ -136,6 +118,24 @@ public class Tile implements Comparable<Tile>, Serializable {
             default:
                 background = R.drawable.tile_25;
         }
+    }
+
+    /**
+     * Return the background id.
+     *
+     * @return the background id
+     */
+    public int getBackground() {
+        return background;
+    }
+
+    /**
+     * Return the tile id.
+     *
+     * @return the tile id
+     */
+    public int getId() {
+        return id;
     }
 
     @Override
