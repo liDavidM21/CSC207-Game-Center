@@ -387,8 +387,6 @@ public class GameView extends GridLayout {
                 hasTouched = true;
             }
 
-            GameActivity2048.getMainActivity().saveToFile("2048auto" + UserManager.getLoginUser().getUserEmail() + ".ser");
-
             for (int y = 0; y < 4; ++y) {
                 for (int x = 0; x < 4; ++x) {
                     num[y][x] = cards[y][x].getNum();
@@ -447,6 +445,7 @@ public class GameView extends GridLayout {
                     }
 
             }
+            GameActivity2048.getMainActivity().saveToFile("2048auto" + UserManager.getLoginUser().getUserEmail() + ".ser");
 
             return true;
 

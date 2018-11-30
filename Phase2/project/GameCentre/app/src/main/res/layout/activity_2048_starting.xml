@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fall2018.csc2017.game2048.game2048StartingActivity">
+    tools:context="fall2018.csc2017.game2048.StartingActivity2048">
 
     <ImageView
         android:id="@+id/background_1"

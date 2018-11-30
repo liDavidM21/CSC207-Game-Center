@@ -30,7 +30,7 @@
         <activity android:name=".game2048.GameActivity2048" />
         <activity android:name=".minesweeper.GameSettingMinesweeper" />
         <activity android:name=".slidingtiles.GameChoose" />
-        <activity android:name=".game2048.game2048StartingActivity" />
+        <activity android:name=".game2048.StartingActivity2048" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.WelcomeActivity"></activity>
     </application>
