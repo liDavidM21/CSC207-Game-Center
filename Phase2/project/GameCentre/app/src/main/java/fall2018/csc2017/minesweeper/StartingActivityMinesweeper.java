@@ -26,7 +26,7 @@ import fall2018.csc2017.slidingtiles.MyBounceInterpolator;
  * https://github.com/marcellelek/Minesweeper.git
  * It is used to construct basic game structure and modified by our group member.
  */
-public class MineSweepActivity extends AppCompatActivity {
+public class StartingActivityMinesweeper extends AppCompatActivity {
 
     private static int showDefault = 1;
 
@@ -156,7 +156,7 @@ public class MineSweepActivity extends AppCompatActivity {
         MyBounceInterpolator interpolator = new MyBounceInterpolator(0.1, 20);
         myAnim.setInterpolator(interpolator);
         button.startAnimation(myAnim);
-        final MineSweepActivity tmp1 = this;
+        final StartingActivityMinesweeper tmp1 = this;
         myAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -178,7 +178,7 @@ public class MineSweepActivity extends AppCompatActivity {
      * Switch to activity_setting interface.
      */
     private void switchToSetting() {
-        final MineSweepActivity tmp1 = this;
+        final StartingActivityMinesweeper tmp1 = this;
         Intent tmp = new Intent(tmp1, GameSettingMinesweeper.class);
         startActivity(tmp);
     }
