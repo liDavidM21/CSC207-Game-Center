@@ -26,69 +26,38 @@ import fall2018.csc2017.slidingtiles.GameChoose;
 
 public class FragmentPageLocal extends Fragment {
 
-    /**
-     * The time format for the time when the game was played.
-     */
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    static String text;
-    /**
-     * Current user manager.
-     */
-    UserManager current_manager = UserManager.get_instance();
+    TextView scoreBoard;
+    TextView email;
+    TextView score;
+
+    String scoreboardString;
+    String emailString;
+    String scoreString;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view;
-        User current_user = current_manager.getLoginUser();
-        current_user.sort_score();
-        List<Score> user_score = current_user.getTopScore();
-        Bundle bundle = getArguments();
-        int pageNumber = bundle.getInt("pageNumber");
         view = inflater.inflate(R.layout.page_fragment_layout, container, false);
-        TextView scoreBoard = (TextView) view.findViewById(R.id.BoardName);
-        TextView email = (TextView) view.findViewById(R.id.UserEmail);
-        TextView score = (TextView) view.findViewById(R.id.Score);
-        String rank;
-        if (pageNumber == 1) {
-            rank = "1st";
-        } else if (pageNumber == 2) {
-            rank = "2nd";
-        } else if (pageNumber == 3) {
-            rank = "3rd";
-        } else {
-            rank = Integer.toString(pageNumber) + "th";
-        }
-        if (GameChoose.getCurrentGame().equals("sliding tiles")) {
-            scoreBoard.setText("Sliding Tiles" + "\n" + "Local Ranking List");
-        } else if (GameChoose.getCurrentGame().equals("minesweeper")) {
-            scoreBoard.setText("Minesweeper" + "\n" + "Local Ranking List");
-        } else {
-            scoreBoard.setText("2048" + "\n" + "Local Ranking List");
-        }
-        if (user_score.size() < pageNumber) {
-            email.setText("HOI! You need to play once to let me know your score!");
-            score.setText("");
-        } else {
-            email.setText(rank + "   Username: " + "\n" + current_user.getUserEmail());
-            Timestamp ts = current_user.getTopScore().get(pageNumber - 1).getTimeStamp();
-            String gameComplexity;
-            if (current_user.getTopScore().get(pageNumber - 1).getComplexity() == 3) {
-                gameComplexity = "Easy Mode";
-            } else if (current_user.getTopScore().get(pageNumber - 1).getComplexity() == 4) {
-                gameComplexity = "Medium Mode";
-            } else if (current_user.getTopScore().get(pageNumber - 1).getComplexity() == 0) {
-                gameComplexity = "";
-            } else {
-                gameComplexity = "Hard Mode";
-            }
-            score.setText("Score: " + Integer.toString(current_user.getTopScore()
-                    .get(pageNumber - 1).getFinalScore()) + "\n" + gameComplexity + "\n" + "(Played at " + "\n"
-                    + sdf.format(ts) + ")");
-        }
-
+        scoreBoard = (TextView) view.findViewById(R.id.BoardName);
+        email = (TextView) view.findViewById(R.id.UserEmail);
+        score = (TextView) view.findViewById(R.id.Score);
+        scoreBoard.setText(scoreboardString);
+        email.setText(emailString);
+        score.setText(scoreString);
         return view;
 
+    }
+
+    public void displayScoreboardText(String text){
+        scoreboardString = text;
+    }
+    public void displayEmailText(String text){
+        emailString = text;
+    }
+    public void displayScoreText(String text){
+        scoreString = text;
     }
 
 }
