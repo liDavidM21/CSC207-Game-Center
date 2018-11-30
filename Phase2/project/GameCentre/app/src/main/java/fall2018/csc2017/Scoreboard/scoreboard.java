@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import fall2018.csc2017.R;
 import fall2018.csc2017.UserAndScore.UserManager;
@@ -32,8 +33,11 @@ public class scoreboard extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (!b) {
+                    ((TextView) current_switch).setText("Local");
                     viewPager.setAdapter(swipeAdapter);
+
                 } else {
+                    ((TextView) current_switch).setText("Global");
                     viewPager.setAdapter(swipeAdapterLocal);
                 }
             }
@@ -42,7 +46,8 @@ public class scoreboard extends AppCompatActivity {
         viewPager.setCurrentItem(0);
         Toolbar toolbar = (Toolbar) findViewById(R.id.Toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Scoreboard" + "                                Switch");
+        getSupportActionBar().setTitle("Scoreboard");
+        ((TextView) current_switch).setText("Local");
     }
 
 
