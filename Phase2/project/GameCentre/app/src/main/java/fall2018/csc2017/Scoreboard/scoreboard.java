@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import fall2018.csc2017.R;
+import fall2018.csc2017.UserAndScore.UserManager;
 
 public class scoreboard extends AppCompatActivity {
 

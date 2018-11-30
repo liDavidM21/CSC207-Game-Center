@@ -206,14 +206,14 @@ public class StartingActivity extends AppCompatActivity {
         Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * Read the temporary board from disk.
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadFromFile(TEMP_SAVE_FILENAME);
-    }
+//    /**
+//     * Read the temporary board from disk.
+//     */
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        loadFromFile(TEMP_SAVE_FILENAME);
+//    }
 
     /**
      * Switch to the GameActivity view to play the game.

@@ -41,9 +41,9 @@ public class User implements Serializable, Comparable<User> {
 
     public String getPassword(){return password;}
 
-    private List<Score> score2048;
-    private List<Score> scoreSlidingTiles;
-    private List<Score> scoreMineSweeper;
+    public List<Score> score2048;
+    public List<Score> scoreSlidingTiles;
+    public List<Score> scoreMineSweeper;
 
     /**
      * User class constructor. Given email and password.

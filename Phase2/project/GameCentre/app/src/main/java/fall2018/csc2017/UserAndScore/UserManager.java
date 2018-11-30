@@ -1,5 +1,9 @@
 package fall2018.csc2017.UserAndScore;
 
+import android.util.Log;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
